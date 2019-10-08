@@ -27,9 +27,8 @@ public class ColliderDebuger : SingletonMonoBehaviour<ColliderDebuger>
     private bool[] drawflag;
     #endregion
 
-
     #region アニメーションイベントメソッド
-    
+
     public void ColliderDrawStart(int num)
     {
         if (!drawflag[num])
