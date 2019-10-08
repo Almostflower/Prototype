@@ -25,10 +25,10 @@ public class UpdateManager : MonoBehaviour
 
     private void Update()
     {
-        for(int i = 0; i < ColliderDebuger.Instance.GetMaxColliderDraw(); i++)
-        {
-            ColliderDebuger.Instance.ColliderDrawStart(i);
-        }
+        //for(int i = 0; i < ColliderDebuger.Instance.GetMaxColliderDraw(); i++)
+        //{
+        //    ColliderDebuger.Instance.ColliderDrawStart(i);
+        //}
 
         if(behaviourcount_ > 0)
         {
