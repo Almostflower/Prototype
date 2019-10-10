@@ -13,8 +13,10 @@ public sealed class Player : BaseMonoBehaviour
     private Vector3 velocity;
     private string PlayerActionParameter = "Move";
     private float hit;
+
+
     [SerializeField]
-    private GameObject GiftArea;
+    private GameObject GiftArea;//プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
 
     private void awake()
     {
@@ -67,13 +69,21 @@ public sealed class Player : BaseMonoBehaviour
 
     }
 
+    /// <summary>
+    /// ギフトに触れた時状態によって、取得もしくは持ち上げるようにさせる
+    /// </summary>
+    /// <param name="other">判定の対象物</param>
     private void OnTriggerEnter(Collider other)
-    {
+    {  
+        //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
         if(other.gameObject.tag == "gift")
         {
+            Destroy(other.gameObject);
+        }
+        //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
+        if(other.gameObject.tag == "Bad gift")
+        {
             Vector3 m = GiftArea.transform.position;
-            //m.y += 0.5f;
-            //m.z += 0.2f;
             other.transform.position = m;
             other.transform.parent = GiftArea.transform;
             other.transform.rotation = Quaternion.identity;
