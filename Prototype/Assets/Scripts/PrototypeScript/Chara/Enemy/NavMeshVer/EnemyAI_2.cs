@@ -53,7 +53,7 @@ public class EnemyAI_2 : MonoBehaviour
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         _currentlife = lifeMax;
-        lineOfSight1 = GameObject.Find("eye").transform;
+        lineOfSight1 = GameObject.Find("toko_eye").transform;
     }
 
     // --- 更新処理 ----------------------------------------------------------

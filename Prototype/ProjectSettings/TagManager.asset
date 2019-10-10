@@ -7,6 +7,8 @@ TagManager:
   - RightHand
   - LeftHand
   - gift
+  - Bad gift
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Visible
   - 
   - 
   - 
