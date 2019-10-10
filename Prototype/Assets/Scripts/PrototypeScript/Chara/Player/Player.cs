@@ -14,8 +14,8 @@ public sealed class Player : BaseMonoBehaviour
     private string PlayerActionParameter = "Move";
     private float hit;
     [SerializeField]
-    public GameObject LeftHand;
-    public GameObject RightHand;
+    private GameObject GiftArea;
+
     private void awake()
     {
         base.Awake();
@@ -71,11 +71,12 @@ public sealed class Player : BaseMonoBehaviour
     {
         if(other.gameObject.tag == "gift")
         {
-            Vector3 m = LeftHand.transform.position;
-            m.y += 0.5f;
-            m.z += 0.2f;
+            Vector3 m = GiftArea.transform.position;
+            //m.y += 0.5f;
+            //m.z += 0.2f;
             other.transform.position = m;
-            other.transform.parent = LeftHand.transform;
+            other.transform.parent = GiftArea.transform;
+            other.transform.rotation = Quaternion.identity;
         }
     }
 }
