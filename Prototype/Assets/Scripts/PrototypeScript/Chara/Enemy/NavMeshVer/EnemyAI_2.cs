@@ -81,24 +81,24 @@ public class EnemyAI_2 : MonoBehaviour
                 break;
         }
 
-        if (Input.GetMouseButtonDown(0) && _state != eState.Dead)      // 攻撃を受けたときの処理
-        {
-            _currentlife--;
-            Debug.Log("Zombie Life: " + _currentlife);
-
-            nav.speed = 0f;
-
-            if (_currentlife <= 0)                                      // 死ぬ
-            {
-                anim.SetTrigger("Died");
-                _state = eState.Dead;
-                nav.Stop();
-            }
-            else                                                        // ダメージを受ける
-            {
-                anim.SetTrigger("Damaged");
-            }
-        }
+        //if (Input.GetMouseButtonDown(0) && _state != eState.Dead)      // 攻撃を受けたときの処理
+        //{
+        //    _currentlife--;
+        //    Debug.Log("Zombie Life: " + _currentlife);
+        //
+        //    nav.speed = 0f;
+        //
+        //    if (_currentlife <= 0)                                      // 死ぬ
+        //    {
+        //        //anim.SetTrigger("Died");
+        //        _state = eState.Dead;
+        //        nav.Stop();
+        //    }
+        //    else                                                        // ダメージを受ける
+        //    {
+        //        //anim.SetTrigger("Damaged");
+        //    }
+        //}
 
         Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * visibleDistance, Color.gray);
     }
@@ -112,7 +112,7 @@ public class EnemyAI_2 : MonoBehaviour
         if (_idleTime > idleMaxTime)                        // 一定時間立ち止まったら、さまよう
         {
             Debug.Log("Wandering");
-            anim.SetTrigger("Walk");
+            //anim.SetTrigger("Walk");
             nav.Resume();
             nav.SetDestination(new Vector3(Random.Range(-14f, 14f), 0f, Random.Range(-14f, 14f))); // ランダムな場所へ向かう
             _state = eState.Wander;
@@ -130,7 +130,7 @@ public class EnemyAI_2 : MonoBehaviour
         if (_wanderTime > wanderMaxTime || nav.remainingDistance < 0.5f) // 一定時間さまようか行先に着いたら、立ち止まる
         {
             Debug.Log("Idling");
-            anim.SetTrigger("Idle");
+            //anim.SetTrigger("Idle");
             nav.Stop();
             _state = eState.Idle;
             _wanderTime = 0f;
@@ -192,7 +192,7 @@ public class EnemyAI_2 : MonoBehaviour
     void TargetFound()
     {
         Debug.Log("Target Found");
-        anim.SetTrigger("Run");
+        //anim.SetTrigger("Run");
         nav.Resume();
         nav.SetDestination(target.position);
         _state = eState.Chase;
@@ -215,7 +215,7 @@ public class EnemyAI_2 : MonoBehaviour
             Debug.Log("Target Lost");                       // ターゲットロスト
             _state = eState.Idle;
             nav.Stop();
-            anim.SetTrigger("Idle");
+            //anim.SetTrigger("Idle");
             nav.speed = 0f;
             _lostTime = 0f;
         }
@@ -238,7 +238,7 @@ public class EnemyAI_2 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            anim.SetBool("Attacking", true);
+            //anim.SetBool("Attacking", true);
             _state = eState.Attack;
             nav.SetDestination(target.position);
             nav.speed = 0f;
@@ -250,7 +250,7 @@ public class EnemyAI_2 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            anim.SetBool("Attacking", false);
+            //anim.SetBool("Attacking", false);
             _state = eState.Chase;
             nav.speed = runSpeed;
         }
