@@ -31,9 +31,9 @@ public sealed class Stage : BaseMonoBehaviour
     [SerializeField] private GameObject csvData;
 
     /// <summary>
-    /// 
+    /// 建物
     /// </summary>
-    [SerializeField] private GameObject[] Gift;
+    [SerializeField] private GameObject[] Building;
 
     /// <summary> 幅サイズ </summary>
     [SerializeField] private int stageWidth;
@@ -58,13 +58,16 @@ public sealed class Stage : BaseMonoBehaviour
 
 
     /// <summary>
-    /// ステージの初期化
+    /// 
     /// </summary>
     protected override void Awake()
     {
         base.Awake();        
     }
 
+    /// <summary>
+    /// ステージの初期化
+    /// </summary>
     private void Start()
     {
 
@@ -76,6 +79,7 @@ public sealed class Stage : BaseMonoBehaviour
         {
             for (int j = 0; j < stageWidth; j++)
             {
+                // オブジェクト配置の座標決定
                 float posX = startPos.x + j * width;
                 float posY = startPos.y;
                 float posZ = startPos.z - i * width;
@@ -83,14 +87,13 @@ public sealed class Stage : BaseMonoBehaviour
                 stageArea[i, j].isExistence = false;
                 stageArea[i, j].typeObj = TypeObj.None;
 
-                //Debug.Log(csvData.GetComponent<CSVReader>().CsvDatas[0][0]);
-
-                if (csvData.GetComponent<CSVReader>().CsvDatas[i][j] != Gift.Length.ToString())
+                // CSVで読み込んだデータと比較して、建物かどうかを判定
+                if (csvData.GetComponent<CSVReader>().CsvDatas[i][j] != Building.Length.ToString())
                 {
                     int index = int.Parse(csvData.GetComponent<CSVReader>().CsvDatas[i][j].ToString());
 
                     // 生成
-                    stageArea[i, j].obj = Instantiate(Gift[index], stageArea[i, j].position, Quaternion.identity);
+                    stageArea[i, j].obj = Instantiate(Building[index], stageArea[i, j].position, Quaternion.identity);
                     stageArea[i, j].isExistence = true;
                     stageArea[i, j].typeObj = TypeObj.Building;
                 }

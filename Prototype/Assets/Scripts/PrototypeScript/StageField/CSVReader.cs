@@ -6,14 +6,14 @@ using System.IO;    // StringReader
 public class CSVReader : BaseMonoBehaviour
 {
     /// <summary>
-    /// 
+    /// CSVファイル
     /// </summary>
-    private TextAsset csvFile; // CSVファイル
+    private TextAsset csvFile;
 
     /// <summary>
-    /// 
+    /// CSVの中身を入れるリスト
     /// </summary>
-    private List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
+    private List<string[]> csvDatas = new List<string[]>();
     public List<string[]> CsvDatas
     {
         get { return csvDatas; }
@@ -25,7 +25,13 @@ public class CSVReader : BaseMonoBehaviour
     protected override void Awake()
     {
         base.Awake();
+    }
 
+    /// <summary>
+    /// CSVReader初期化
+    /// </summary>
+    private void Start()
+    {
         csvFile = Resources.Load("test") as TextAsset; // Resouces下のCSV読み込み
         StringReader reader = new StringReader(csvFile.text);
 
@@ -40,20 +46,4 @@ public class CSVReader : BaseMonoBehaviour
         // csvDatas[行][列]を指定して値を自由に取り出せる
         Debug.Log(csvDatas[0][1]);
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="index1"></param>
-    /// <param name="index2"></param>
-    /// <returns></returns>
-    public string GetData(int index1, int index2)
-    {
-        return csvDatas[index1][index2];
-    }
-
-    // 疑問
-    // TextAssetはナニモン？
-    // StringReaderはナニモン？
-    // わざわざリストに入れてるけどTextAssetのままでは使えないの？
 }
