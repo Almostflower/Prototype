@@ -5,11 +5,6 @@ using UnityEngine;
 public class Gift : BaseMonoBehaviour
 {
     /// <summary>
-    /// ギフトのprefab
-    /// </summary>
-    [SerializeField] private GameObject giftData;
-
-    /// <summary>
     /// ギフトの寿命
     /// </summary>
     [SerializeField]private float time;
@@ -28,14 +23,19 @@ public class Gift : BaseMonoBehaviour
         get { return isDead; }
     }
 
-
     /// <summary>
-    /// ギフトの初期化
+    /// 
     /// </summary>
     protected override void Awake()
     {
         base.Awake();
+    }
 
+    /// <summary>
+    /// ギフトの初期化
+    /// </summary>
+    private void Start()
+    {
         progressTime = 0;
         isDead = false;
     }
@@ -59,5 +59,7 @@ public class Gift : BaseMonoBehaviour
         {
             isDead = true;
         }
+
+        Debug.Log("ギフトタイム" + time);
     }
 }

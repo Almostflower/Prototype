@@ -33,16 +33,28 @@ public sealed class Stage : BaseMonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] private GameObject Gift;
+    [SerializeField] private GameObject[] Gift;
 
     /// <summary> 幅サイズ </summary>
     [SerializeField] private int stageWidth;
+    public int StageWidth
+    {
+        get { return stageWidth; }
+    }
 
     /// <summary> 奥行サイズ </summary>
     [SerializeField] private int stageHeight;
+    public int StageHeight
+    {
+        get { return stageHeight; }
+    }
 
     /// <summary> エリアデータ </summary>
     private Area[,] stageArea; 
+    public  Area StageArea(int index1, int index2)
+    {
+        return stageArea[index1, index2];
+    }
 
 
     /// <summary>
@@ -50,7 +62,11 @@ public sealed class Stage : BaseMonoBehaviour
     /// </summary>
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake();        
+    }
+
+    private void Start()
+    {
 
         // 生成エリア情報の初期化
         stageArea = new Area[stageHeight, stageWidth];
@@ -58,7 +74,7 @@ public sealed class Stage : BaseMonoBehaviour
         Vector3 startPos = new Vector3(-stageWidth * width / 2, 0.5f, stageHeight * width / 2);
         for (int i = 0; i < stageHeight; i++)
         {
-            for(int j = 0; j < stageWidth; j++)
+            for (int j = 0; j < stageWidth; j++)
             {
                 float posX = startPos.x + j * width;
                 float posY = startPos.y;
@@ -69,16 +85,18 @@ public sealed class Stage : BaseMonoBehaviour
 
                 //Debug.Log(csvData.GetComponent<CSVReader>().CsvDatas[0][0]);
 
-                if(csvData.GetComponent<CSVReader>().CsvDatas[i][j] == "1")
+                if (csvData.GetComponent<CSVReader>().CsvDatas[i][j] != Gift.Length.ToString())
                 {
+                    int index = int.Parse(csvData.GetComponent<CSVReader>().CsvDatas[i][j].ToString());
+
                     // 生成
-                    stageArea[i, j].obj = Instantiate(Gift, stageArea[i, j].position, Quaternion.identity);
+                    stageArea[i, j].obj = Instantiate(Gift[index], stageArea[i, j].position, Quaternion.identity);
+                    stageArea[i, j].isExistence = true;
+                    stageArea[i, j].typeObj = TypeObj.Building;
                 }
-                
+
             }
         }
-        
-
     }
 
     /// <summary>
