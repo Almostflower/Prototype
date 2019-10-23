@@ -949,10 +949,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  BadLimitTime: 10
-  DustLimitTime: 20
-  BadFlag: 0
-  DustFlag: 0
 --- !u!114 &646113686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,8 +963,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BadLimitTime: 10
   DustLimitTime: 20
-  BadFlag: 0
-  DustFlag: 0
 --- !u!114 &646113687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,8 +1294,7 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 1356110169}
   PlayerController: {fileID: 1356110171}
   Speed: 2
-  LeftHand: {fileID: 0}
-  RightHand: {fileID: 0}
+  GiftArea: {fileID: 0}
 --- !u!136 &1356110173
 CapsuleCollider:
   m_ObjectHideFlags: 0
