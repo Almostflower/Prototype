@@ -47,7 +47,7 @@ public class DustManager : MonoBehaviour
 
 	void Start()
     {
-	}
+    }
 
 	private void Awake()
 	{
@@ -64,13 +64,14 @@ public class DustManager : MonoBehaviour
 	}
 
 	private void Update()
-	{
+    {
 		// 一つが閉じたら他が開くモード
 		if (one_opneclose_)
 		{
 			OnesOpenClose();
 		}
-	}
+			
+    }
 
 	/// <summary>
 	/// 一つが閉じたら他が開くモード
@@ -87,13 +88,13 @@ public class DustManager : MonoBehaviour
 				number_ = Random.Range(0, this.dust_script_.Count);
 			}
 			old_number_ = number_;
-			this.dust_script_[number_].SetGetOpenDust = true;
+			this.dust_script_[number_].SetOpenDust = true;
 			this.dust_close_ = false;
 		}
 		else
 		{
 			// ごみ箱が閉じたら
-			if (!this.dust_script_[number_].SetGetOpenDust)
+			if (!this.dust_script_[number_].SetOpenDust)
 			{
 				this.dust_close_ = true;
 			}
