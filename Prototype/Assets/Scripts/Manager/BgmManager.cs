@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System;
+//using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ public class BgmManager : MonoBehaviour
     /// 現在再生中のAudioSource
     /// FadeOut中のものは除く
     /// </summary>
-    [NonSerialized]
+	[System.NonSerialized]
     public AudioSource CurrentAudioSource = null;
 
     /// <summary>

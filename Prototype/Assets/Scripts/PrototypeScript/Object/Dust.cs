@@ -5,11 +5,17 @@ using UnityEngine;
 public class Dust : MonoBehaviour
 {
 	/// <summary>
-	/// 全部の箱が開いて時間で開いたり閉じたりするモード
+	/// 共通
 	/// </summary>
 	// 使用できるか否か
 	bool dust_ = false;
 
+	// 個数管理
+	int count_ = 0;
+
+	/// <summary>
+	/// 全部の箱が開いて時間で開いたり閉じたりするモード
+	/// </summary>
 	// 固定時間
 	float limit_time_ = 0;
 
@@ -129,7 +135,7 @@ public class Dust : MonoBehaviour
 	/// <summary>
 	/// ごみ箱空いてるかのセットゲット
 	/// </summary>
-	public bool SetOpenDust
+	public bool SetGetOpenDust
 	{
 		set { this.dust_ = value; }
 		get { return this.dust_; }

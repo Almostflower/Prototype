@@ -176,7 +176,7 @@ PrefabInstance:
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
@@ -311,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553383685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
@@ -426,8 +426,8 @@ MonoBehaviour:
   - 5
   - 6
   oneopen_time_: 3
-  all_opneclose_: 1
-  one_opneclose_: 0
+  all_opneclose_: 0
+  one_opneclose_: 1
 --- !u!4 &652016858
 Transform:
   m_ObjectHideFlags: 0
@@ -436,7 +436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652016856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1431834365}
@@ -464,6 +464,70 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1011998345}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &804311646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804311649}
+  - component: {fileID: 804311648}
+  - component: {fileID: 804311647}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &804311647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804311646}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5002fe41bacc57548b877c1780f93bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 1
+  TargetVolume: 1
+  TimeToFade: 2
+  CrossFadeRatio: 1
+--- !u!114 &804311648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804311646}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b25c4bf34aeae143a2ba50ffed19228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 1
+  TargetVolume: 1
+  TimeToFade: 2
+  CrossFadeRatio: 1
+--- !u!4 &804311649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804311646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.4301047, y: -0.6777315, z: -3.707895}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836886325
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +639,7 @@ PrefabInstance:
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
@@ -644,7 +708,7 @@ PrefabInstance:
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9070488982869197626, guid: 823e69dc3455be0459a64a33bb250dcd,
         type: 3}
