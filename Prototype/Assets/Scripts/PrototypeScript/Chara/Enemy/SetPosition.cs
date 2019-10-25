@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetPosition : MonoBehaviour
+public class SetPosition : BaseMonoBehaviour
 {
     private Vector3 startPosition;
     private Vector3 destination;
 
+    void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {

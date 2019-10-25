@@ -14,7 +14,6 @@ public sealed class Player : BaseMonoBehaviour
     private string PlayerActionParameter = "Move";
     private float hit;
 
-
     [SerializeField]
     private GameObject GiftArea;//プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
 
@@ -66,7 +65,6 @@ public sealed class Player : BaseMonoBehaviour
 
     public void PutGift()
     {
-
     }
 
     /// <summary>
@@ -83,6 +81,8 @@ public sealed class Player : BaseMonoBehaviour
         //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
         if(other.gameObject.tag == "Bad gift")
         {
+            Debug.Log("あたってる");
+            GameStatusManager.Instance.SetLiftGift(true);
             Vector3 m = GiftArea.transform.position;
             other.transform.position = m;
             other.transform.parent = GiftArea.transform;

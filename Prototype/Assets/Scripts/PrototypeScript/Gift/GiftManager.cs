@@ -82,7 +82,7 @@ public class GiftManager : BaseMonoBehaviour
         {
             if(isExistence[i])
             {
-                if(giftManager[i].GetComponent<Gift>().IsDead)
+                if(giftManager[i].GetComponent<TestGift>().GetDustFlag())
                 {
                     AddListToGiftArea(giftManager[i].transform.position);
                     Destroy(giftManager[i]);

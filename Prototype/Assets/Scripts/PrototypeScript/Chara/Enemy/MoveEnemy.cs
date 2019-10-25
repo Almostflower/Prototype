@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveEnemy : MonoBehaviour
+public class MoveEnemy : BaseMonoBehaviour
 {
 
     public enum EnemyState
@@ -36,6 +36,10 @@ public class MoveEnemy : MonoBehaviour
     //　プレイヤーTransform
     private Transform playerTransform;
 
+    void Awake()
+    {
+        base.Awake();
+    }
     // Use this for initialization
     void Start()
     {

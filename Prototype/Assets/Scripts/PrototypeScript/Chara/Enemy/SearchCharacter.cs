@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class NewBehaviourScript : BaseMonoBehaviour
 {
     private MoveEnemy moveEnemy;
 
+    void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {

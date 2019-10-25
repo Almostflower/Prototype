@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 using System.Collections;
 
-public class EnemyAI_2 : MonoBehaviour
+public class EnemyAI_2 : BaseMonoBehaviour
 {
     public Transform target;        // ターゲットの位置情報
 
@@ -46,6 +46,10 @@ public class EnemyAI_2 : MonoBehaviour
     }
     eState _state = eState.Idle;
 
+    private void Awake()
+    {
+        base.Awake();
+    }
     // --- 初期化 ----------------------------------------------------------
     private void Start()
     {

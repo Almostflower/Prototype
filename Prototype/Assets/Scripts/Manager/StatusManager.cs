@@ -5,15 +5,15 @@ using UnityEngine;
 public sealed class StatusManager : SingletonMonoBehaviour<StatusManager>
 {
     [SerializeField]
-    public float StageWidth;
+    private float StageWidth;
     [SerializeField]
-    public int GiftMaximum;
+    private int GiftMaximum;
     [SerializeField]
-    public int StageLevel;
+    private int StageLevel;
     [SerializeField]
-    public int StageMaximum;
+    private int StageMaximum;
     [SerializeField]
-    public float[] StageLimitTimer;
+    private float[] StageLimitTimer;
     
     private int GiftNowNum;
     private bool IsPossession;
