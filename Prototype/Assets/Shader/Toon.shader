@@ -46,7 +46,7 @@
 		fixed4 LightingToonRamp(SurfaceOutput s, fixed3 lightDir, fixed atten)
 		{
 
-			half d = dot(s.Normal, lightdir) * 0.5f + 0.5f;	// ライトの方向と法線の内積を取る
+			half d = dot(s.Normal, lightDir) * 0.5f + 0.5f;	// ライトの方向と法線の内積を取る
 			fixed3 ramp = tex2D(_RampTex, fixed2(d, 0.5f)).rgb;
 			fixed4 c;
 			c.rgb = s.Albedo * _LightColor0.rgb * ramp;
@@ -55,7 +55,7 @@
 		}
 
 		// マテリアルの表面の色の定義
-        void surf (Input IN, inout SurfaceOutputStandard o)
+        void surf (Input IN, inout SurfaceOutput o)
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
