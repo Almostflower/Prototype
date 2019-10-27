@@ -76,13 +76,16 @@ public sealed class Player : BaseMonoBehaviour
         //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
         if(other.gameObject.tag == "gift")
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Gift>().GoodFlag = true;
+            // プレイヤーが吸収
+            //Destroy(other.gameObject);
         }
         //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
         if(other.gameObject.tag == "Bad gift")
         {
             Debug.Log("あたってる");
             GameStatusManager.Instance.SetLiftGift(true);
+            other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
             Vector3 m = GiftArea.transform.position;
             other.transform.position = m;
             other.transform.parent = GiftArea.transform;
