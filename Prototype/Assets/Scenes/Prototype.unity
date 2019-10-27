@@ -755,17 +755,17 @@ PrefabInstance:
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.964917
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1349277
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.0858574
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
@@ -916,7 +916,7 @@ PrefabInstance:
     - target: {fileID: 8948810467087792336, guid: c5e5404873a7d3641b97b957ae0bd9d8,
         type: 3}
       propertyPath: m_Name
-      value: Stage
+      value: StageManager
       objectReference: {fileID: 0}
     - target: {fileID: 8948810467087792336, guid: c5e5404873a7d3641b97b957ae0bd9d8,
         type: 3}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class Stage : BaseMonoBehaviour
+public sealed class StageManager : BaseMonoBehaviour
 {
     /// <summary>
     /// オブジェクトタイプ
@@ -94,6 +94,7 @@ public sealed class Stage : BaseMonoBehaviour
 
                     // 生成
                     stageArea[i, j].obj = Instantiate(Building[index], stageArea[i, j].position, Quaternion.identity);
+                    stageArea[i, j].obj.transform.parent = this.transform;
                     stageArea[i, j].isExistence = true;
                     stageArea[i, j].typeObj = TypeObj.Building;
                 }

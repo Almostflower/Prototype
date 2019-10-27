@@ -52,13 +52,13 @@ public class GiftManager : BaseMonoBehaviour
         giftArea = new List<Vector3>();
 
         // ステージ空白の配列の生成
-        for (int i = 0; i < stageData.GetComponent<Stage>().StageHeight; i++)
+        for (int i = 0; i < stageData.GetComponent<StageManager>().StageHeight; i++)
         {
-            for (int j = 0; j < stageData.GetComponent<Stage>().StageWidth; j++)
+            for (int j = 0; j < stageData.GetComponent<StageManager>().StageWidth; j++)
             {
-                if (!stageData.GetComponent<Stage>().StageArea(i, j).isExistence)
+                if (!stageData.GetComponent<StageManager>().StageArea(i, j).isExistence)
                 {
-                    giftArea.Add(stageData.GetComponent<Stage>().StageArea(i, j).position);
+                    giftArea.Add(stageData.GetComponent<StageManager>().StageArea(i, j).position);
                 }
 
             }
@@ -67,8 +67,7 @@ public class GiftManager : BaseMonoBehaviour
         // ギフトの生成
         for (int i= 0; i < giftMax; i++)
         {
-            giftManager[i] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
-            isExistence[i] = true;
+            Birth(i);
         }
 
     }
@@ -89,7 +88,9 @@ public class GiftManager : BaseMonoBehaviour
                     // ステージゲージを下げる
 
                     // ギフトの削除と生成
-                    DeleteAndBirth(i);
+                    Delete(i);
+                    Birth(i);
+
                 }
 
                 // 良い状態で回収
@@ -98,7 +99,8 @@ public class GiftManager : BaseMonoBehaviour
                     // ステージゲージを上げる
 
                     // ギフトの削除と生成
-                    DeleteAndBirth(i);
+                    Delete(i);
+                    Birth(i);
                 }
 
             }
@@ -128,18 +130,25 @@ public class GiftManager : BaseMonoBehaviour
     }
 
     /// <summary>
-    /// ギフトの削除と生成
+    /// ギフトの削除
     /// </summary>
     /// <param name="index"></param>
-    private void DeleteAndBirth(int index)
+    private void Delete(int index)
     {
         // 削除
         AddListToGiftArea(giftManager[index].transform.position);
         Destroy(giftManager[index]);
         isExistence[index] = false;
+    }
 
-        // 生成
+    /// <summary>
+    /// ギフトの生成
+    /// </summary>
+    /// <param name="index"></param>
+    private void Birth(int index)
+    {
         giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
+        giftManager[index].transform.parent = this.transform;
         isExistence[index] = true;
     }
 }
