@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DustManager : MonoBehaviour
+public class DustManager : BaseMonoBehaviour
 {
 	/// <summary>
 	/// 全部の箱が開いて時間で開いたり閉じたりするモード
@@ -45,25 +45,31 @@ public class DustManager : MonoBehaviour
 	[SerializeField]
 	bool one_opneclose_ = false;
 
-	void Start()
+    protected override void Awake()
     {
+        base.Awake();
     }
 
-	private void Awake()
-	{
-		for (int i = 0; i < this.dust_script_.Count; i++)
-		{
-			// それぞれのごみ箱に開く時間をセット
-			this.dust_script_[i].SetLimitTime(this.limit_time_[i]);
-			this.dust_script_[i].SetOneOpenTime(this.oneopen_time_);
+    void Start()
+    {
+        /////////////////////////////////////////////////////
+        /////元々Awakeにあった処理
+        /////
+        for (int i = 0; i < this.dust_script_.Count; i++)
+        {
+            // それぞれのごみ箱に開く時間をセット
+            this.dust_script_[i].SetLimitTime(this.limit_time_[i]);
+            this.dust_script_[i].SetOneOpenTime(this.oneopen_time_);
 
-			// デバッグモード
-			this.dust_script_[i].SetAllOpneClose(all_opneclose_);
-			this.dust_script_[i].SetOneOpneClose(one_opneclose_);
-		}
-	}
+            // デバッグモード
+            this.dust_script_[i].SetAllOpneClose(all_opneclose_);
+            this.dust_script_[i].SetOneOpneClose(one_opneclose_);
+        }
+    }
 
-	private void Update()
+	
+
+	public override void UpdateNormal()
     {
 		// 一つが閉じたら他が開くモード
 		if (one_opneclose_)

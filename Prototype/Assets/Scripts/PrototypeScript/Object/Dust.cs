@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dust : MonoBehaviour
+public class Dust : BaseMonoBehaviour
 {
 	/// <summary>
 	/// 全部の箱が開いて時間で開いたり閉じたりするモード
@@ -37,15 +37,23 @@ public class Dust : MonoBehaviour
 	// 一つが閉じたら他が開くモード
 	bool one_opneclose_ = false;
 
+    /// <summary>
+    /// BaseMonoBehaviour初期化
+    /// </summary>
+    protected override void Awake()
+    {
+        base.Awake();
+	}
+
     void Start()
     {
     }
 
-	private void Awake()
-	{
-	}
-
-	private void Update()
+    /// <summary>
+    /// ゴミ箱更新
+    /// </summary>
+    
+    public override void UpdateNormal()
     {
 		// 	全部の箱が開いて時間で開いたり閉じたりするモード
 		if(all_opneclose_)
@@ -74,10 +82,10 @@ public class Dust : MonoBehaviour
 			// ごみを入れる処理
 			//
 			//
-
+        
 			// 閉じるまでのカウントダウン
 			this.open_time_ -= Time.deltaTime;
-
+        
 			// 開いてる時間が終わったら
 			if (this.open_time_ < 0)
 			{
@@ -89,10 +97,10 @@ public class Dust : MonoBehaviour
 		{
 			//Debug.Log("閉じているよ");
 			GetComponent<Renderer>().material.color = Color.red;
-
+        
 			// 開くまでのカウントダウン
 			this.close_time_ -= Time.deltaTime;
-
+        
 			// 閉じてる時間が終わったら
 			if (this.close_time_ < 0)
 			{
