@@ -3,13 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
 public class SoundManager : MonoBehaviour
 {
+	////////////////// ここに出したい音を入力 ///////////////////////////
+	/// <summary>
+	/// フォルダ名と同じ名前のBGMを入力
+	/// </summary>
+	public enum BGMLabel
+	{
+		None,
+		stage2,
+		stage3
+	}
+
+	/// <summary>
+	/// フォルダ名と同じ名前のSEを入力
+	/// </summary>
+	public enum SELabel
+	{
+		JumpVoice
+	}
+	////////////////// ここまでに出したい音を入力 ///////////////////////
+	
+	/// <summary>
+	/// ファイルパス
+	/// </summary>
 	private const string BGM_PATH = "Audio/BGM";
 	private const string SE_PATH = "Audio/SE";
 	private const string SOUND_OBJECT_NAME = "SoundManager";
+	/// <summary>
+	/// 同時にならす数（BGM）
+	/// </summary>
 	private const int BGM_SOURCE_NUM = 1;
+	/// <summary>
+	/// 同時にならす数（SE）
+	/// </summary>
 	private const int SE_SOURCE_NUM = 5;
 	/// <summary>
 	/// フェードイン、フェードアウトにかかる時間です。
@@ -23,13 +51,14 @@ public class SoundManager : MonoBehaviour
 	/// SEの音量
 	/// </summary>
 	private const float SE_VOLUME = 0.3f;
-
-	private bool isFadeOut = false;
-	private float fadeDeltaTime = 0f;
+	/// <summary>
+	/// 次に鳴らす音の準備するところ
+	/// </summary>
 	private int nextSESourceNum = 0;
+	/// <summary>
+	/// BGMを鳴らす所
+	/// </summary>
 	private BGMLabel currentBGM = BGMLabel.None;
-	private BGMLabel nextBGM = BGMLabel.None;
-
 	/// <summary>
 	/// デバッグモード
 	/// </summary>
@@ -58,7 +87,6 @@ public class SoundManager : MonoBehaviour
 	/// </summary>
 	[System.NonSerialized]
 	public AudioSource CurrentAudioSource = null;
-
 	/// <summary>
 	/// FadeOut中、もしくは再生待機中のAudioSource
 	/// </summary>
@@ -88,8 +116,9 @@ public class SoundManager : MonoBehaviour
 	/// コルーチン中断に使用
 	/// </summary>
 	private IEnumerator fadeInCoroutine;
-
-	// BGMは一つづつ鳴るが、SEは複数同時に鳴ることがある
+	/// <summary>
+	/// BGMは一つづつ鳴るが、SEは複数同時に鳴ることがある
+	/// </summary>
 	private List<AudioSource> seSourceList;
 	/// <summary>
 	/// BGMを再生するためのAudioSourceです。
@@ -105,23 +134,8 @@ public class SoundManager : MonoBehaviour
 	private static SoundManager singletonInstance = null;
 
 	/// <summary>
-	/// フォルダ名と同じ名前のBGMを入力
+	/// シングルトン
 	/// </summary>
-	public enum BGMLabel
-	{
-		None,
-		title,
-		stage1
-	}
-
-	/// <summary>
-	/// フォルダ名と同じ名前のSEを入力
-	/// </summary>
-	public enum SELabel
-	{
-		JumpVoice
-	}
-
 	public static SoundManager SingletonInstance
 	{
 		get
@@ -224,6 +238,11 @@ public class SoundManager : MonoBehaviour
 	/// /// <param name="delay"></param>
 	public void PlaySE(SELabel seLabel, float delay = 0.0f) => StartCoroutine(DelayPlaySE(seLabel, delay));
 
+	/// <summary>
+	/// 指定したファイル名のSEを流す。第二引数のdelayに指定した時間だけ再生までの間隔を空ける
+	/// </summary>
+	/// /// <param name="seLabel"></param>
+	/// /// <param name="delay"></param>
 	private IEnumerator DelayPlaySE(SELabel seLabel, float delay)
 	{
 		yield return new WaitForSeconds(delay);
