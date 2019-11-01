@@ -49,6 +49,10 @@ public class EnemyAI_2 : BaseMonoBehaviour
     }
     eState _state = eState.Idle;
 
+    // 追加部分
+    
+    
+
     private void Awake()
     {
         base.Awake();
