@@ -2,6 +2,9 @@
 using UnityEngine.AI;
 using System.Collections;
 
+/// <summary>
+/// 今後の課題、ウサギの正面にプレイヤーが見えたら逃げる処理をする
+/// </summary>
 public class EnemyAI_2 : BaseMonoBehaviour
 {
     public Transform target;        // ターゲットの位置情報
@@ -40,8 +43,8 @@ public class EnemyAI_2 : BaseMonoBehaviour
     {
         Idle,       // 立ち止まっている
         Wander,     // さまよっている
-        Chase,      // 追っている
-        Attack,     // 攻撃している
+        //Chase,      // 追っている
+        //Attack,     // 攻撃している
         Dead,       // 死んでいる
     }
     eState _state = eState.Idle;
@@ -73,13 +76,13 @@ public class EnemyAI_2 : BaseMonoBehaviour
                 Wander();
                 break;
 
-            case eState.Chase:
-                Chase();
-                break;
-
-            case eState.Attack:
-                Attack();
-                break;
+            //case eState.Chase:
+            //    Chase();
+            //    break;
+            //
+            //case eState.Attack:
+            //    Attack();
+            //    break;
 
             case eState.Dead:
                 break;
@@ -104,13 +107,13 @@ public class EnemyAI_2 : BaseMonoBehaviour
         //    }
         //}
 
-        Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * visibleDistance, Color.gray);
+        //Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * visibleDistance, Color.gray);
     }
 
     // --- 立ち止まっているときの処理 ----------------------------------------------------------
     void Idle()
     {
-        Search(_state);
+        //Search(_state);
 
         _idleTime += Time.deltaTime;
         if (_idleTime > idleMaxTime)                        // 一定時間立ち止まったら、さまよう
@@ -128,7 +131,7 @@ public class EnemyAI_2 : BaseMonoBehaviour
     // --- さまよっているときの処理 ----------------------------------------------------------
     void Wander()
     {
-        Search(_state);
+        //Search(_state);
 
         _wanderTime += Time.deltaTime;
         if (_wanderTime > wanderMaxTime || nav.remainingDistance < 0.5f) // 一定時間さまようか行先に着いたら、立ち止まる
@@ -142,121 +145,121 @@ public class EnemyAI_2 : BaseMonoBehaviour
         }
     }
 
-    // --- ターゲットを探す処理 ----------------------------------------------------------
-    void Search(eState state)
-    {
-        float _angle = Vector3.Angle(target.position - transform.position, lineOfSight1.forward);
-
-        if (_angle <= sightAngle)
-        {
-            Debug.Log("Target In SightAngle");
-
-            gazeRay1.origin = lineOfSight1.position;
-            gazeRay1.direction = target.position - lineOfSight1.position;
-            RaycastHit hit;
-
-            if (Physics.Raycast(gazeRay1, out hit, visibleDistance, visibleLayer))
-            {
-                Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * hit.distance, Color.red);
-
-                if (hit.collider.gameObject.tag != "Obstacle")    // ターゲットとの間に障害物がない
-                {
-                    if (state == eState.Idle || state == eState.Wander)
-                    {
-                        TargetFound();
-                    }
-                    else if (state == eState.Chase)
-                    {
-                        TargetInSight();
-                    }
-                    return;
-                }
-            }
-
-            Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * visibleDistance, Color.gray);
-        }
-
-        targetDistance = (transform.position - target.position).magnitude;
-
-        if (targetDistance < targetFindDistance)            // 距離でターゲット発見
-        {
-            if (state == eState.Idle || state == eState.Wander)
-            {
-                TargetFound();
-            }
-            else if (state == eState.Chase)
-            {
-                TargetInSight();
-            }
-            return;
-        }
-    }
-
-    // --- ターゲットを発見したときの処理 ----------------------------------------------------------
-    void TargetFound()
-    {
-        Debug.Log("Target Found");
-        //anim.SetTrigger("Run");
-        nav.Resume();
-        nav.SetDestination(target.position);
-        _state = eState.Chase;
-        nav.speed = runSpeed;
-        _idleTime = 0f;
-        _wanderTime = 0f;
-    }
-
-    // --- ターゲットを追っているときの処理 ----------------------------------------------------------
-    void Chase()                                // 
-    {
-        nav.SetDestination(target.position);
-        Search(_state);
-
-        _lostTime += Time.deltaTime;
-        // Debug.Log ("LostTime: " + _lostTime);
-
-        if (_lostTime > targetLostLimitTime)                 // 一定時間視界の外なら、見失う
-        {
-            Debug.Log("Target Lost");                       // ターゲットロスト
-            _state = eState.Idle;
-            nav.Stop();
-            //anim.SetTrigger("Idle");
-            nav.speed = 0f;
-            _lostTime = 0f;
-        }
-    }
-
-    // --- ターゲットが視野に入っているときの処理 ----------------------------------------------------------
-    void TargetInSight()
-    {
-        Debug.Log("Target In Sight");
-        _lostTime = 0f;
-    }
-
-    // --- 攻撃しているときの処理 ----------------------------------------------------------
-    void Attack()
-    {
-    }
-
-    // --- プレイヤーに接したら攻撃を行う ----------------------------------------------------------
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            //anim.SetBool("Attacking", true);
-            _state = eState.Attack;
-            nav.SetDestination(target.position);
-            nav.speed = 0f;
-        }
-    }
-
-    // --- プレイヤーから離れたら攻撃をやめる ----------------------------------------------------------
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            //anim.SetBool("Attacking", false);
-            _state = eState.Chase;
-            nav.speed = runSpeed;
-        }
-    }
+    //// --- ターゲットを探す処理 ----------------------------------------------------------
+    //void Search(eState state)
+    //{
+    //    float _angle = Vector3.Angle(target.position - transform.position, lineOfSight1.forward);
+    //
+    //    if (_angle <= sightAngle)
+    //    {
+    //        Debug.Log("Target In SightAngle");
+    //
+    //        gazeRay1.origin = lineOfSight1.position;
+    //        gazeRay1.direction = target.position - lineOfSight1.position;
+    //        RaycastHit hit;
+    //
+    //        if (Physics.Raycast(gazeRay1, out hit, visibleDistance, visibleLayer))
+    //        {
+    //            Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * hit.distance, Color.red);
+    //
+    //            if (hit.collider.gameObject.tag != "Obstacle")    // ターゲットとの間に障害物がない
+    //            {
+    //                if (state == eState.Idle || state == eState.Wander)
+    //                {
+    //                    TargetFound();
+    //                }
+    //                else if (state == eState.Chase)
+    //                {
+    //                    TargetInSight();
+    //                }
+    //                return;
+    //            }
+    //        }
+    //
+    //        Debug.DrawRay(gazeRay1.origin, gazeRay1.direction * visibleDistance, Color.gray);
+    //    }
+    //
+    //    targetDistance = (transform.position - target.position).magnitude;
+    //
+    //    if (targetDistance < targetFindDistance)            // 距離でターゲット発見
+    //    {
+    //        if (state == eState.Idle || state == eState.Wander)
+    //        {
+    //            TargetFound();
+    //        }
+    //        else if (state == eState.Chase)
+    //        {
+    //            TargetInSight();
+    //        }
+    //        return;
+    //    }
+    //}
+    //
+    //// --- ターゲットを発見したときの処理 ----------------------------------------------------------
+    //void TargetFound()
+    //{
+    //    Debug.Log("Target Found");
+    //    //anim.SetTrigger("Run");
+    //    nav.Resume();
+    //    nav.SetDestination(target.position);
+    //    _state = eState.Chase;
+    //    nav.speed = runSpeed;
+    //    _idleTime = 0f;
+    //    _wanderTime = 0f;
+    //}
+    //
+    //// --- ターゲットを追っているときの処理 ----------------------------------------------------------
+    //void Chase()                                // 
+    //{
+    //    nav.SetDestination(target.position);
+    //    Search(_state);
+    //
+    //    _lostTime += Time.deltaTime;
+    //    // Debug.Log ("LostTime: " + _lostTime);
+    //
+    //    if (_lostTime > targetLostLimitTime)                 // 一定時間視界の外なら、見失う
+    //    {
+    //        Debug.Log("Target Lost");                       // ターゲットロスト
+    //        _state = eState.Idle;
+    //        nav.Stop();
+    //        //anim.SetTrigger("Idle");
+    //        nav.speed = 0f;
+    //        _lostTime = 0f;
+    //    }
+    //}
+    //
+    //// --- ターゲットが視野に入っているときの処理 ----------------------------------------------------------
+    //void TargetInSight()
+    //{
+    //    Debug.Log("Target In Sight");
+    //    _lostTime = 0f;
+    //}
+    //
+    ////// --- 攻撃しているときの処理 ----------------------------------------------------------
+    ////void Attack()
+    ////{
+    ////}
+    //
+    //// --- プレイヤーに接したら攻撃を行う ----------------------------------------------------------
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        //anim.SetBool("Attacking", true);
+    //        _state = eState.Attack;
+    //        nav.SetDestination(target.position);
+    //        nav.speed = 0f;
+    //    }
+    //}
+    //
+    //// --- プレイヤーから離れたら攻撃をやめる ----------------------------------------------------------
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        //anim.SetBool("Attacking", false);
+    //        _state = eState.Chase;
+    //        nav.speed = runSpeed;
+    //    }
+    //}
 }
