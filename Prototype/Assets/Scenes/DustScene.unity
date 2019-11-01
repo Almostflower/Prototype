@@ -550,8 +550,8 @@ MonoBehaviour:
   - 5
   - 6
   oneopen_time_: 3
-  all_opneclose_: 0
-  one_opneclose_: 1
+  all_opneclose_: 1
+  one_opneclose_: 0
 --- !u!4 &652016858
 Transform:
   m_ObjectHideFlags: 0
