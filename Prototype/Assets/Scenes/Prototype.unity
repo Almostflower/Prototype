@@ -752,6 +752,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6263008121561603150, guid: c17d76dd3d9f6ff4ea7002429bd4daf2,
         type: 3}
+    - target: {fileID: 6704595254408958412, guid: 0fb1aba183a97f845b2c27a08c2af550,
+        type: 3}
+      propertyPath: giftMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704595254408958412, guid: 0fb1aba183a97f845b2c27a08c2af550,
+        type: 3}
+      propertyPath: stageManager
+      value: 
+      objectReference: {fileID: 783376982}
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -951,6 +961,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2162008076903950740, guid: ada84234874ff564ea920aecf449bce9,
         type: 3}
+    - target: {fileID: 8948810467087792347, guid: c5e5404873a7d3641b97b957ae0bd9d8,
+        type: 3}
+      propertyPath: stageWidth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948810467087792347, guid: c5e5404873a7d3641b97b957ae0bd9d8,
+        type: 3}
+      propertyPath: stageHeight
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8948810467087792348, guid: c5e5404873a7d3641b97b957ae0bd9d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1335,6 +1355,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23eed3f722a582f41afa196ac4c739b2, type: 3}
+--- !u!1 &1537061720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537061721}
+  - component: {fileID: 1537061722}
+  m_Layer: 0
+  m_Name: RabbitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537061721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537061720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537061722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537061720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939e9fda73b019547a6ec78e46969142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rabbitData:
+  - {fileID: -927199367670048503, guid: d0a752055be99034a91b537dab978f29, type: 3}
+  - {fileID: 8181729954550482704, guid: 0cc436be152deeb4abc63c4b62a2d085, type: 3}
+  stageManager: {fileID: 783376982}
+  goodRabbitMax: 2
+  badRabbitMax: 2
 --- !u!1 &1595189895
 GameObject:
   m_ObjectHideFlags: 0
