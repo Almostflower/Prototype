@@ -83,9 +83,7 @@ MonoBehaviour:
   m_Material: {fileID: 2100000, guid: 4a717ebcd8ae3a14db666271392dd581, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  TitleSceneCheck: 0
   maskTexture: {fileID: 0}
-  submaskTexture: {fileID: 0}
   cutoutRange: 0
 --- !u!114 &11491604
 MonoBehaviour:
