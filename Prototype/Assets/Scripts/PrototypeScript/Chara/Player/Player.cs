@@ -14,8 +14,38 @@ public sealed class Player : BaseMonoBehaviour
     private string PlayerActionParameter = "Move";
     private float hit;
 
+
     [SerializeField]
     private GameObject GiftArea;//プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
+
+    [SerializeField]
+    private int giftMaxNum;
+
+    /// <summary>
+    /// 所有ギフトの情報
+    /// </summary>
+    private float[] giftTime;
+    private bool[] giftType;
+
+    /// <summary>
+    /// 良いギフトの所有数
+    /// </summary>
+    [SerializeField, Tooltip("良いギフトの数")]private int goodGiftNum;
+    public int GoodGiftNum
+    {
+        get { return goodGiftNum; }
+        set { goodGiftNum = value; }
+    }
+
+    /// <summary>
+    /// 悪いギフトの所有数
+    /// </summary>
+    [SerializeField,Tooltip("悪いギフトの数")]private int badGiftNum;
+    public int BadGiftNum
+    {
+        get { return badGiftNum; }
+        set { badGiftNum = value; }
+    }
 
     private void awake()
     {
@@ -25,6 +55,10 @@ public sealed class Player : BaseMonoBehaviour
     // Use this for initialization
     void Start()
     {
+        goodGiftNum = 0;
+        badGiftNum = 0;
+        giftTime = new float[giftMaxNum];
+        giftType = new bool[giftMaxNum];
     }
 
     // Update is called once per frame
@@ -72,24 +106,47 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     /// <param name="other">判定の対象物</param>
     private void OnTriggerEnter(Collider other)
-    {  
-        //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
-        if(other.gameObject.tag == "gift")
+    {
+
+        // ギフト（良）の所有数がオーバーしていないかチェック
+        if (goodGiftNum + badGiftNum < giftMaxNum)
         {
-            other.gameObject.GetComponent<Gift>().GoodFlag = true;
-            // プレイヤーが吸収
-            //Destroy(other.gameObject);
-        }
-        //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
-        if(other.gameObject.tag == "Bad gift")
-        {
-            Debug.Log("あたってる");
-            GameStatusManager.Instance.SetLiftGift(true);
-            other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
-            Vector3 m = GiftArea.transform.position;
-            other.transform.position = m;
-            other.transform.parent = GiftArea.transform;
-            other.transform.rotation = Quaternion.identity;
+            //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
+            if (other.gameObject.tag == "gift")
+            {
+                // プレイヤーが吸収
+                //Destroy(other.gameObject);
+
+                // プレイヤーがギフト吸収したことを知らせる
+                other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+                // 取得したギフトの情報を保存
+                giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
+                giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
+
+                // ギフト数追加（cho）
+                goodGiftNum++;
+            }
+
+            //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
+            if (other.gameObject.tag == "Bad gift")
+            {
+                Debug.Log("あたってる");
+                GameStatusManager.Instance.SetLiftGift(true);
+                Vector3 m = GiftArea.transform.position;
+                other.transform.position = m;
+                other.transform.parent = GiftArea.transform;
+                other.transform.rotation = Quaternion.identity;
+
+                // プレイヤーがギフト吸収したことを知らせる
+                other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+                // 取得したギフトの情報を保存
+                giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustLimitTime;
+                giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
+
+                // ギフト数追加(cho)
+                badGiftNum++;
+            }
+           
         }
     }
 }

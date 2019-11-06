@@ -49,7 +49,9 @@ public class EnemyAI_2 : BaseMonoBehaviour
     }
     eState _state = eState.Idle;
 
-    // 追加部分
+    // 追加部分(cho)
+
+
     
     
 

@@ -93,11 +93,11 @@ public class GiftManager : BaseMonoBehaviour
 
                 }
 
-                // 良い状態で回収
-                if(giftManager[i].GetComponent<Gift>().GoodFlag)
+                // プレイヤーが回収
+                if(giftManager[i].GetComponent<Gift>().PlayerAbsorbFlag)
                 {
                     // ステージゲージを上げる
-
+                
                     // ギフトの削除と生成
                     Delete(i);
                     Birth(i);

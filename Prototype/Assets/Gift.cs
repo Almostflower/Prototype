@@ -9,12 +9,20 @@ public class Gift : BaseMonoBehaviour
     /// </summary>
     [SerializeField]
     private float BadLimitTime = 10.0f;
+    public float GetBadLimitTime
+    {
+        get { return BadLimitTime; }
+    }
 
     /// <summary>
     /// 消えるまでのリミットタイム
     /// </summary>
     [SerializeField]
     private float DustLimitTime = 10.0f;
+    public float GetDustLimitTime
+    {
+        get { return DustLimitTime; }
+    }
 
     /// <summary>
     /// ギフトが粗悪になってある一定時間すぎた時　true
@@ -27,23 +35,13 @@ public class Gift : BaseMonoBehaviour
     private bool DeathFlag;
 
     /// <summary>
-    /// ギフトがいい状態で回収されたかチェック
-    /// </summary>
-    private bool goodFlag;
-    public bool GoodFlag
-    {
-        get { return goodFlag; }
-        set { goodFlag = value; }
-    }
-
-    /// <summary>
     /// プレイヤーがギフトを運んでいるかのチェック
     /// </summary>
-    private bool playerCarryFlag;
-    public bool PlayerCarryFlag
+    private bool playerAbsorbFlag;
+    public bool PlayerAbsorbFlag
     {
-        get { return playerCarryFlag; }
-        set { playerCarryFlag = value; }
+        get { return playerAbsorbFlag; }
+        set { playerAbsorbFlag = value; }
     }
 
     /// <summary>
@@ -61,7 +59,8 @@ public class Gift : BaseMonoBehaviour
     {
         DustFlag = false;
         DeathFlag = false;
-        PlayerCarryFlag = false;
+        PlayerAbsorbFlag = false;
+        //goodFlag = true;
     }
 
     /// <summary>
@@ -75,7 +74,7 @@ public class Gift : BaseMonoBehaviour
             // ギフトの良い状態の更新
             BadLimitTime -= Time.deltaTime;
         }
-        else if (DustFlag && !playerCarryFlag)
+        else if (DustFlag && !playerAbsorbFlag)
         {
             // ギフトの悪い状態の更新
             DustLimitTime -= Time.deltaTime;
