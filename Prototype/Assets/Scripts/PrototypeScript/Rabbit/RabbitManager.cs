@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RabbitManager : BaseMonoBehaviour
 {
-    enum RabbitType
+    public enum RabbitType
     {
         None = -1,
         Good = 0,
@@ -33,11 +33,20 @@ public class RabbitManager : BaseMonoBehaviour
     [SerializeField, Tooltip("ウサギ(悪)の最大値（1-2）")] private int badRabbitMax;
 
     /// <summary>
+    /// ウサギの総数
+    /// </summary>
+    private int rabbitMaxNum;
+    public int RabbitMaxNum
+    {
+        get { return rabbitMaxNum; }
+    }
+
+    /// <summary>
     /// ウサギの生成オブジェクト
     /// </summary>
-    private GameObject[] rabbitManager;
-    private bool[] isExistence;
-    private RabbitType[] rabbitType;
+    public GameObject[] rabbitManager;
+    public bool[] isExistence;
+    public RabbitType[] rabbitType;
 
 
     /// <summary>
@@ -60,10 +69,13 @@ public class RabbitManager : BaseMonoBehaviour
     /// </summary>
     private void Start()
     {
+        // ウサギの総数を求める
+        rabbitMaxNum = goodRabbitMax + badRabbitMax;
+
         // ウサギのメモリ確保
-        rabbitManager = new GameObject[goodRabbitMax + badRabbitMax];
-        isExistence = new bool[goodRabbitMax + badRabbitMax];
-        rabbitType = new RabbitType[goodRabbitMax + badRabbitMax];
+        rabbitManager = new GameObject[rabbitMaxNum];
+        isExistence = new bool[rabbitMaxNum];
+        rabbitType = new RabbitType[rabbitMaxNum];
 
         // ウサギ生成可能座標のメモリ確保
         rabbitArea = new List<Vector3>();
@@ -82,17 +94,9 @@ public class RabbitManager : BaseMonoBehaviour
         }
 
         // ウサギの生成
-        for (int i = 0; i < goodRabbitMax + badRabbitMax; i++)
+        for (int i = 0; i < rabbitMaxNum; i++)
         {
-            if(i < goodRabbitMax)
-            {
-                Birth(i, RabbitType.Good);
-            }
-            else
-            {
-                Birth(i, RabbitType.Bad);
-            }
-            
+            Birth(i);
         }
 
 
@@ -104,22 +108,20 @@ public class RabbitManager : BaseMonoBehaviour
     public override void UpdateNormal()
     {
         // ウサギの生存チェック
-        for (int i = 0; i < goodRabbitMax + badRabbitMax; i++)
+        for (int i = 0; i < rabbitMaxNum; i++)
         {
             if (isExistence[i])
             {
-                //// 自然消滅
-                //if (rabbitManager[i].GetComponent<Gift>().GetDeathFlag())
-                //{
-                //    // ステージゲージを下げる
-                //
-                //    // ギフトの削除と生成
-                //    Delete(i);
-                //    Birth(i);
-                //
-                //}
-                //
-                //// 良い状態で回収
+                // 
+                if (rabbitManager[i].GetComponent<EnemyAI_2>()._State == EnemyAI_2.eState.Dead)
+                {
+                    // ウサギの削除と生成
+                    Delete(i);
+                    Birth(i);
+                
+                }
+                
+                // 良い状態で回収
                 //if (giftManager[i].GetComponent<Gift>().GoodFlag)
                 //{
                 //    // ステージゲージを上げる
@@ -171,11 +173,20 @@ public class RabbitManager : BaseMonoBehaviour
     /// ウサギの生成
     /// </summary>
     /// <param name="index"></param>
-    private void Birth(int index, RabbitType type)
+    private void Birth(int index)
     {
-        rabbitManager[index] = Instantiate(rabbitData[(int)type], GetPositionFromList(), Quaternion.identity);
+        if (index < goodRabbitMax)
+        {
+            rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Good], GetPositionFromList(), Quaternion.identity);
+            rabbitType[index] = RabbitType.Good;
+        }
+        else
+        {
+            rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Bad], GetPositionFromList(), Quaternion.identity);
+            rabbitType[index] = RabbitType.Bad;
+        }
+
         rabbitManager[index].transform.parent = this.transform;
         isExistence[index] = true;
-        rabbitType[index] = type;
     }
 }

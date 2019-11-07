@@ -47,6 +47,31 @@ public sealed class Player : BaseMonoBehaviour
         set { badGiftNum = value; }
     }
 
+    /// <summary>
+    /// ウサギのマネージャー
+    /// </summary>
+    [SerializeField] private GameObject rabbitManager;
+
+    /// <summary>
+    /// 持っているウサギの番号
+    /// </summary>
+    private int holdingRabbitNumber;
+
+    /// <summary>
+    /// ウサギを持ち続ける
+    /// </summary>
+    [SerializeField] private bool holdingRabbitFlag;
+
+    /// <summary>
+    /// 握力時間
+    /// </summary>
+    [SerializeField] private float holdingTime;
+
+    /// <summary>
+    /// 握力経過時間
+    /// </summary>
+    private float holdingTimeCounter;
+
     private void awake()
     {
         base.Awake();
@@ -59,6 +84,9 @@ public sealed class Player : BaseMonoBehaviour
         badGiftNum = 0;
         giftTime = new float[giftMaxNum];
         giftType = new bool[giftMaxNum];
+        holdingRabbitFlag = false;
+        holdingTimeCounter = 0;
+        holdingRabbitNumber = -1;
     }
 
     // Update is called once per frame
@@ -66,6 +94,16 @@ public sealed class Player : BaseMonoBehaviour
     {
         PutGift();
 
+        // ウサギとの動作
+        if(!holdingRabbitFlag)
+        {
+            CheckRabbit();
+        }
+        else
+        {
+            CheckGift();
+        }
+        
         PlayerMove();
     }
 
@@ -102,6 +140,78 @@ public sealed class Player : BaseMonoBehaviour
     }
 
     /// <summary>
+    /// ウサギを持ち上げられるか確認
+    /// </summary>
+    private void CheckRabbit()
+    {
+        for (int i = 0; i < rabbitManager.GetComponent<RabbitManager>().RabbitMaxNum; i++)
+        {
+            // ボタン入力
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if (rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<Circle>().HitPlayerFrag)
+                {
+                    holdingRabbitFlag = true;
+                    holdingTimeCounter = holdingTime;
+                    holdingRabbitNumber = i;
+                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Holding;
+                    break;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void CheckGift()
+    {
+        if(goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
+        {
+            // 良いギフトがあり良いうさぎなら
+
+            // スコアを反映
+
+            // ウサギを消す
+            goodGiftNum = 0;
+            holdingRabbitFlag = false;
+            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+
+        }
+        else if(badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
+        {
+            // 悪いギフトがあり悪いうさぎなら
+
+            // スコアを反映
+
+
+            // ウサギを消す
+            badGiftNum = 0;
+            holdingRabbitFlag = false;
+            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+        }
+        else
+        {
+            // 握力ゲージの処理
+            if(Input.GetKey(KeyCode.Space))
+            {
+                holdingTimeCounter -= Time.deltaTime;
+                if(holdingTimeCounter <= 0)
+                {
+                    holdingRabbitFlag = false;
+                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+                }
+            }
+            else
+            {
+                holdingRabbitFlag = false;
+                rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+            }
+
+        }
+    }
+
+    /// <summary>
     /// ギフトに触れた時状態によって、取得もしくは持ち上げるようにさせる
     /// </summary>
     /// <param name="other">判定の対象物</param>
@@ -123,7 +233,7 @@ public sealed class Player : BaseMonoBehaviour
                 giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
                 giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
 
-                // ギフト数追加（cho）
+                // ギフト数追加
                 goodGiftNum++;
             }
 
@@ -143,7 +253,7 @@ public sealed class Player : BaseMonoBehaviour
                 giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustLimitTime;
                 giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
 
-                // ギフト数追加(cho)
+                // ギフト数追加
                 badGiftNum++;
             }
            

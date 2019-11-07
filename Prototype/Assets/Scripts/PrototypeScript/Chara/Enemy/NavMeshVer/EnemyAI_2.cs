@@ -39,22 +39,24 @@ public class EnemyAI_2 : BaseMonoBehaviour
     public float wanderMaxTime;     // さまよっている時間
     float _wanderTime = 0f;
 
-    enum eState                     // 状態
+    public enum eState                     // 状態
     {
         Idle,       // 立ち止まっている
         Wander,     // さまよっている
         //Chase,      // 追っている
         //Attack,     // 攻撃している
+        Holding,    // 持たれている
         Dead,       // 死んでいる
     }
-    eState _state = eState.Idle;
 
-    // 追加部分(cho)
+    private eState _state = eState.Idle;
 
-
-    
-    
-
+    public eState _State
+    {
+        get { return _state; }
+        set { _state = value; }
+    }
+       
     private void Awake()
     {
         base.Awake();
@@ -89,6 +91,9 @@ public class EnemyAI_2 : BaseMonoBehaviour
             //case eState.Attack:
             //    Attack();
             //    break;
+
+            case eState.Holding:
+                break;
 
             case eState.Dead:
                 break;
