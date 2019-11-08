@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cee6b94a75f7f4f90352ebfd04a245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  giftData: {fileID: 2162008076903950740, guid: ada84234874ff564ea920aecf449bce9,
+  debug_mode_: 0
+  debug_one_time_: 0
+  giftData: {fileID: 6263008121561603150, guid: c17d76dd3d9f6ff4ea7002429bd4daf2,
     type: 3}
+  gift_: {fileID: 6263008121561603144, guid: c17d76dd3d9f6ff4ea7002429bd4daf2, type: 3}
   stageData: {fileID: 0}
-  giftMax: 10
+  giftMax: 1
