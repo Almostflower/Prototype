@@ -9,6 +9,7 @@ TagManager:
   - gift
   - Bad gift
   - Obstacle
+  - MovePoint
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Visible
   - 
-  - 
+  - PlayerAndEnemy
   - 
   - 
   - 
