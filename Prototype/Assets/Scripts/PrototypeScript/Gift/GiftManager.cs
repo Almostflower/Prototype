@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GiftManager : BaseMonoBehaviour
 {
-    /// <summary>
-    /// ギフトのprefab
-    /// </summary>
-    [SerializeField] private GameObject giftData;
+	/// <summary>
+	/// ギフトのprefab
+	/// </summary>
+	[SerializeField] private GameObject giftData;
 
     /// <summary>
     /// ステージのデータ
@@ -44,8 +44,8 @@ public class GiftManager : BaseMonoBehaviour
     /// </summary>
     private void Start()
     {
-        // ギフトのメモリ確保
-        giftManager = new GameObject[giftMax];
+		// ギフトのメモリ確保
+		giftManager = new GameObject[giftMax];
         isExistence = new bool[giftMax];
 
         // ギフト生成可能座標のメモリ確保
