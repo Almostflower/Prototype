@@ -12,7 +12,7 @@ public class GiftManager : BaseMonoBehaviour
     /// <summary>
     /// ステージのデータ
     /// </summary>
-    [SerializeField] private GameObject stageData;
+    [SerializeField] private GameObject stageManager;
 
     /// <summary>
     /// ギフト最大値
@@ -52,13 +52,13 @@ public class GiftManager : BaseMonoBehaviour
         giftArea = new List<Vector3>();
 
         // ステージ空白の配列の生成
-        for (int i = 0; i < stageData.GetComponent<StageManager>().StageHeight; i++)
+        for (int i = 0; i < stageManager.GetComponent<StageManager>().StageHeight; i++)
         {
-            for (int j = 0; j < stageData.GetComponent<StageManager>().StageWidth; j++)
+            for (int j = 0; j < stageManager.GetComponent<StageManager>().StageWidth; j++)
             {
-                if (!stageData.GetComponent<StageManager>().StageArea(i, j).isExistence)
+                if (!stageManager.GetComponent<StageManager>().StageArea(i, j).isExistence)
                 {
-                    giftArea.Add(stageData.GetComponent<StageManager>().StageArea(i, j).position);
+                    giftArea.Add(stageManager.GetComponent<StageManager>().StageArea(i, j).position);
                 }
 
             }
