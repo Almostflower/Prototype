@@ -31,19 +31,19 @@ public class Gift : BaseMonoBehaviour
     /// <summary>
     /// 不良品になるまでのリミットタイム
     /// </summary>
-    [SerializeField] private float BadLimitTime = 10.0f;
-    public float badLimitTime
+    [SerializeField] private float badLimitTime = 10.0f;
+    public float GetBadLimitTime
     {
-        get { return BadLimitTime; }
+        get { return badLimitTime; }
     }
 
     /// <summary>
     /// 消えるまでのリミットタイム
     /// </summary>
-    [SerializeField] private float DustLimitTime = 10.0f;
-    public float dustLimitTime
+    [SerializeField] private float dustLimitTime = 10.0f;
+    public float GetDustLimitTime
     {
-        get { return DustLimitTime; }
+        get { return dustLimitTime; }
     }
 
     /// <summary>
@@ -109,10 +109,10 @@ public class Gift : BaseMonoBehaviour
         DeathFlag = false;
         playerAbsorbFlag = false;
         once_ = false;
-        mastertime = BadLimitTime;
+        mastertime = badLimitTime;
         if (debug_one_time_)
         {
-            mastertime = BadLimitTime + DustLimitTime;
+            mastertime = badLimitTime + dustLimitTime;
         }
     }
 
@@ -121,20 +121,20 @@ public class Gift : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
-        if (!DustFlag && BadLimitTime > 0.0f)
+        if (!DustFlag && badLimitTime > 0.0f)
         {
             // ギフトの良い状態の更新
-            BadLimitTime -= Time.deltaTime;
+            badLimitTime -= Time.deltaTime;
         }
         else if (DustFlag && !playerAbsorbFlag)
         {
             // ギフトの悪い状態の更新
-            DustLimitTime -= Time.deltaTime;
+            dustLimitTime -= Time.deltaTime;
         }
 
         if (!once_)
         {
-            gauge_.SetMaxValue(mastertime, DustLimitTime, debug_one_time_, true);
+            gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_, true);
             once_ = true;
         }
 
@@ -155,7 +155,7 @@ public class Gift : BaseMonoBehaviour
         }
 
         // 良い状態から悪い状態への条件判定
-        if (BadLimitTime < 0.0f)
+        if (badLimitTime < 0.0f)
         {
             if (gameObject.tag != "Bad gift")
             {
@@ -164,7 +164,7 @@ public class Gift : BaseMonoBehaviour
                 this.GetComponent<Renderer>().material.color = Color.red;
                 if (!debug_one_time_)
                 {
-                    mastertime = DustLimitTime;
+                    mastertime = dustLimitTime;
                     gauge_.SetGiftValue(mastertime);
                 }
             }
@@ -173,7 +173,7 @@ public class Gift : BaseMonoBehaviour
         }
 
         // 悪い状態から自然消滅への条件判定
-        if (/*!GameStatusManager.Instance.GetLiftGift() && */DustFlag && DustLimitTime < 0.0f)
+        if (/*!GameStatusManager.Instance.GetLiftGift() && */DustFlag && dustLimitTime < 0.0f)
         {
             DeathFlag = true;
             Debug.Log("ギフト消滅");
