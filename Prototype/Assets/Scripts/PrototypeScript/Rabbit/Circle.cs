@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Circle : MonoBehaviour
+public class Circle : BaseMonoBehaviour
 {
     /// <summary>
     /// プレイヤーとのあたり判定
@@ -11,6 +11,11 @@ public class Circle : MonoBehaviour
     public bool HitPlayerFrag
     {
         get { return hitPlayerFrag; }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
     }
 
     // Start is called before the first frame update

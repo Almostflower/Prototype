@@ -149,7 +149,7 @@ public sealed class Player : BaseMonoBehaviour
             // ボタン入力
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                if (rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<Circle>().HitPlayerFrag)
+                if (rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].transform.GetChild(5).gameObject.GetComponent<Circle>().HitPlayerFrag)
                 {
                     holdingRabbitFlag = true;
                     holdingTimeCounter = holdingTime;

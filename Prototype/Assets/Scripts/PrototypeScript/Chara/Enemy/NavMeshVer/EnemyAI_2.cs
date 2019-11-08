@@ -49,8 +49,10 @@ public class EnemyAI_2 : BaseMonoBehaviour
         Dead,       // 死んでいる
     }
 
-    private eState _state = eState.Idle;
-
+    /// <summary>
+    /// ウサギの状態
+    /// </summary>
+    [SerializeField]private eState _state = eState.Idle;
     public eState _State
     {
         get { return _state; }
