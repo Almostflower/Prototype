@@ -185,9 +185,7 @@ public sealed class Player : BaseMonoBehaviour
 
             // ウサギを消す
             goodGiftNum = 0;
-            holdingRabbitFlag = false;
-            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
-
+            DestroyRabbit();
         }
         else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
         {
@@ -198,8 +196,7 @@ public sealed class Player : BaseMonoBehaviour
 
             // ウサギを消す
             badGiftNum = 0;
-            holdingRabbitFlag = false;
-            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+            DestroyRabbit();
         }
         else
         {
@@ -209,17 +206,23 @@ public sealed class Player : BaseMonoBehaviour
                 holdingTimeCounter -= Time.deltaTime;
                 if (holdingTimeCounter <= 0)
                 {
-                    holdingRabbitFlag = false;
-                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+                    DestroyRabbit();
                 }
             }
             else
             {
-                holdingRabbitFlag = false;
-                rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+                DestroyRabbit();
             }
 
         }
+    }
+
+    private void DestroyRabbit()
+    {
+        holdingRabbitFlag = false;
+        rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+        rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].SetActive(false);
+        holdingRabbitNumber = -1;
     }
 
     /// <summary>
