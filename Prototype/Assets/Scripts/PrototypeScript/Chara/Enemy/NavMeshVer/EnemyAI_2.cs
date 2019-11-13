@@ -53,11 +53,11 @@ public class EnemyAI_2 : BaseMonoBehaviour
     /// ウサギの状態
     /// </summary>
     [SerializeField]private eState _state = eState.Idle;
-    public eState _State
-    {
-        get { return _state; }
-        set { _state = value; }
-    }
+    //public eState _State
+    //{
+    //    get { return _state; }
+    //    set { _state = value; }
+    //}
        
     private void Awake()
     {

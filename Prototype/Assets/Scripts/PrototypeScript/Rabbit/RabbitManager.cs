@@ -113,7 +113,7 @@ public class RabbitManager : BaseMonoBehaviour
             if (isExistence[i])
             {
                 // 
-                if (rabbitManager[i].GetComponent<EnemyAI_2>()._State == EnemyAI_2.eState.Dead)
+                if (rabbitManager[i].GetComponent<RabbitScript>().sCurrentState == RabbitScript.RabbitState.DEAD)
                 {
                     // ウサギの削除と生成
                     Delete(i);
