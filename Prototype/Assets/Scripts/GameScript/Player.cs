@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 
 public sealed class Player : BaseMonoBehaviour
 {
@@ -83,23 +82,9 @@ public sealed class Player : BaseMonoBehaviour
         base.Awake();
     }
 
-    private bool _isGrounded;
-
-    /// <summary>
-    /// 地面に接地しているかどうか
-    /// </summary>
-    public bool IsGrounded { get { return _isGrounded; } }
-
     // Use this for initialization
     void Start()
     {
-        var controller = GetComponent<CharacterController>();
-
-        controller
-            .ObserveEveryValueChanged(x => x.isGrounded)
-            .ThrottleFrame(2)
-            .Subscribe(x => _isGrounded = x);
-
         goodGiftNum = 0;
         badGiftNum = 0;
         giftTime = new float[giftMaxNum];
@@ -112,6 +97,7 @@ public sealed class Player : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
+        
         // ウサギとの動作
         if (!holdingRabbitFlag)
         {
@@ -129,6 +115,7 @@ public sealed class Player : BaseMonoBehaviour
     {
         velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
+
         if (Input.GetAxis("Vertical") != 0f)
         {
             transform.position += (transform.forward * Input.GetAxis("Vertical")) * speed * Time.fixedDeltaTime;
@@ -145,6 +132,7 @@ public sealed class Player : BaseMonoBehaviour
         {
             PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
         }
+
 
         velocity.y += Physics.gravity.y * Time.deltaTime;
     }
@@ -185,7 +173,9 @@ public sealed class Player : BaseMonoBehaviour
 
             // ウサギを消す
             goodGiftNum = 0;
-            DestroyRabbit();
+            holdingRabbitFlag = false;
+            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+
         }
         else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
         {
@@ -196,7 +186,8 @@ public sealed class Player : BaseMonoBehaviour
 
             // ウサギを消す
             badGiftNum = 0;
-            DestroyRabbit();
+            holdingRabbitFlag = false;
+            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
         }
         else
         {
@@ -206,23 +197,17 @@ public sealed class Player : BaseMonoBehaviour
                 holdingTimeCounter -= Time.deltaTime;
                 if (holdingTimeCounter <= 0)
                 {
-                    DestroyRabbit();
+                    holdingRabbitFlag = false;
+                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
                 }
             }
             else
             {
-                DestroyRabbit();
+                holdingRabbitFlag = false;
+                rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
             }
 
         }
-    }
-
-    private void DestroyRabbit()
-    {
-        holdingRabbitFlag = false;
-        rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
-        rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].SetActive(false);
-        holdingRabbitNumber = -1;
     }
 
     /// <summary>

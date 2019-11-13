@@ -7,6 +7,7 @@ using System;
 
 public class RabbitScript : BaseMonoBehaviour
 {
+    private IDisposable _disposable;
     private NavMeshAgent agent;
     private Renderer coloring;
     private GameObject player;
@@ -149,7 +150,7 @@ public class RabbitScript : BaseMonoBehaviour
         agent.SetDestination(GetNextPosition());
 
         //目的地に近づいたら次の目的地を検索
-        agent.ObserveEveryValueChanged(d => agent.remainingDistance)
+        _disposable = agent.ObserveEveryValueChanged(d => agent.remainingDistance)
             .Where(d => d < 2.0f)
             .Where(_ => currentState == RabbitState.TENSION)
             .Subscribe(_ =>
@@ -202,5 +203,13 @@ public class RabbitScript : BaseMonoBehaviour
         //同位置にいるときは範囲内にいるとみなす
         if (toTargetFlatDir.sqrMagnitude <= Mathf.Epsilon) return true;
         return (Vector3.Dot(transform.forward, toTargetFlatDir)) >= m_searchCosTheta;
+    }
+
+    public override void UpdateFixed()
+    {
+       if(sCurrentState == RabbitState.DEAD)
+       {
+            _disposable.Dispose();
+       }
     }
 }
