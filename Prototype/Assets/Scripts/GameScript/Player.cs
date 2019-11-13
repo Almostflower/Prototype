@@ -154,7 +154,7 @@ public sealed class Player : BaseMonoBehaviour
                     holdingRabbitFlag = true;
                     holdingTimeCounter = holdingTime;
                     holdingRabbitNumber = i;
-                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Holding;
+                    //rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Holding;
                     break;
                 }
             }
@@ -175,7 +175,7 @@ public sealed class Player : BaseMonoBehaviour
             // ウサギを消す
             goodGiftNum = 0;
             holdingRabbitFlag = false;
-            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+            //rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
 
         }
         else if(badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
@@ -188,7 +188,7 @@ public sealed class Player : BaseMonoBehaviour
             // ウサギを消す
             badGiftNum = 0;
             holdingRabbitFlag = false;
-            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+            //rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
         }
         else
         {
@@ -199,13 +199,13 @@ public sealed class Player : BaseMonoBehaviour
                 if(holdingTimeCounter <= 0)
                 {
                     holdingRabbitFlag = false;
-                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+                    //rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
                 }
             }
             else
             {
                 holdingRabbitFlag = false;
-                rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
+                //rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<EnemyAI_2>()._State = EnemyAI_2.eState.Dead;
             }
 
         }
