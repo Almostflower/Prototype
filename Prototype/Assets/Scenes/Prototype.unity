@@ -1927,6 +1927,11 @@ PrefabInstance:
       propertyPath: Speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5143264464666666726, guid: 48784a3232fe5ba4e870ec67f282b65b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 97cd899cd9369b2468f25810d390aed0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48784a3232fe5ba4e870ec67f282b65b, type: 3}
 --- !u!1001 &1531843371

@@ -75,7 +75,9 @@ public class Gauge : BaseMonoBehaviour
 		main_camera_ = Camera.main;
 
 		once_ = false;
-
+        //スライダー座標修正
+        slider_.transform.localPosition = new Vector3(80.0f,slider_.transform.position.y,slider_.transform.position.z);
+        slider_.transform.Rotate(new Vector3(0, 1, 0), 180);
 		// 最大秒数をスライダーのマックス値に代入
 		slider_.maxValue = timer_value_;
 	}
@@ -95,11 +97,14 @@ public class Gauge : BaseMonoBehaviour
 			}
 		}
 
+        Vector3 p = Camera.main.transform.position;
+        p.y = transform.position.y;
+
 		// HPゲージに値を設定
 		slider_.value = timer_value_;
 
-		// 常にカメラに向く
-		canvas_.transform.LookAt(-main_camera_.transform.position);
+        // 常にカメラに向く
+        canvas_.transform.LookAt(p);
 
 		// スライダーの値が0以下になったら最大値に戻す
 		if (slider_.value <= 0 && once_)
