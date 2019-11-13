@@ -5,7 +5,7 @@ using UniRx;
 using UniRx.Triggers;
 using System;
 
-public class RabbitScript : MonoBehaviour
+public class RabbitScript : BaseMonoBehaviour
 {
     private NavMeshAgent agent;
     private Renderer coloring;
@@ -61,11 +61,9 @@ public class RabbitScript : MonoBehaviour
         get { return touchWithPlayer; }
     }
 
-    private void Awake()
+    private void awake()
     {
-        ApplySearchAngle();
-
-        mask = LayerMask.GetMask(LayerMask.LayerToName(layerNumber));
+        base.Awake();
     }
 
     private void ApplySearchAngle()
@@ -83,6 +81,10 @@ public class RabbitScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ApplySearchAngle();
+
+        mask = LayerMask.GetMask(LayerMask.LayerToName(layerNumber));
+
         //変更予定
         agent = GetComponent<NavMeshAgent>();
         coloring = GetComponent<Renderer>();

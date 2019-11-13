@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public sealed class Player : BaseMonoBehaviour
 {
@@ -82,9 +83,23 @@ public sealed class Player : BaseMonoBehaviour
         base.Awake();
     }
 
+    private bool _isGrounded;
+
+    /// <summary>
+    /// 地面に接地しているかどうか
+    /// </summary>
+    public bool IsGrounded { get { return _isGrounded; } }
+
     // Use this for initialization
     void Start()
     {
+        var controller = GetComponent<CharacterController>();
+
+        controller
+            .ObserveEveryValueChanged(x => x.isGrounded)
+            .ThrottleFrame(2)
+            .Subscribe(x => _isGrounded = x);
+
         goodGiftNum = 0;
         badGiftNum = 0;
         giftTime = new float[giftMaxNum];
@@ -114,7 +129,6 @@ public sealed class Player : BaseMonoBehaviour
     {
         velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
-
         if (Input.GetAxis("Vertical") != 0f)
         {
             transform.position += (transform.forward * Input.GetAxis("Vertical")) * speed * Time.fixedDeltaTime;
@@ -131,7 +145,6 @@ public sealed class Player : BaseMonoBehaviour
         {
             PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
         }
-
 
         velocity.y += Physics.gravity.y * Time.deltaTime;
     }
