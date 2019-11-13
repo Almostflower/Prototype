@@ -37,10 +37,21 @@ public class RabbitScript : MonoBehaviour
     public enum RabbitState
     {
         ORDINARY,
-        TENSION
+        TENSION,
+        HOLDING,    // 持たれている
+        DEAD,       // 死んでいる
     }
 
+    /// <summary>
+    /// ウサギの状態
+    /// </summary>
     private RabbitState currentState;
+    public RabbitState sCurrentState
+    {
+        get { return currentState; }
+        set { currentState = value; }
+    }
+
     private List<Collider> foundList = new List<Collider>();
     private Subject<Unit> touchWithPlayer = new Subject<Unit>();
 

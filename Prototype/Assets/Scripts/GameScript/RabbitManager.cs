@@ -113,13 +113,13 @@ public class RabbitManager : BaseMonoBehaviour
             if (isExistence[i])
             {
                 // 
-                //if (rabbitManager[i].GetComponent<EnemyAI_2>()._State == EnemyAI_2.eState.Dead)
-                //{
-                //    // ウサギの削除と生成
-                //    Delete(i);
-                //    Birth(i);
-                //
-                //}
+                if (rabbitManager[i].GetComponent<RabbitScript>().sCurrentState == RabbitScript.RabbitState.DEAD)
+                {
+                    // ウサギの削除と生成
+                    Delete(i);
+                    Birth(i);
+                
+                }
                 
                 // 良い状態で回収
                 //if (giftManager[i].GetComponent<Gift>().GoodFlag)
