@@ -17,6 +17,12 @@ public sealed class Player : BaseMonoBehaviour
     [SerializeField]
     private GameObject GiftArea;//プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
 
+    [SerializeField]
+    private float speed = 5f;
+
+    [SerializeField]
+    private float rotateSpeed = 120f;
+
     private void awake()
     {
         base.Awake();
@@ -30,41 +36,33 @@ public sealed class Player : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        PutGift();
-
         PlayerMove();
     }
 
     private void PlayerMove()
     {
-        if (PlayerController.isGrounded)
+        velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+
+
+        if (Input.GetAxis("Vertical") != 0f)
         {
-            //JoyPadのサイト参考　https://hakonebox.hatenablog.com/entry/2018/04/15/125152
-            //入力時の情報　https://qiita.com/RyotaMurohoshi/items/a5cde3c17831adda12db
-
-            velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-
-            //Debug.Log(velocity);
-            //Debug.Log(velocity.magnitude);
-
-            //止まってる時、動いてる時でifを制御している、　アニメーションで（止まる、歩く、走る）があるが、Moveの数値によって切り替えるように設定している。
-            if (velocity.x == 0 && velocity.z == 0)
-            {
-                PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
-            }
-            else if (velocity.magnitude > 0.1f)
-            {
-                PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
-                transform.LookAt(transform.position + velocity);
-            }
+            transform.position += (transform.forward * Input.GetAxis("Vertical")) * speed * Time.fixedDeltaTime;
+            PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
         }
 
-        velocity.y += Physics.gravity.y * Time.deltaTime;
-        PlayerController.Move(velocity * Speed * Time.deltaTime);
-    }
+        if (Input.GetAxis("Horizontal") != 0f)
+        {
+            transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
+            PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
+        }
 
-    public void PutGift()
-    {
+        if (Input.GetAxis("Vertical") == 0f && Input.GetAxis("Horizontal") == 0f)
+        {
+            PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
+        }
+
+
+        velocity.y += Physics.gravity.y * Time.deltaTime;
     }
 
     /// <summary>
