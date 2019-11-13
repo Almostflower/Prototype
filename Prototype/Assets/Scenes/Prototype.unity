@@ -1019,24 +1019,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &772357033 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5143264464674164780, guid: 48784a3232fe5ba4e870ec67f282b65b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1447468032}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &772357034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772357033}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed5cfd97a0fe2d4ab8852e559fefe10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &783376982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8948810467087792336, guid: c5e5404873a7d3641b97b957ae0bd9d8,
@@ -1182,26 +1164,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1280
-      objectReference: {fileID: 0}
-    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6049903395135354647, guid: 374bf32acf3fd5c4e8644d2812d4d544,
-        type: 3}
-      propertyPath: fade
-      value: 
-      objectReference: {fileID: 1091657509}
-    - target: {fileID: 6049903395135354647, guid: 374bf32acf3fd5c4e8644d2812d4d544,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6049903395701721207, guid: 374bf32acf3fd5c4e8644d2812d4d544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1321,6 +1283,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049903395135354647, guid: 374bf32acf3fd5c4e8644d2812d4d544,
+        type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 1091657509}
+    - target: {fileID: 6049903395135354647, guid: 374bf32acf3fd5c4e8644d2812d4d544,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6049903397074394491, guid: 374bf32acf3fd5c4e8644d2812d4d544,
         type: 3}
@@ -1558,34 +1540,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: cutoutRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: maskTexture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 22424616, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1670,6 +1624,34 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: cutoutRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: maskTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: b64d8adf1da3c4142a92470a41c7e38c, type: 3}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a717ebcd8ae3a14db666271392dd581, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
 --- !u!114 &1091657509 stripped
@@ -1858,7 +1840,7 @@ PrefabInstance:
     - target: {fileID: 5143264464674482628, guid: 48784a3232fe5ba4e870ec67f282b65b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.021
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5143264464674482628, guid: 48784a3232fe5ba4e870ec67f282b65b,
         type: 3}

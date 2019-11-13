@@ -74,7 +74,7 @@ public sealed class Player : BaseMonoBehaviour
         //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
         if(other.gameObject.tag == "gift")
         {
-            other.gameObject.GetComponent<Gift>().GoodFlag = true;
+            //other.gameObject.GetComponent<Gift>().GoodFlag = true;
             // プレイヤーが吸収
             //Destroy(other.gameObject);
         }
@@ -83,7 +83,7 @@ public sealed class Player : BaseMonoBehaviour
         {
             Debug.Log("あたってる");
             GameStatusManager.Instance.SetLiftGift(true);
-            other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
+            //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
             Vector3 m = GiftArea.transform.position;
             other.transform.position = m;
             other.transform.parent = GiftArea.transform;
