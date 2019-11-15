@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f71b98051025e4586a7fd345d8d7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 5724252300825982939}
   targetDistance: 3
   m_searchAngle: 40
   _searchRadius: 35

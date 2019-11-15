@@ -112,6 +112,12 @@ public class RabbitScript : BaseMonoBehaviour
         //        Destroy(gameObject);
         //    });
 
+        this.OnCollisionEnterAsObservable()
+        .Where(_ => currentState == RabbitState.DEAD)
+        .Where(x => x.gameObject.GetComponent<Player>() != null)
+        .Select(x => x.gameObject.GetComponent<Player>())
+        .Subscribe(x => Destroy(gameObject));
+
         Usual();
     }
 
@@ -120,7 +126,8 @@ public class RabbitScript : BaseMonoBehaviour
         currentState = RabbitState.ORDINARY;
         coloring.material.color = Color.blue;
         agent.angularSpeed = 120;
-        Observable.Timer(System.TimeSpan.FromSeconds(1), System.TimeSpan.FromSeconds(3))
+
+        _disposable = Observable.Timer(System.TimeSpan.FromSeconds(1), System.TimeSpan.FromSeconds(3))
                 .TakeWhile(_ => currentState == RabbitState.ORDINARY)
                 .Where(_ => UnityEngine.Random.Range(1, 100) >= 50)
                 .Subscribe(_ =>
@@ -129,7 +136,8 @@ public class RabbitScript : BaseMonoBehaviour
                 }).AddTo(gameObject);
 
         //プレイヤーが一定距離に近づいてきたら逃げる
-        this.UpdateAsObservable()
+       _disposable = this.UpdateAsObservable()
+            .TakeWhile(_ => currentState == RabbitState.ORDINARY)
             .Select(_ => (transform.position - player.transform.position).sqrMagnitude)
             .Where(distance => distance < targetDistance * targetDistance)
             .First()
@@ -147,10 +155,11 @@ public class RabbitScript : BaseMonoBehaviour
         var diff = (transform.position - player.transform.position).normalized;
         diff.y = 0;
         transform.rotation = Quaternion.FromToRotation(diff, Vector3.up);
+
         agent.SetDestination(GetNextPosition());
 
         //目的地に近づいたら次の目的地を検索
-        _disposable = agent.ObserveEveryValueChanged(d => agent.remainingDistance)
+        agent.ObserveEveryValueChanged(d => currentState != RabbitState.DEAD ? agent.remainingDistance : 0.0f)
             .Where(d => d < 2.0f)
             .Where(_ => currentState == RabbitState.TENSION)
             .Subscribe(_ =>
@@ -209,6 +218,7 @@ public class RabbitScript : BaseMonoBehaviour
     {
        if(sCurrentState == RabbitState.DEAD)
        {
+            agent.enabled = false;
             _disposable.Dispose();
        }
     }
