@@ -9,20 +9,26 @@ public class ResultScene : MonoBehaviour
     {
         SceneStatusManager.Instance.SetFadeOut(true);
         SceneStatusManager.Instance.SetFadeIn(false);
-    }
+
+		//BGM再生
+		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Result_BGM);
+	}
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneStatusManager.Instance.SetFadeIn(false);
+			//決定音
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
+
+			SceneStatusManager.Instance.SetFadeIn(false);
             SceneStatusManager.Instance.SetFadeIn(true);
         }
 
         if (SceneStatusManager.Instance.GetSceneChange())
         {
-            SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+			SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
         }
     }
 }
