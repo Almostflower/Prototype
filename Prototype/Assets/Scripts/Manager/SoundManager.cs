@@ -229,11 +229,11 @@ public class SoundManager : MonoBehaviour
 			}
 
 			//停止ボタン
-			if (GUI.Button(new Rect(20, 100 + i++ * 25, 180, 20), "Stop"))
+			if (GUI.Button(new Rect(20, 100 + i++ * 25, 180, 20), "FadeToStopSound"))
 			{
 				this.StopFadeSound();
 			}
-			if (GUI.Button(new Rect(20, 100 + i++ * 25, 180, 20), "Stop Immediately"))
+			if (GUI.Button(new Rect(20, 100 + i++ * 25, 180, 20), "StopSound"))
 			{
 				this.StopSound();
 			}

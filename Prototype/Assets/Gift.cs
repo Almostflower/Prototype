@@ -26,7 +26,13 @@ public class Gift : BaseMonoBehaviour
     {
         set { debug_one_time_ = value; }
     }
-    ///////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
+
+	/// <summary>
+	/// 悪いスコア
+	/// </summary>
+	[SerializeField]
+	private int badscore_ = 0;
 
     /// <summary>
     /// 不良品になるまでのリミットタイム
@@ -87,6 +93,9 @@ public class Gift : BaseMonoBehaviour
     [SerializeField]
     private Gauge gauge_;
 
+	[SerializeField]
+	private Score socre_;
+
     /// <summary>
     /// 一回きりのフラグ
     /// </summary>
@@ -110,6 +119,7 @@ public class Gift : BaseMonoBehaviour
         playerAbsorbFlag = false;
         once_ = false;
         mastertime = badLimitTime;
+		badscore_ *= -1;
         if (debug_one_time_)
         {
             mastertime = badLimitTime + dustLimitTime;
@@ -141,7 +151,7 @@ public class Gift : BaseMonoBehaviour
         // ギフトの時間の更新
         mastertime -= Time.deltaTime;
         // ギフトの時間をゲージに渡す
-        gauge_.TimerValue = mastertime;
+        gauge_.GaugeValue = mastertime;
 
         if (debug_mode_)
         {
@@ -176,7 +186,8 @@ public class Gift : BaseMonoBehaviour
         if (/*!GameStatusManager.Instance.GetLiftGift() && */DustFlag && dustLimitTime < 0.0f)
         {
             DeathFlag = true;
-            Debug.Log("ギフト消滅");
+			socre_.SetScore(badscore_);
+			Debug.Log("ギフト消滅");
         }
     }
 

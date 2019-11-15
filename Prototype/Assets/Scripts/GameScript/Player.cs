@@ -77,6 +77,9 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private float holdingTimeCounter;
 
+	[SerializeField]
+	private Score score;
+
     private void awake()
     {
         base.Awake();
@@ -150,6 +153,9 @@ public sealed class Player : BaseMonoBehaviour
             {
                 if (rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].transform.GetChild(0).gameObject.GetComponent<Circle>().HitPlayerFrag)
                 {
+					// ウサギキャッチSE
+					SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+
                     holdingRabbitFlag = true;
                     holdingTimeCounter = holdingTime;
                     holdingRabbitNumber = i;
@@ -161,31 +167,46 @@ public sealed class Player : BaseMonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// ギフトをウサギに送る
     /// </summary>
     private void CheckGift()
     {
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
         {
-            // 良いギフトがあり良いうさぎなら
+			// 良いギフトがあり良いうさぎなら
 
-            // スコアを反映
-
-            // ウサギを消す
-            goodGiftNum = 0;
+			// スコアを反映
+			for(int i = 0; i < badGiftNum + goodGiftNum; i++)
+			{
+				if(giftType[i])
+				{
+					score.SetScore((int)giftTime[i]);
+					giftTime[i] = 0;
+				}
+			}
+			
+			// ウサギを消す
+			goodGiftNum = 0;
             holdingRabbitFlag = false;
             rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
 
         }
         else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
         {
-            // 悪いギフトがあり悪いうさぎなら
+			// 悪いギフトがあり悪いうさぎなら
 
-            // スコアを反映
+			// スコアを反映
+			for (int i = 0; i < badGiftNum + goodGiftNum; i++)
+			{
+				if (!giftType[i])
+				{
+					score.SetScore((int)giftTime[i]);
+					giftTime[i] = 0;
+				}
+			}
 
-
-            // ウサギを消す
-            badGiftNum = 0;
+			// ウサギを消す
+			badGiftNum = 0;
             holdingRabbitFlag = false;
             rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
         }
@@ -219,15 +240,18 @@ public sealed class Player : BaseMonoBehaviour
         // ギフト（良）の所有数がオーバーしていないかチェック
         if (goodGiftNum + badGiftNum < giftMaxNum)
         {
-            //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
-            if (other.gameObject.tag == "gift")
+			//普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
+			if (other.gameObject.tag == "gift")
             {
-                //other.gameObject.GetComponent<Gift>().GoodFlag = true;
-                // プレイヤーが吸収
-                //Destroy(other.gameObject);
+				// ギフト回収SE
+				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-                // プレイヤーがギフト吸収したことを知らせる
-                other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+				//other.gameObject.GetComponent<Gift>().GoodFlag = true;
+				// プレイヤーが吸収
+				//Destroy(other.gameObject);
+
+				// プレイヤーがギフト吸収したことを知らせる
+				other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
                 // 取得したギフトの情報を保存
                 giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
                 giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
@@ -238,7 +262,10 @@ public sealed class Player : BaseMonoBehaviour
             //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
             if (other.gameObject.tag == "Bad gift")
             {
-                Debug.Log("あたってる");
+				// ギフト回収SE
+				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+
+				Debug.Log("あたってる");
                 GameStatusManager.Instance.SetLiftGift(true);
                 //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
                 Vector3 m = GiftArea.transform.position;

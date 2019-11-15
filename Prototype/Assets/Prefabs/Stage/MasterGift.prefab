@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe7251fbee40c24599ef029f1283335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gift_type: 1
   slider_: {fileID: 944883576}
   background_: {fileID: 8165473}
   fill_: {fileID: 2086019777}

@@ -14,6 +14,11 @@ public class Gauge : BaseMonoBehaviour
 	private float dustlimittime_ = 0;
 	///////////////////////////////////////////////////////////////////
 
+	/// <summary>
+	/// ギフト専用かのフラグ
+	/// </summary>
+	[SerializeField]
+	private bool gift_type = false;
 
 	/// <summary>
 	/// スライダー
@@ -41,11 +46,10 @@ public class Gauge : BaseMonoBehaviour
 	/// <summary>
 	/// 減算する値
 	/// </summary>
-	private float timer_value_;
-	public float TimerValue
+	private float gauge_value_;
+	public float GaugeValue
 	{
-		get { return timer_value_; }
-		set { timer_value_ = value; }
+		set { gauge_value_ = value; }
 	}
 
 	/// <summary>
@@ -69,17 +73,18 @@ public class Gauge : BaseMonoBehaviour
 
 	void Start()
 	{
-		////////////////////////////////////////////////////////
-		/// 後でメインSceneのカメラに変更する
-		// メインカメラを取得
-		main_camera_ = Camera.main;
-
 		once_ = false;
-        //スライダー座標修正
-        slider_.transform.localPosition = new Vector3(80.0f,slider_.transform.position.y,slider_.transform.position.z);
-        slider_.transform.Rotate(new Vector3(0, 1, 0), 180);
+
+		// ギフト専用初期化
+		if (gift_type)
+		{
+			//スライダー座標修正
+			slider_.transform.localPosition = new Vector3(80.0f, slider_.transform.position.y, slider_.transform.position.z);
+			slider_.transform.Rotate(new Vector3(0, 1, 0), 180);
+		}
+
 		// 最大秒数をスライダーのマックス値に代入
-		slider_.maxValue = timer_value_;
+		slider_.maxValue = gauge_value_;
 	}
 
 	public override void UpdateNormal()
@@ -87,7 +92,7 @@ public class Gauge : BaseMonoBehaviour
 		if (debug_one_time_)
 		{
 			background_.color = new Color32(0, 0, 0, 255);
-			if (timer_value_ < dustlimittime_)
+			if (gauge_value_ < dustlimittime_)
 			{
 				fill_.color = new Color32(255, 255, 0, 255);
 			}
@@ -97,14 +102,17 @@ public class Gauge : BaseMonoBehaviour
 			}
 		}
 
-        Vector3 p = Camera.main.transform.position;
-        p.y = transform.position.y;
+		// ギフト専用カメラ
+		if (gift_type)
+		{
+			Vector3 p = Camera.main.transform.position;
+			p.y = transform.position.y;
+			// 常にカメラに向く
+			canvas_.transform.LookAt(p);
+		}
 
 		// HPゲージに値を設定
-		slider_.value = timer_value_;
-
-        // 常にカメラに向く
-        canvas_.transform.LookAt(p);
+		slider_.value = gauge_value_;
 
 		// スライダーの値が0以下になったら最大値に戻す
 		if (slider_.value <= 0 && once_)
