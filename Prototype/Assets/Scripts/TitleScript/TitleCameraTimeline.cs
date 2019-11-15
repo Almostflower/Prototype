@@ -25,6 +25,9 @@ public class TitleCameraTimeline : MonoBehaviour
     {
         FadeFlag = false;
         SceneStatusManager.Instance.SetFadeOut(true);
+
+		//BGM再生
+		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Title_BGM);
     }
 
     // Update is called once per frame
@@ -33,7 +36,10 @@ public class TitleCameraTimeline : MonoBehaviour
         //キー入力した時にタイムラインでフェード＆演出が開始されていく
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            PlayTimeline();
+			//決定音
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
+
+			PlayTimeline();
             AnimStartFlag = true;
         }
 
@@ -59,7 +65,7 @@ public class TitleCameraTimeline : MonoBehaviour
 
         if(SceneStatusManager.Instance.GetSceneChange())
         {
-            SceneManager.LoadSceneAsync(1,LoadSceneMode.Single);
+			SceneManager.LoadSceneAsync(1,LoadSceneMode.Single);
         }
     }
 

@@ -1161,13 +1161,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589821664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08d7e4447d0a9bd49a031d886a6831a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6be220be1da39e14ea87b366c149953e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_mode_: 1
-  gauge_: {fileID: 603844949}
-  timer_text_: {fileID: 412477408}
-  seconds_: 30
 --- !u!4 &1589821666
 Transform:
   m_ObjectHideFlags: 0

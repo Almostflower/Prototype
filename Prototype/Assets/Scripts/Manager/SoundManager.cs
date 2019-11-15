@@ -12,8 +12,12 @@ public class SoundManager : MonoBehaviour
 	public enum BGMLabel
 	{
 		None,
-		stage2,
-		stage3
+		Title_BGM,				//タイトル
+		Tutorial_BGM,			//チュートリアル
+		StageSelect_BGM,		//ステージ選択
+		StageDark_BGM,			//ゲーム暗い時
+		StageLight_BGM,			//ゲーム明るい時
+		Result_BGM				//スコアリザルト
 	}
 
 	/// <summary>
@@ -21,7 +25,12 @@ public class SoundManager : MonoBehaviour
 	/// </summary>
 	public enum SELabel
 	{
-		JumpVoice
+		TimeOver_SE,		//タイムオーバー
+		Decision_SE,		//決定
+		Escape_SE,			//うさぎ逃げる
+		Catch_SE,			//うさぎ確保
+		GetGift_SE,			//ギフト回収
+		InRange_SE			//範囲内
 	}
 	////////////////// ここまでに出したい音を入力 ///////////////////////
 	
@@ -73,7 +82,7 @@ public class SoundManager : MonoBehaviour
 	/// <summary>
 	/// フェードイン、フェードアウトにかかる時間です。
 	/// </summary>
-	public float TimeToFade = 2.0f;
+	public float TimeToFade = 1.0f;
 	/// <summary>
 	/// フェードインとフェードアウトの実行を重ねる割合です。
 	/// 0を指定すると、完全にフェードアウトしてからフェードインを開始します。
@@ -222,11 +231,11 @@ public class SoundManager : MonoBehaviour
 			//停止ボタン
 			if (GUI.Button(new Rect(20, 100 + i++ * 25, 180, 20), "Stop"))
 			{
-				this.Stop();
+				this.StopFadeSound();
 			}
 			if (GUI.Button(new Rect(20, 100 + i++ * 25, 180, 20), "Stop Immediately"))
 			{
-				this.StopImmediately();
+				this.StopSound();
 			}
 		}
 	}
@@ -275,7 +284,7 @@ public class SoundManager : MonoBehaviour
 		stopFadeIn();
 
 		//再生中のBGMをフェードアウト開始
-		this.Stop();
+		this.StopFadeSound();
 
 		float fadeInStartDelay = this.TimeToFade * (1.0f - this.CrossFadeRatio);
 
@@ -289,7 +298,7 @@ public class SoundManager : MonoBehaviour
 	/// <summary>
 	///	全部の音を止める
 	/// </summary>
-	public void StopSound()
+	public void AllStopSound()
 	{
 		this.fadeInCoroutine = null;
 		this.fadeOutCoroutine = null;
@@ -302,9 +311,9 @@ public class SoundManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// BGMを停止します。
+	/// BGMフェードしながらを停止します。
 	/// </summary>
-	public void Stop()
+	public void StopFadeSound()
 	{
 		if (this.CurrentAudioSource != null)
 		{
@@ -316,7 +325,7 @@ public class SoundManager : MonoBehaviour
 	/// <summary>
 	/// BGMをただちに停止します。
 	/// </summary>
-	public void StopImmediately()
+	public void StopSound()
 	{
 		this.fadeInCoroutine = null;
 		this.fadeOutCoroutine = null;
@@ -330,7 +339,7 @@ public class SoundManager : MonoBehaviour
 	/// <summary>
 	/// 全SEを止める
 	/// </summary>
-	public void StopSE()
+	public void AllStopSE()
 	{
 		seSourceList.ForEach(a => { a.Stop(); });
 	}
