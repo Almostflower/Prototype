@@ -36,14 +36,14 @@ public sealed class StageManager : BaseMonoBehaviour
     [SerializeField] private GameObject[] Building;
 
     /// <summary> 幅サイズ </summary>
-    [SerializeField] private int stageWidth;
+    [SerializeField, Tooltip("変更禁止")] private int stageWidth;
     public int StageWidth
     {
         get { return stageWidth; }
     }
 
     /// <summary> 奥行サイズ </summary>
-    [SerializeField] private int stageHeight;
+    [SerializeField, Tooltip("変更禁止")] private int stageHeight;
     public int StageHeight
     {
         get { return stageHeight; }
@@ -70,6 +70,9 @@ public sealed class StageManager : BaseMonoBehaviour
     /// </summary>
     private void Start()
     {
+        // csvからステージの幅高さを取得
+        stageWidth = csvData.GetComponent<CSVReader>().StageWidth;
+        stageHeight = csvData.GetComponent<CSVReader>().StageHeight;
 
         // 生成エリア情報の初期化
         stageArea = new Area[stageHeight, stageWidth];
