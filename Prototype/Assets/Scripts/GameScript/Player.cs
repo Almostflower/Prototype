@@ -77,7 +77,6 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private float holdingTimeCounter;
 
-	[SerializeField]
 	private Score score;
 
     private void awake()
@@ -95,6 +94,7 @@ public sealed class Player : BaseMonoBehaviour
         holdingRabbitFlag = false;
         holdingTimeCounter = 0;
         holdingRabbitNumber = -1;
+        score = GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -176,14 +176,14 @@ public sealed class Player : BaseMonoBehaviour
 			// 良いギフトがあり良いうさぎなら
 
 			// スコアを反映
-			for(int i = 0; i < badGiftNum + goodGiftNum; i++)
-			{
-				if(giftType[i])
-				{
-					score.SetScore((int)giftTime[i]);
-					giftTime[i] = 0;
-				}
-			}
+			//for(int i = 0; i < badGiftNum + goodGiftNum; i++)
+			//{
+			//	if(giftType[i])
+			//	{
+			//		score.SetScore((int)giftTime[i]);
+			//		giftTime[i] = 0;
+			//	}
+			//}
 			
 			// ウサギを消す
 			goodGiftNum = 0;
@@ -196,14 +196,14 @@ public sealed class Player : BaseMonoBehaviour
 			// 悪いギフトがあり悪いうさぎなら
 
 			// スコアを反映
-			for (int i = 0; i < badGiftNum + goodGiftNum; i++)
-			{
-				if (!giftType[i])
-				{
-					score.SetScore((int)giftTime[i]);
-					giftTime[i] = 0;
-				}
-			}
+			//for (int i = 0; i < badGiftNum + goodGiftNum; i++)
+			//{
+			//	if (!giftType[i])
+			//	{
+			//		score.SetScore((int)giftTime[i]);
+			//		giftTime[i] = 0;
+			//	}
+			//}
 
 			// ウサギを消す
 			badGiftNum = 0;

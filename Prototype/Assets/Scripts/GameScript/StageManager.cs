@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[DefaultExecutionOrder(-103)]
+
 public sealed class StageManager : BaseMonoBehaviour
 {
     /// <summary>
@@ -79,7 +79,7 @@ public sealed class StageManager : BaseMonoBehaviour
         // 生成エリア情報の初期化
         stageArea = new Area[stageHeight, stageWidth];
         int width = 2;
-        Vector3 startPos = new Vector3(-stageWidth * width / 2, 0.5f, stageHeight * width / 2);
+        Vector3 startPos = new Vector3(-stageWidth * width / 2, 0.0f, stageHeight * width / 2);
         for (int i = 0; i < stageHeight; i++)
         {
             for (int j = 0; j < stageWidth; j++)
@@ -106,6 +106,7 @@ public sealed class StageManager : BaseMonoBehaviour
 
             }
         }
+
         GetComponent<NavMeshSurface> ().BuildNavMesh();
     }
 

@@ -21,7 +21,7 @@ public class MovePointGenerator : MonoBehaviour
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezePosition;
             nextMovePoint.transform.parent = parent.transform;
-            nextMovePoint.transform.position = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
+            nextMovePoint.transform.position = new Vector3(Random.Range(-38, 38), 0, Random.Range(-38, 38));
         }
     }
 }

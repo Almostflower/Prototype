@@ -58,7 +58,11 @@ public class GiftManager : BaseMonoBehaviour
             {
                 if (!stageManager.GetComponent<StageManager>().StageArea(i, j).isExistence)
                 {
-                    giftArea.Add(stageManager.GetComponent<StageManager>().StageArea(i, j).position);
+                    //変更
+                    //Giftと建物の支点が違った為、y座標調整しました。
+                    Vector3 pos = stageManager.GetComponent<StageManager>().StageArea(i, j).position;
+                    pos.y = 0.5f;
+                    giftArea.Add(pos);
                 }
 
             }
