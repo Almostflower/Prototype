@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[DefaultExecutionOrder(-103)]
 public sealed class StageManager : BaseMonoBehaviour
 {
     /// <summary>
@@ -101,6 +103,7 @@ public sealed class StageManager : BaseMonoBehaviour
 
             }
         }
+        GetComponent<NavMeshSurface> ().BuildNavMesh();
     }
 
     /// <summary>
