@@ -152,7 +152,7 @@ MonoBehaviour:
   cube: {fileID: 6071740780816596629, guid: 489252db094e8d24097c82adc96a670a, type: 3}
   sponeTime: 1
   sponeNum: 10
-  destroyTime: 1
+  destroyTime: 5
 --- !u!4 &421462217
 Transform:
   m_ObjectHideFlags: 0
