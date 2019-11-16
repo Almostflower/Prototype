@@ -19,8 +19,8 @@
 		float4 _MainTex_ST;
 		float4 _MainTex_TexelSize;
 		sampler2D _SourceTex;
-		float _Threshold;
-		float _Intensity;
+		float _Threshold;		// 明るさに影響0に近いと明るくなる
+		float _Intensity;		// ぼかし
 
 		// 頂点シェーダーに入れるデータ
 		struct appdata
