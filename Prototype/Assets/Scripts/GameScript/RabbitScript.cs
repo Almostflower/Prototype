@@ -25,6 +25,14 @@ public class RabbitScript : BaseMonoBehaviour
     private float _searchRadius = 40.0f;
     private float m_searchCosTheta = 0.0f;
 
+    // プレイヤーと当たっているか
+    private bool hitPlayer;
+    public bool HitPlayer
+    {
+        get { return hitPlayer; }
+        set { hitPlayer = value; }
+    }
+
     public float SearchAngle
     {
         get { return m_searchAngle; }
@@ -82,6 +90,8 @@ public class RabbitScript : BaseMonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitPlayer = false;
+
         ApplySearchAngle();
 
         mask = LayerMask.GetMask(LayerMask.LayerToName(layerNumber));
