@@ -77,6 +77,9 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private float holdingTimeCounter;
 
+    /// <summary>
+    /// 
+    /// </summary>
 	private Score score;
 
     private void awake()
@@ -102,9 +105,9 @@ public sealed class Player : BaseMonoBehaviour
     {
         
         // ウサギとの動作
-        if (!holdingRabbitFlag)
+        if(!holdingRabbitFlag)
         {
-            CheckRabbit();
+            CheckCarryRabbit();
         }
         else
         {
@@ -144,26 +147,24 @@ public sealed class Player : BaseMonoBehaviour
     /// <summary>
     /// ウサギを持ち上げられるか確認
     /// </summary>
-    private void CheckRabbit()
+    private void CheckCarryRabbit()
     {
-        for (int i = 0; i < rabbitManager.GetComponent<RabbitManager>().RabbitMaxNum; i++)
+        for(int i = 0; i < rabbitManager.GetComponent<RabbitManager>().RabbitMaxNum; i++)
         {
             // ボタン入力
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
             {
-                if (rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].transform.GetChild(0).gameObject.GetComponent<Circle>().HitPlayerFrag)
-                {
-					// ウサギキャッチSE
-					SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+                // ウサギキャッチSE
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
 
-                    holdingRabbitFlag = true;
-                    holdingTimeCounter = holdingTime;
-                    holdingRabbitNumber = i;
-                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.HOLDING;
-                    break;
-                }
+                holdingRabbitFlag = true;
+                holdingTimeCounter = holdingTime;
+                holdingRabbitNumber = i;
+                rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.HOLDING;
+                break;
             }
         }
+        
     }
 
     /// <summary>
@@ -171,10 +172,9 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private void CheckGift()
     {
+        // 良いギフトがあり良いうさぎなら
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
         {
-			// 良いギフトがあり良いうさぎなら
-
 			// スコアを反映
 			//for(int i = 0; i < badGiftNum + goodGiftNum; i++)
 			//{
@@ -282,6 +282,20 @@ public sealed class Player : BaseMonoBehaviour
                 // ギフト数追加
                 badGiftNum++;
             }
+        }
+
+        // うさぎと当たっているかチェック
+        if(other.gameObject.tag == "Rabbit")
+        {
+            other.gameObject.GetComponent<RabbitScript>().HitPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Rabbit")
+        {
+            other.gameObject.GetComponent<RabbitScript>().HitPlayer = false;
         }
     }
 }
