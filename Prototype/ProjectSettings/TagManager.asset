@@ -10,6 +10,7 @@ TagManager:
   - Bad gift
   - Obstacle
   - MovePoint
+  - Rabbit
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - 
   - Visible
-  - Build
+  - 
   - PlayerAndEnemy
   - MiniMap
   - Gift

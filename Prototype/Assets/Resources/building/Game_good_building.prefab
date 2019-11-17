@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2426915964841634386}
   - component: {fileID: 1084791636271523332}
   - component: {fileID: 7546983067064517653}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPlane2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3506996095162129992}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Game_good_building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1536306981233412920}
   - component: {fileID: 585085481337377898}
   - component: {fileID: 8140597047589639786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 6385655120057761792}
   - component: {fileID: 4040630816603373565}
   - component: {fileID: 3868650421808689142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPlane3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 3420002080714007597}
   - component: {fileID: 5855402791090893774}
   - component: {fileID: 6894238956838431468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPlane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8489829077247347611}
   - component: {fileID: 8489829077247347612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8489829077442388037}
   - component: {fileID: 8489829077442388038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8489829078672811938}
   - component: {fileID: 8489829078672811939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8489829078885337188}
   - component: {fileID: 8489829078885337189}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8489829079046622860}
   - component: {fileID: 8489829079046622861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
