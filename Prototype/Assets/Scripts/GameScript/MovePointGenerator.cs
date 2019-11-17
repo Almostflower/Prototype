@@ -15,7 +15,8 @@ public class MovePointGenerator : MonoBehaviour
             nextMovePoint.name = ("MovePoint(" + i + ")");
             nextMovePoint.tag = "MovePoint";
             nextMovePoint.layer = 9;
-            nextMovePoint.AddComponent<SphereCollider>();
+            var sp = nextMovePoint.AddComponent<SphereCollider>();
+            sp.isTrigger = true;
             nextMovePoint.AddComponent<NextMovePosition>();
             var rb = nextMovePoint.AddComponent<Rigidbody>();
             rb.useGravity = false;

@@ -114,15 +114,14 @@ public sealed class Player : BaseMonoBehaviour
         PlayerMove();
     }
 
+    Vector3 Direction;
     private void PlayerMove()
     {
         //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
         if (PlayerController.isGrounded)
         {
-            velocity = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
-            transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
-
+            Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
             if (Input.GetAxis("Vertical") != 0f)
             {
                 PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
@@ -130,6 +129,7 @@ public sealed class Player : BaseMonoBehaviour
 
             if (Input.GetAxis("Horizontal") != 0f)
             {
+                transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
                 PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
             }
 
@@ -140,12 +140,14 @@ public sealed class Player : BaseMonoBehaviour
         }
         else
         {
+            Direction.y += Physics.gravity.y * Time.deltaTime;
         }
+
+
         velocity.y += Physics.gravity.y * Time.deltaTime;
 
-        PlayerController.Move(velocity);
+        PlayerController.Move(Direction);
     }
-
 
     /// <summary>
     /// ウサギを持ち上げられるか確認
