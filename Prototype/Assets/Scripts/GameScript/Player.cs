@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public sealed class Player : BaseMonoBehaviour
 {
@@ -112,6 +113,10 @@ public sealed class Player : BaseMonoBehaviour
         }
 
         PlayerMove();
+
+        // ギフト所持数の更新
+        this.transform.GetChild(5).GetChild(0).gameObject.GetComponent<Text>().text = "良いGiftの数：" + goodGiftNum.ToString();
+        this.transform.GetChild(5).GetChild(1).gameObject.GetComponent<Text>().text = "悪いGiftの数：" + badGiftNum.ToString();
     }
 
     Vector3 Direction;
