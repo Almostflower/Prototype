@@ -9,16 +9,13 @@ public sealed class Player : BaseMonoBehaviour
     [SerializeField]
     public CharacterController PlayerController;
     [SerializeField]
-    public float Speed;
+    public float Speed = 5f;
     private Vector3 velocity;
     private string PlayerActionParameter = "Move";
     private float hit;
-
+    private Vector3 direction;
     [SerializeField]
     private GameObject GiftArea;//プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
-
-    [SerializeField]
-    private float speed = 5f;
 
     [SerializeField]
     private float rotateSpeed = 120f;
@@ -119,28 +116,34 @@ public sealed class Player : BaseMonoBehaviour
 
     private void PlayerMove()
     {
-        velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
-
-        if (Input.GetAxis("Vertical") != 0f)
+        if (PlayerController.isGrounded)
         {
-            transform.position += (transform.forward * Input.GetAxis("Vertical")) * speed * Time.fixedDeltaTime;
-            PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
-        }
-
-        if (Input.GetAxis("Horizontal") != 0f)
-        {
+            velocity = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
             transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
-            PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
-        }
 
-        if (Input.GetAxis("Vertical") == 0f && Input.GetAxis("Horizontal") == 0f)
+            if (Input.GetAxis("Vertical") != 0f)
+            {
+                PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
+            }
+
+            if (Input.GetAxis("Horizontal") != 0f)
+            {
+                PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
+            }
+
+            if (Input.GetAxis("Vertical") == 0f && Input.GetAxis("Horizontal") == 0f)
+            {
+                PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
+            }
+        }
+        else
         {
-            PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
         }
-
-
         velocity.y += Physics.gravity.y * Time.deltaTime;
+
+        PlayerController.Move(velocity);
     }
 
 
