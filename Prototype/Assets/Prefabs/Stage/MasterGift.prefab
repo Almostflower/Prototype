@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -578,13 +578,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug_mode_: 1
-  debug_one_time_: 1
-  badscore_: 0
+  badscore_: 2
   badLimitTime: 10
   dustLimitTime: 10
   timer_text_: {fileID: 1720000083}
   gauge_: {fileID: 944883575}
-  socre_: {fileID: 2786896887458879208, guid: cd91c865fa231524c9083041b78fd255, type: 3}
 --- !u!1 &6953303677385736225
 GameObject:
   m_ObjectHideFlags: 0

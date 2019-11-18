@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class GiftManager : BaseMonoBehaviour
 {
+	///////////////////////////////////////////////////////////////////
+	/// プロトを見て変える
+	/// <summary>
+	/// 1本のゲージで見せるモード
+	/// </summary>
+	[SerializeField]
+	private bool debug_one_time_ = false;
+	///////////////////////////////////////////////////////////////////
+
+
 	/// <summary>
 	/// ギフトのprefab
 	/// </summary>
@@ -30,6 +40,24 @@ public class GiftManager : BaseMonoBehaviour
     /// 空白ステージの座標
     /// </summary>
     private List<Vector3> giftArea;
+
+	[SerializeField]
+	private int badminscore_ = 0;
+
+	[SerializeField]
+	private int badmaxscore_ = 0;
+
+	[SerializeField]
+	private float badminlimittime_ = 0;
+
+	[SerializeField]
+	private float badmaxlimittime_ = 0;
+
+	[SerializeField]
+	private float dustminlimittime_ = 0;
+
+	[SerializeField]
+	private float dustmaxlimittime_ = 0;
 
     /// <summary>
     /// 
@@ -151,8 +179,14 @@ public class GiftManager : BaseMonoBehaviour
     /// <param name="index"></param>
     private void Birth(int index)
     {
+		int badscore = Random.Range(badminscore_, badmaxscore_);
+		float badlimittime = Random.Range(badminlimittime_, badmaxlimittime_);
+		float dustlimittime = Random.Range(dustminlimittime_, dustmaxlimittime_);
+
         giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
         giftManager[index].transform.parent = this.transform;
+		giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
+		giftManager[index].GetComponent<Gift>().DebugOneTime = debug_one_time_;
         isExistence[index] = true;
     }
 }

@@ -97,6 +97,7 @@ public class Timer : BaseMonoBehaviour
 			SceneStatusManager.Instance.SetFadeIn(false);
 			SceneStatusManager.Instance.SetFadeIn(true);
 
+			// 次のシーンへ
 			if (SceneStatusManager.Instance.GetSceneChange())
 			{
 				SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);

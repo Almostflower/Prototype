@@ -20,7 +20,6 @@ public class Gift : BaseMonoBehaviour
     /// <summary>
     /// 1本のゲージで見せるモード
     /// </summary>
-    [SerializeField]
     private bool debug_one_time_ = false;
     public bool DebugOneTime
     {
@@ -93,7 +92,9 @@ public class Gift : BaseMonoBehaviour
     [SerializeField]
     private Gauge gauge_;
 
-	[SerializeField]
+	/// <summary>
+	/// スコアスクリプト
+	/// </summary>
 	private Score socre_;
 
     /// <summary>
@@ -120,7 +121,9 @@ public class Gift : BaseMonoBehaviour
         once_ = false;
         mastertime = badLimitTime;
 		badscore_ *= -1;
-        if (debug_one_time_)
+		socre_ = GameObject.Find("Score").GetComponent<Score>();
+
+		if (debug_one_time_)
         {
             mastertime = badLimitTime + dustLimitTime;
         }
@@ -207,4 +210,16 @@ public class Gift : BaseMonoBehaviour
         return DeathFlag;
     }
 
+	/// <summary>
+	/// ギフトの初期設定
+	/// </summary>
+	/// <param name="badscore"></param>
+	/// <param name="badlimittime"></param>
+	/// <param name="dustlimittime"></param>
+	public void SetGift(int badscore, float badlimittime, float dustlimittime)
+	{
+		badscore_ = badscore;
+		badLimitTime = badlimittime;
+		dustLimitTime = dustlimittime;
+	}
 }

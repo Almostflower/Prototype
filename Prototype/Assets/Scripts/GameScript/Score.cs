@@ -69,6 +69,15 @@ public class Score : BaseMonoBehaviour
 			once_ = true;
 		}
 
+		if(total_score_ < 0)
+		{
+			total_score_ = 0;
+		}
+		else if(total_score_ > maxscore_)
+		{
+			total_score_ = maxscore_;
+		}
+
 		gauge_.GaugeValue = total_score_;
 
 		// デバッグモードだったら表示
