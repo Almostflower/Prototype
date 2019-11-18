@@ -8,7 +8,9 @@ public class Bloom : MonoBehaviour
     private int _iteration = 1;
     [SerializeField, Range(0.0f, 1.0f)]
     private float _threshold = 0.0f;
-    [SerializeField, Range(0.0f, 10.0f)]
+    [SerializeField, Range(0.0f,1.0f)]
+    private float _softThreshold = 0.0f;
+    [SerializeField, Range(0.0f, 10.0f), Tooltip("ぼかし")]
     private float _intensity = 1.0f;
     [SerializeField]
     private bool _debug;
@@ -23,8 +25,16 @@ public class Bloom : MonoBehaviour
 
     private void OnRenderImage(RenderTexture source, RenderTexture dest)
     {
+        var filterParams = Vector4.zero;
+        var knee = _threshold * _softThreshold;
+        filterParams.x = _threshold;
+        filterParams.y = _threshold - knee;
+        filterParams.z = knee * 2.0f;
+        filterParams.w = 0.25f / (knee + 0.00001f);
+
         // シェーダーへパラメーターをセット
-        _material.SetFloat("_Threshold", _threshold);
+        _material.SetVector("_FilterParams", filterParams);
+        //_material.SetFloat("_Threshold", _threshold);
         _material.SetFloat("_Intensity", _intensity);
         _material.SetTexture("_SourceTex", source);
 

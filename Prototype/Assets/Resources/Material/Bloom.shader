@@ -19,7 +19,8 @@
 		float4 _MainTex_ST;
 		float4 _MainTex_TexelSize;
 		sampler2D _SourceTex;
-		float _Threshold;		// 明るさに影響0に近いと明るくなる
+		//float _Threshold;		// 明るさに影響0に近いと明るくなる
+		half4 _FilterParams;
 		float _Intensity;		// ぼかし
 
 		// 頂点シェーダーに入れるデータ
@@ -67,27 +68,42 @@
 
 		ENDCG
 
-		cull off
-		ZTest Always
-		ZWrite off
+			cull off
+			ZTest Always
+			ZWrite off
 
-		Tags{ "RenderType" = "Opaque" }
+			Tags{ "RenderType" = "Opaque" }
 
-		// 適用するピクセル抽出用のパス
-		Pass
+			// 適用するピクセル抽出用のパス
+			Pass
 		{
 			CGPROGRAM
 
+			//fixed4 frag(v2f i) :SV_Target
+			//{
+			//	half4 col = 1;
+			//	col.rgb = SampleBox(i.uv, 1.0f);
+			//	half brightness = GetBrightness(col.rgb);
+			//
+			//	// 明度がTtresholdより大きいピクセルだけブルームの対象とする
+			//	half contribution = max(0, brightness - _Threshold);
+			//	contribution /= max(brightness, 0.00001);
+			//
+			//	return col * contribution;
+			//}
+
+			//
 			fixed4 frag(v2f i) :SV_Target
 			{
 				half4 col = 1;
 				col.rgb = SampleBox(i.uv, 1.0f);
 				half brightness = GetBrightness(col.rgb);
 
-				// 明度がTtresholdより大きいピクセルだけブルームの対象とする
-				half contribution = max(0, brightness - _Threshold);
+				half soft = brightness - _FilterParams.y;
+				soft = clamp(soft, 0, _FilterParams.z);
+				soft = soft * soft * _FilterParams.w;
+				half contribution = max(soft, brightness - _FilterParams.x);
 				contribution /= max(brightness, 0.00001);
-
 				return col * contribution;
 			}
 
