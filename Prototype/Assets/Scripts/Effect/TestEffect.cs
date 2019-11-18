@@ -39,7 +39,7 @@ public class TestEffect : BaseMonoBehaviour
             for(int i = 0; i < sponeNum; i++)
             {
                 GameObject maborosi;
-                maborosi = Instantiate(cube, new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-2.0f, 0.0f), 0.0f), Quaternion.identity);
+                maborosi = Instantiate(cube, new Vector3(Random.Range(-70.0f, 70.0f), Random.Range(-2.0f, 0.0f), Random.Range(-70.0f, 70.0f)), Quaternion.identity);
                 Destroy(maborosi, destroyTime);
                 sponeCopyTime = sponeTime;
             }

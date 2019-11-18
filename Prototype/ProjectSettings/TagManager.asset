@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - MovePoint
   - Rabbit
+  - Stage
   layers:
   - Default
   - TransparentFX

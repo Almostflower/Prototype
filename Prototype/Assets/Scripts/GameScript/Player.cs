@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public sealed class Player : BaseMonoBehaviour
 {
+    public GameObject footPrintPrefab;
+    float foottime = 0;
     [SerializeField]
     public Animator PlayerAnimator;
     [SerializeField]
@@ -97,13 +99,27 @@ public sealed class Player : BaseMonoBehaviour
         holdingTimeCounter = 0;
         holdingRabbitNumber = -1;
     }
-
+    IEnumerator Disappearing()
+    {
+        int step = 90;
+        for (int i = 0; i < step; i++)
+        {
+            GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1 - 1.0f * i / step);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        
+        this.foottime += Time.deltaTime;
+        if (this.foottime > 0.35f)
+        {
+            this.foottime = 0;
+            Instantiate(footPrintPrefab, transform.position, transform.rotation);
+        }
         // ウサギとの動作
-        if(!holdingRabbitFlag)
+        if (!holdingRabbitFlag)
         {
             CheckCarryRabbit();
         }
@@ -127,6 +143,8 @@ public sealed class Player : BaseMonoBehaviour
         if (PlayerController.isGrounded)
         {
             Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
+            transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
+
             if (Input.GetAxis("Vertical") != 0f)
             {
                 PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
@@ -134,7 +152,6 @@ public sealed class Player : BaseMonoBehaviour
 
             if (Input.GetAxis("Horizontal") != 0f)
             {
-                transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
                 PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
             }
 
