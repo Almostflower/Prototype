@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6545167285331934354}
   - component: {fileID: 6545167285331934353}
   - component: {fileID: 6545167285331934352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RabbitGood
-  m_TagString: Untagged
+  m_TagString: Rabbit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
