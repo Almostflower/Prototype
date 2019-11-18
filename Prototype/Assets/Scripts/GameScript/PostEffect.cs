@@ -5,6 +5,7 @@ using UnityEngine;
 public class PostEffect : MonoBehaviour
 {
     public Material outline;
+    private Camera cam;
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
@@ -12,15 +13,11 @@ public class PostEffect : MonoBehaviour
         Graphics.Blit(source, destination, outline);
     }
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    
-    //}
-    //
-    //// Update is called once per frame
-    //public override void UpdateNormal()
-    //{
-    //    
-    //}
+    // Start is called before the first frame update
+    void Start()
+    {
+        cam = GetComponent<Camera>();
+        cam.depthTextureMode = cam.depthTextureMode | DepthTextureMode.DepthNormals;
+    }
+    
 }

@@ -228,6 +228,7 @@ public sealed class Player : BaseMonoBehaviour
 
                 // プレイヤーがギフト吸収したことを知らせる
                 other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+
                 // 取得したギフトの情報を保存
                 giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
                 giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;

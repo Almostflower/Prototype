@@ -5,6 +5,7 @@
     {
 		// スクリプト内の変数("inspectorでの表示", 変数) =  初期値
 		[HideInInspector] _MainTex("Texture", 2D) = "white" {}
+		_SubTex("Texture2", 2D) = "White"{}
 		_OutlineColor("Outline Color", Color) = (0,0,0,1)
 		_Depth1("Depth dist 1 multiplier", Range(0,1)) = 0.6
 		_Depth1_1("Depth dist 1.4 multiplier", Range(0,1)) = 0.6
@@ -254,7 +255,9 @@
 
 				float outline = saturate(max(normalDifference, depthDifference));
 				float4 sourceColor = tex2D(_MainTex, i.uv);
-				float4 color = lerp(sourceColor, _OutlineColor, outline);
+				//float4 subTexColor = tex2D(_SubTex, i.uv);		// 使用するテクスチャ
+				float4 color = lerp(sourceColor, _OutlineColor, outline);	// 線形補間（始まりの点、終わりの点、）
+				//color = lerp(color, subTexColor, outline);
 				return color;
 			}
 			ENDCG	// シェーディング言語開始
