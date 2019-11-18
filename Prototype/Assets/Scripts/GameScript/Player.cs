@@ -76,8 +76,9 @@ public sealed class Player : BaseMonoBehaviour
     private float holdingTimeCounter;
 
     /// <summary>
-    /// 
+    /// スコアのスクリプト
     /// </summary>
+    [SerializeField]
 	private Score score;
 
     private void awake()
@@ -95,7 +96,6 @@ public sealed class Player : BaseMonoBehaviour
         holdingRabbitFlag = false;
         holdingTimeCounter = 0;
         holdingRabbitNumber = -1;
-        score = GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -185,38 +185,38 @@ public sealed class Player : BaseMonoBehaviour
         // 良いギフトがあり良いうさぎなら
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
         {
-			// スコアを反映
-			//for(int i = 0; i < badGiftNum + goodGiftNum; i++)
-			//{
-			//	if(giftType[i])
-			//	{
-			//		score.SetScore((int)giftTime[i]);
-			//		giftTime[i] = 0;
-			//	}
-			//}
-			
-			// ウサギを消す
-			goodGiftNum = 0;
+            // スコアを反映
+            for (int i = 0; i < badGiftNum + goodGiftNum; i++)
+            {
+                if (giftType[i])
+                {
+                    score.SetScore((int)giftTime[i]);
+                    giftTime[i] = 0;
+                }
+            }
+
+            // ウサギを消す
+            goodGiftNum = 0;
             holdingRabbitFlag = false;
             rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
 
         }
         else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
         {
-			// 悪いギフトがあり悪いうさぎなら
+            // 悪いギフトがあり悪いうさぎなら
 
-			// スコアを反映
-			//for (int i = 0; i < badGiftNum + goodGiftNum; i++)
-			//{
-			//	if (!giftType[i])
-			//	{
-			//		score.SetScore((int)giftTime[i]);
-			//		giftTime[i] = 0;
-			//	}
-			//}
+            // スコアを反映
+            for (int i = 0; i < badGiftNum + goodGiftNum; i++)
+            {
+                if (!giftType[i])
+                {
+                    score.SetScore((int)giftTime[i]);
+                    giftTime[i] = 0;
+                }
+            }
 
-			// ウサギを消す
-			badGiftNum = 0;
+            // ウサギを消す
+            badGiftNum = 0;
             holdingRabbitFlag = false;
             rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
         }

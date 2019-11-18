@@ -9,8 +9,8 @@ public class Timer : BaseMonoBehaviour
 	/// <summary>
 	/// デバッグモード
 	/// </summary>
-	[SerializeField]
-	bool debug_mode_ = true;
+	//[SerializeField]
+	//bool debug_mode_ = true;
 
 	/// <summary>
 	/// ゲージスクリプト
@@ -74,22 +74,22 @@ public class Timer : BaseMonoBehaviour
 
 		// いったんトータルの制限時間を計測
 		seconds_ -= Time.deltaTime;
-		//gauge_.TimerValue = seconds_;
+        //gauge_.TimerValue = seconds_;
 
-		// デバッグモードだったら表示
-		if (debug_mode_)
-		{
-			timer_text_.enabled = true;
-			// タイマー表示用UIテキストに時間を表示する
-			timer_text_.text = seconds_.ToString("F2");
-		}
-		else
-		{
-			timer_text_.enabled = false;
-		}
+        //// デバッグモードだったら表示
+        //if (debug_mode_)
+        //{
+        timer_text_.enabled = true;
+        // タイマー表示用UIテキストに時間を表示する
+        timer_text_.text = seconds_.ToString("F2");
+        //}
+        //else
+        //{
+        //	timer_text_.enabled = false;
+        //}
 
-		// 制限時間いかになったらコンソールに「制限時間終了」という文字列を表示する
-		if (seconds_ <= 0f)
+        // 制限時間いかになったらコンソールに「制限時間終了」という文字列を表示する
+        if (seconds_ <= 0f)
 		{
 			// タイムオーバーSE
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.TimeOver_SE);
