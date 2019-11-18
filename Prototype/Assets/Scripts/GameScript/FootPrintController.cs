@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootPrintController : MonoBehaviour
+public class FootPrintController : BaseMonoBehaviour
 {
+    protected void Awake()
+    {
+        base.Awake();
+    }
+
     void Start()
     {
         StartCoroutine(Disappearing());

@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameFrow/Title.unity
     guid: c4095ac5f44939b479ee19468a5c4b81
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameFrow/Tutorial.unity
     guid: 32e7c12bf57417d4bbf9388e975e8f8c
   - enabled: 1
     path: Assets/Scenes/Prototype.unity
     guid: f1d5225e789c0ab4aa192652c6b96b4c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameFrow/Result_NormalVer.unity
     guid: 456dee5231f04f74b9677568776b4fe9
   m_configObjects: {}
