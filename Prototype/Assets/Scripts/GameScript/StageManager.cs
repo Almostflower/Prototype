@@ -69,6 +69,7 @@ public sealed class StageManager : BaseMonoBehaviour
 
     /// <summary>
     /// ステージの初期化
+    /// 最後の数字がギフト生成位置
     /// </summary>
     private void Start()
     {
