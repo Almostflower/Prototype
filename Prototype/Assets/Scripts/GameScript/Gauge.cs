@@ -90,6 +90,9 @@ public class Gauge : BaseMonoBehaviour
 
 	public override void UpdateNormal()
 	{
+		///////////////////////////////////////////////////////////////////
+		/// プロトを見て変える
+		/// <summary>
 		if (debug_one_time_)
 		{
 			background_.color = new Color32(0, 0, 0, 255);
@@ -102,6 +105,7 @@ public class Gauge : BaseMonoBehaviour
 				fill_.color = new Color32(0, 255, 0, 255);
 			}
 		}
+		///////////////////////////////////////////////////////////////////
 
 		// ギフト専用カメラ
 		if (gift_type)
@@ -112,8 +116,11 @@ public class Gauge : BaseMonoBehaviour
 			canvas_.transform.LookAt(p);
 		}
 
-		// HPゲージに値を設定
+		// ゲージに値を設定
 		slider_.value = gauge_value_;
+
+		// 背景のゲージ
+		background_.fillAmount = gauge_value_ / slider_.maxValue + (1 - gauge_value_ / slider_.maxValue) * 0.1f;
 
 		// スライダーの値が0以下になったら最大値に戻す
 		if (slider_.value <= 0 && once_)

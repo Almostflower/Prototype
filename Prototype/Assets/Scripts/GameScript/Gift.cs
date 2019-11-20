@@ -102,6 +102,18 @@ public class Gift : BaseMonoBehaviour
     /// </summary>
     private bool once_ = false;
 
+	/// <summary>
+	/// 良いアイコン
+	/// </summary>
+	[SerializeField]
+	private GameObject GoodIcon;
+
+	/// <summary>
+	/// 悪いアイコン
+	/// </summary>
+	[SerializeField]
+	private GameObject BadIcon;
+
     /// <summary>
     /// BaseMonoBehaviourの初期化
     /// </summary>
@@ -122,6 +134,7 @@ public class Gift : BaseMonoBehaviour
         mastertime = badLimitTime;
 		badscore_ *= -1;
 		socre_ = GameObject.Find("Score").GetComponent<Score>();
+		BadIcon.SetActive(false);
 
 		if (debug_one_time_)
         {
@@ -175,6 +188,8 @@ public class Gift : BaseMonoBehaviour
                 gameObject.tag = "Bad gift";
                 Debug.Log("ギフトが悪くなった");
                 this.GetComponent<Renderer>().material.color = Color.red;
+				GoodIcon.SetActive(false);
+				BadIcon.SetActive(true);
                 if (!debug_one_time_)
                 {
                     mastertime = dustLimitTime;
