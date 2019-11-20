@@ -22,7 +22,7 @@ TagManager:
   - 
   - 
   - Visible
-  - 
+  - PostProcess
   - PlayerAndEnemy
   - MiniMap
   - Gift
