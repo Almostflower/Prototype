@@ -18,8 +18,10 @@ public class ParticleCube : BaseMonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.GetComponent<Renderer>().material.EnableKeyword("_EMISSION"); //キーワードの有効化を忘れずに
         this.transform.localScale = new Vector3(cubeSize, Random.Range(cubeSize, cubeSize * 10), cubeSize);
         this.GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, red), Random.Range(0.0f, green), Random.Range(0.0f, blue));
+        this.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(Random.Range(0.0f, red), Random.Range(0.0f, green), Random.Range(0.0f, blue))); //赤色に光らせる
     }
 
     // Update is called once per frame

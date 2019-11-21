@@ -123,6 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeSize: 0.061
   upSpeed: 1
-  red: 0.08
-  green: 0.22
+  red: 0.448
+  green: 0.869
   blue: 1
