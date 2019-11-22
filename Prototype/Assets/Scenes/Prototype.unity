@@ -8097,22 +8097,22 @@ PrefabInstance:
     - target: {fileID: 9155708592614139384, guid: d0681ed74ce801a45862bb2399bc725a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 413
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9155708592614139384, guid: d0681ed74ce801a45862bb2399bc725a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 233.8
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 9155708592614139384, guid: d0681ed74ce801a45862bb2399bc725a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 836
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9155708592614139384, guid: d0681ed74ce801a45862bb2399bc725a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 470
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9155708592614139384, guid: d0681ed74ce801a45862bb2399bc725a,
         type: 3}
@@ -8144,6 +8144,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9155708593711153265, guid: d0681ed74ce801a45862bb2399bc725a,
+        type: 3}
+      propertyPath: player_
+      value: 
+      objectReference: {fileID: 218433411}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0681ed74ce801a45862bb2399bc725a, type: 3}
 --- !u!1 &1496594575
