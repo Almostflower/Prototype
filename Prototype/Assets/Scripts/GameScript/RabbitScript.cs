@@ -226,6 +226,7 @@ public class RabbitScript : BaseMonoBehaviour
 
     public override void UpdateFixed()
     {
+        /////////////////////////////////////////
        if(sCurrentState == RabbitState.DEAD)
        {
             agent.enabled = false;
