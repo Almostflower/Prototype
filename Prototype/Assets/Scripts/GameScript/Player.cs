@@ -130,6 +130,7 @@ public sealed class Player : BaseMonoBehaviour
             this.foottime = 0;
             Instantiate(footPrintPrefab, transform.position, transform.rotation);
         }
+
         // ウサギとの動作
         if (!holdingRabbitFlag)
         {
