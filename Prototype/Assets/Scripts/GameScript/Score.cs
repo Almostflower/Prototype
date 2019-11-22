@@ -78,16 +78,6 @@ public class Score : BaseMonoBehaviour
 			total_score_ = maxscore_;
 		}
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			total_score_++;
-		}
-
-		if (Input.GetMouseButtonDown(1))
-		{
-			total_score_--;
-		}
-
 		gauge_.GaugeValue = total_score_;
 
 		// デバッグモードだったら表示

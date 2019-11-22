@@ -66,16 +66,28 @@ public sealed class Player : BaseMonoBehaviour
     /// ウサギを持ち続ける
     /// </summary>
     [SerializeField] private bool holdingRabbitFlag;
+	public bool HoldingRabbitFlag
+	{
+		get { return holdingRabbitFlag; }
+	}
 
     /// <summary>
     /// 握力時間
     /// </summary>
     [SerializeField] private float holdingTime;
+	public float HoldingTime
+	{
+		get { return holdingTime; }
+	}
 
     /// <summary>
     /// 握力経過時間
     /// </summary>
     private float holdingTimeCounter;
+	public float HoldingTimeCounter
+	{
+		get { return holdingTimeCounter; }
+	}
 
     /// <summary>
     /// スコアのスクリプト
@@ -112,7 +124,7 @@ public sealed class Player : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        this.foottime += Time.deltaTime;
+		this.foottime += Time.deltaTime;
         if (this.foottime > 0.35f)
         {
             this.foottime = 0;
