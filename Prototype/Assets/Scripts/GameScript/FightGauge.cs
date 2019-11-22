@@ -39,13 +39,11 @@ public class FightGauge : BaseMonoBehaviour
 	public override void UpdateNormal()
 	{
 		// うさぎを持ったら
-		//if (player_.HoldingRabbitFlag)
-		if (Input.GetKey(KeyCode.Space))
+		if (player_.HoldingRabbitFlag)
 		{
 			background_.enabled = true;
 			count_ = 0;
-			//background_.fillAmount = player_.HoldingTimeCounter / player_.HoldingTime;
-			background_.fillAmount -= 0.1f;
+			background_.fillAmount = player_.HoldingTimeCounter / player_.HoldingTime;
 		}
 		else
 		{
