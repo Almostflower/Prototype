@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public sealed class Player : BaseMonoBehaviour
 {
-    public GameObject footPrintPrefab;
+    [SerializeField]
+    private GameObject footPrintPrefab;
     float foottime = 0;
     [SerializeField]
-    public Animator PlayerAnimator;
+    private Animator PlayerAnimator;
     [SerializeField]
-    public CharacterController PlayerController;
+    private CharacterController PlayerController;
     [SerializeField]
-    public float Speed = 5f;
+    private float Speed = 5f;
+    [SerializeField]
+    private float DefaultSpeed;
+    [SerializeField]
+    private float RunSpeed;
     private Vector3 velocity;
     private string PlayerActionParameter = "Move";
     private float hit;
@@ -25,13 +30,23 @@ public sealed class Player : BaseMonoBehaviour
 
     [SerializeField]
     private int giftMaxNum;
-
+    //加速フラグ
+    bool speedflag = false;
+    //コントローラーの縦方向の傾きを取得する変数
+    [SerializeField]
+    private GameObject SparkParticle;
+    Vector3 Direction;
     /// <summary>
     /// 所有ギフトの情報
     /// </summary>
     private float[] giftTime;
     private bool[] giftType;
 
+    ///<summary>
+    ///プレイヤーの足元座標
+    ///</summary>
+    [SerializeField, Tooltip("足元座標")]
+    private Transform footpos;
     /// <summary>
     /// 良いギフトの所有数
     /// </summary>
@@ -110,6 +125,7 @@ public sealed class Player : BaseMonoBehaviour
         holdingRabbitFlag = false;
         holdingTimeCounter = 0;
         holdingRabbitNumber = -1;
+        SparkParticle.SetActive(false);
     }
     IEnumerator Disappearing()
     {
@@ -128,7 +144,7 @@ public sealed class Player : BaseMonoBehaviour
         if (this.foottime > 0.35f)
         {
             this.foottime = 0;
-            Instantiate(footPrintPrefab, transform.position, transform.rotation);
+            Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
         }
         // ウサギとの動作
         if (!holdingRabbitFlag)
@@ -146,17 +162,43 @@ public sealed class Player : BaseMonoBehaviour
         this.transform.GetChild(6).GetChild(0).gameObject.GetComponent<Text>().text = "良いGiftの数：" + goodGiftNum.ToString();
         this.transform.GetChild(6).GetChild(1).gameObject.GetComponent<Text>().text = "悪いGiftの数：" + badGiftNum.ToString();
     }
-
-    Vector3 Direction;
     private void PlayerMove()
     {
         //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        if(speedflag)
+        {
+            if (Speed < RunSpeed)
+            {
+                Speed += 0.1f;
+            }
+        }
+        else
+        {
+            if(Speed > DefaultSpeed)
+            {
+                Speed -= 0.1f;
+            }
+        }
+
 
         if (PlayerController.isGrounded)
         {
             Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
             transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
-
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 1.5f);
+                SparkParticle.SetActive(true);
+                speedflag = true;//加速時
+            }
+            else if(Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 0.8f);
+                SparkParticle.SetActive(false);
+                speedflag = false;//通常時
+            }
             if (Input.GetAxis("Vertical") != 0f)
             {
                 PlayerAnimator.SetFloat(PlayerActionParameter, velocity.magnitude);
