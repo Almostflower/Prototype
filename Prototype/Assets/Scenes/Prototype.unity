@@ -1076,7 +1076,7 @@ MonoBehaviour:
   rabbitManager: {fileID: 866375921}
   holdingRabbitFlag: 0
   holdingTime: 10
-  score: {fileID: 0}
+  score: {fileID: 1100311527}
 --- !u!136 &218433412
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7619,6 +7619,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a23071a36b5dc514d9d313b7cb971b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1100311527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8481368430394033, guid: c14daf28a867b06478c090aa0d54c73e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1592242434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c974945aafc834c9cd772d6ffdd46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1152788380
