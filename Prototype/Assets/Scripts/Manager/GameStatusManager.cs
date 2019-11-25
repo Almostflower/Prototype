@@ -6,9 +6,19 @@ public class GameStatusManager : SingletonMonoBehaviour<GameStatusManager>
 {
     private bool LiftGift;//プレイヤーがギフトを持っているか確認するフラグ
 
+    public enum GameState
+    {
+        GOOD,
+        NORMAL,
+        BAD,
+        NONE
+    }
+
+    GameState state;
     private void Start()
     {
         LiftGift = false;
+        state = GameState.NORMAL;
     }
     public void SetLiftGift(bool flag)
     {
@@ -18,5 +28,15 @@ public class GameStatusManager : SingletonMonoBehaviour<GameStatusManager>
     public bool GetLiftGift()
     {
         return LiftGift;
+    }
+
+    public GameState GetGameState()
+    {
+        return state;
+    }
+
+    public void SetGameState(GameState setstate)
+    {
+        state = setstate;
     }
 }

@@ -17,6 +17,10 @@ public sealed class StatusManager : SingletonMonoBehaviour<StatusManager>
     
     private int GiftNowNum;
     private bool IsPossession;
+
+    private void Start()
+    {
+    }
     public int GetGiftMax()
     {
         return GiftMaximum;
