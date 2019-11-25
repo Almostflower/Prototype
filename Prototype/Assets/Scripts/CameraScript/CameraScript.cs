@@ -2,60 +2,81 @@
 
 public class CameraScript : MonoBehaviour
 {
-    public Transform Target;
-    public float DistanceToPlayerM = 2f;    // カメラとプレイヤーとの距離[m]
-    public float SlideDistanceM = 0f;       // カメラを横にスライドさせる；プラスの時右へ，マイナスの時左へ[m]
-    public float HeightM = 1.2f;            // 注視点の高さ[m]
-    public float RotationSensitivity = 100f;// 感度
+    //public Transform Target;
+    //public float DistanceToPlayerM = 2f;    // カメラとプレイヤーとの距離[m]
+    //public float SlideDistanceM = 0f;       // カメラを横にスライドさせる；プラスの時右へ，マイナスの時左へ[m]
+    //public float HeightM = 1.2f;            // 注視点の高さ[m]
+    //public float RotationSensitivity = 100f;// 感度
+    
+    public GameObject rotateObject;
+    Vector3 defDis = new Vector3(0, 2, -7.5f);
+    private Vector3 preWorldlPos;
 
+    // Use this for initialization
     void Start()
     {
-        if (Target == null)
-        {
-            Debug.LogError("ターゲットが設定されていない");
-            Application.Quit();
-        }
+        transform.localPosition = defDis;
+        preWorldlPos = this.transform.position;
     }
+
+
+    //void Start()
+    //{
+    //    if (Target == null)
+    //    {
+    //        Debug.LogError("ターゲットが設定されていない");
+    //        Application.Quit();
+    //    }
+    //}
 
     void FixedUpdate()
     {
-        //var rotX = Input.GetAxis("Horizontal") * Time.deltaTime * RotationSensitivity;
-        //var rotY = Input.GetAxis("Vertical") * Time.deltaTime * RotationSensitivity;
+        Vector3 localPos = this.transform.localPosition;
 
-        var lookAt = Target.position + Vector3.up * HeightM;
+        /*カメラを上下に動かしたときの目標カメラ位置補正*/
+        float angleX = rotateObject.transform.localEulerAngles.x;
+        if (rotateObject.transform.localEulerAngles.x > 180)
+        {
+            //上を向いたとき
+            angleX = Mathf.Abs(angleX - 360);
+            localPos.y = defDis.y - defDis.y * ((angleX) / 70);
+            localPos.z = defDis.z - defDis.z * ((angleX) / 70);
+        }
+        else
+        {
+            //下を向いたとき
+            localPos.z = defDis.z - defDis.z * ((angleX) / 70);
+            localPos.y = defDis.y + Mathf.Abs(localPos.z - defDis.z);
+        }
 
-        //// 回転
-        //transform.RotateAround(lookAt, Vector3.up, rotX);
-        //// カメラがプレイヤーの真上や真下にあるときにそれ以上回転させないようにする
-        //if (transform.forward.y > 0.9f && rotY < 0)
-        //{
-        //    rotY = 0;
+        /*ローカルX軸のカメラワークに余裕を持たせる*/
+        float angleY = rotateObject.transform.eulerAngles.y;
+        //ローカルX軸い前回からどれくらい動いたかを求める
+        Vector3 diffVec = Quaternion.Euler(0f, -angleY, 0f) * (this.transform.position - preWorldlPos);
+        localPos.x = localPos.x - diffVec.x;
+        if (localPos.x >= 0.5f)
+        {
+            localPos.x = 0.5f;
+        }
+        else if (localPos.x <= -0.5f)
+        {
+            localPos.x = -0.5f;
+        }
+
+        this.transform.localPosition = localPos;
+
+        preWorldlPos = this.transform.position;
+
+        //var lookAt = Target.position + Vector3.up * HeightM;
         //
-        //    if (SlideDistanceM < 0.0f)
-        //    {
-        //        SlideDistanceM += 0.01f;
-        //    }
-        //}
-        //if (transform.forward.y < -0.9f && rotY > 0)
-        //{
-        //    rotY = 0;
+        //// カメラとプレイヤーとの間の距離を調整
+        //transform.position = lookAt - (transform.forward + direction) * DistanceToPlayerM;
         //
-        //    if (SlideDistanceM > 0.0f)
-        //    {
-        //        SlideDistanceM -= 0.01f;
-        //    }
-        //}
-
-        //transform.RotateAround(lookAt, transform.right, rotY);
-
-        // カメラとプレイヤーとの間の距離を調整
-        transform.position = lookAt - transform.forward * DistanceToPlayerM;
-
-        // 注視点の設定
-        transform.LookAt(lookAt);
-
-        // カメラを横にずらして中央を開ける
-        transform.position = transform.position + transform.right * SlideDistanceM;
+        //// 注視点の設定
+        //transform.LookAt(lookAt);
+        //
+        //// カメラを横にずらして中央を開ける
+        //transform.position = transform.position + transform.right * SlideDistanceM;
     }
 
     //*カメラスクリプト方法２
