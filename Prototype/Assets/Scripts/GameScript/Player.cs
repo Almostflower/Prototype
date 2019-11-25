@@ -30,6 +30,9 @@ public sealed class Player : BaseMonoBehaviour
 
     [SerializeField]
     private int giftMaxNum;
+
+    [SerializeField] private GameObject[] abarerukun;
+
     //加速フラグ
     bool speedflag = false;
     //コントローラーの縦方向の傾きを取得する変数
@@ -87,6 +90,15 @@ public sealed class Player : BaseMonoBehaviour
 	}
 
     /// <summary>
+    /// ウサギを持つ
+    /// </summary>
+    [SerializeField] private bool gripFlag;
+    public bool GripFlag
+    {
+        get { return gripFlag; }
+    }
+
+    /// <summary>
     /// 握力時間
     /// </summary>
     [SerializeField] private float holdingTime;
@@ -125,7 +137,13 @@ public sealed class Player : BaseMonoBehaviour
         holdingRabbitFlag = false;
         holdingTimeCounter = 0;
         holdingRabbitNumber = -1;
+        
         SparkParticle.SetActive(false);
+
+        gripFlag = false;
+
+        abarerukun[0].SetActive(false);
+        abarerukun[1].SetActive(false);
     }
     IEnumerator Disappearing()
     {
@@ -148,13 +166,17 @@ public sealed class Player : BaseMonoBehaviour
         }
 
         // ウサギとの動作
-        if (!holdingRabbitFlag)
+        if (!holdingRabbitFlag && !gripFlag)
         {
             CheckCarryRabbit();
         }
-        else
+        else if (holdingRabbitFlag && !gripFlag)
         {
-            CheckGift();
+            TransferGift();
+        }
+        else if (gripFlag)
+        {
+            CarryRabbit();
         }
 
         PlayerMove();
@@ -231,7 +253,7 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private void CheckCarryRabbit()
     {
-        for(int i = 0; i < rabbitManager.GetComponent<RabbitManager>().RabbitMaxNum; i++)
+        for (int i = 0; i < rabbitManager.GetComponent<RabbitManager>().RabbitMaxNum; i++)
         {
             // ボタン入力
             if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
@@ -242,17 +264,16 @@ public sealed class Player : BaseMonoBehaviour
                 holdingRabbitFlag = true;
                 holdingTimeCounter = holdingTime;
                 holdingRabbitNumber = i;
-                rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.HOLDING;
                 break;
             }
         }
-        
+
     }
 
     /// <summary>
     /// ギフトをウサギに送る
     /// </summary>
-    private void CheckGift()
+    private void TransferGift()
     {
         // 良いギフトがあり良いうさぎなら
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
@@ -269,8 +290,6 @@ public sealed class Player : BaseMonoBehaviour
 
             // ウサギを消す
             goodGiftNum = 0;
-            holdingRabbitFlag = false;
-            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
 
         }
         else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
@@ -289,27 +308,54 @@ public sealed class Player : BaseMonoBehaviour
 
             // ウサギを消す
             badGiftNum = 0;
-            holdingRabbitFlag = false;
-            rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
         }
         else
         {
-            // 握力ゲージの処理
-            if (Input.GetKey(KeyCode.Space))
+            // ウサギを運ぶ状態へ変更
+            gripFlag = true;
+
+            // 暴れる君を生成
+            if (rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
             {
-                holdingTimeCounter -= Time.deltaTime;
-                if (holdingTimeCounter <= 0)
-                {
-                    holdingRabbitFlag = false;
-                    rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
-                }
+                abarerukun[0].SetActive(true);
             }
             else
             {
-                holdingRabbitFlag = false;
-                rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+                abarerukun[1].SetActive(true);
             }
 
+        }
+
+        holdingRabbitFlag = false;
+        rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
+
+    }
+
+    /// <summary>
+    /// ウサギを運んでいる
+    /// </summary>
+    private void CarryRabbit()
+    {
+        // 握力ゲージの処理
+        if (Input.GetKey(KeyCode.Space))
+        {
+            holdingTimeCounter -= Time.deltaTime;
+            if (holdingTimeCounter <= 0)
+            {
+                gripFlag = false;
+
+                // あばれる君を削除
+                abarerukun[0].SetActive(false);
+                abarerukun[1].SetActive(false);
+            }
+        }
+        else
+        {
+            gripFlag = false;
+
+            // あばれる君を削除
+            abarerukun[0].SetActive(false);
+            abarerukun[1].SetActive(false);
         }
     }
 

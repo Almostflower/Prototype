@@ -55,6 +55,11 @@ public class RabbitManager : BaseMonoBehaviour
     private List<Vector3> rabbitArea;
 
     /// <summary>
+    /// プレイヤー
+    /// </summary>
+    [SerializeField] private GameObject player;
+
+    /// <summary>
     /// 
     /// </summary>
     protected override void Awake()
@@ -117,20 +122,13 @@ public class RabbitManager : BaseMonoBehaviour
                 {
                     // ウサギの削除と生成
                     Delete(i);
-                    Birth(i);
-                
                 }
-                
-                // 良い状態で回収
-                //if (giftManager[i].GetComponent<Gift>().GoodFlag)
-                //{
-                //    // ステージゲージを上げる
-                //
-                //    // ギフトの削除と生成
-                //    Delete(i);
-                //    Birth(i);
-                //}
 
+            }
+
+            if(!player.GetComponent<Player>().GripFlag && !isExistence[i])
+            {
+                Birth(i);
             }
         }
     }
