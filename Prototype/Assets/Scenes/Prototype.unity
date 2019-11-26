@@ -240,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 4567906824107261724, guid: 1dbba31a05844d34785918e8563af8ab,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4567906824107260128, guid: 1dbba31a05844d34785918e8563af8ab,
         type: 3}
@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 4567906824107260128, guid: 1dbba31a05844d34785918e8563af8ab,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4567906824107260128, guid: 1dbba31a05844d34785918e8563af8ab,
         type: 3}
@@ -1069,7 +1069,7 @@ MonoBehaviour:
     type: 3}
   PlayerAnimator: {fileID: 218433409}
   PlayerController: {fileID: 218433413}
-  Speed: 5
+  Speed: 20
   DefaultSpeed: 5
   RunSpeed: 8
   GiftArea: {fileID: 1624060560}
@@ -1411,7 +1411,7 @@ PrefabInstance:
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
@@ -1670,7 +1670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &471936348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,7 +1821,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9317618272a8497439f4ba87d995cdf4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9317618272a8497439f4ba87d995cdf4,
         type: 3}
@@ -2198,7 +2198,7 @@ PrefabInstance:
     - target: {fileID: 8948810467087792348, guid: c5e5404873a7d3641b97b957ae0bd9d8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8948810467087792348, guid: c5e5404873a7d3641b97b957ae0bd9d8,
         type: 3}
@@ -2512,13 +2512,13 @@ PrefabInstance:
         type: 3}
       propertyPath: rabbitData.Array.data[0]
       value: 
-      objectReference: {fileID: 374633208643469145, guid: c08e72f8d26f9824aae73ef2a1e2b902,
+      objectReference: {fileID: 5369116381133292494, guid: 5c2ebf048b75c0e47a20721bb59564be,
         type: 3}
     - target: {fileID: 3809314087853764588, guid: a644562090b97b942b5e51135a3675e7,
         type: 3}
       propertyPath: rabbitData.Array.data[1]
       value: 
-      objectReference: {fileID: 7972775877293916148, guid: 0d5458437d71a7e4da830095e65acf6d,
+      objectReference: {fileID: 3631894434051580950, guid: 32d2437b015d2b74093c9cab229c96c0,
         type: 3}
     - target: {fileID: 3809314087853764588, guid: a644562090b97b942b5e51135a3675e7,
         type: 3}
@@ -8354,7 +8354,7 @@ PrefabInstance:
     - target: {fileID: 5474391752121120962, guid: 23eed3f722a582f41afa196ac4c739b2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5474391752121120962, guid: 23eed3f722a582f41afa196ac4c739b2,
         type: 3}

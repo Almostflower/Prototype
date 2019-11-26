@@ -39,7 +39,7 @@ public class FightGauge : BaseMonoBehaviour
 	public override void UpdateNormal()
 	{
 		// うさぎを持ったら
-		if (player_.HoldingRabbitFlag)
+		if (player_.GripFlag)
 		{
 			background_.enabled = true;
 			count_ = 0;

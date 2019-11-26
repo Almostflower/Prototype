@@ -134,7 +134,7 @@ public class RabbitScript : BaseMonoBehaviour
     void Usual()
     {
         currentState = RabbitState.ORDINARY;
-        coloring.material.color = Color.blue;
+        //coloring.material.color = Color.blue;
         agent.angularSpeed = 120;
 
         _disposable = Observable.Timer(System.TimeSpan.FromSeconds(1), System.TimeSpan.FromSeconds(3))
@@ -157,7 +157,7 @@ public class RabbitScript : BaseMonoBehaviour
     public void RunAway()
     {
         currentState = RabbitState.TENSION;
-        coloring.material.color = Color.red;
+        //coloring.material.color = Color.red;
         escapeTime = 0;
         agent.angularSpeed = 200;
 
