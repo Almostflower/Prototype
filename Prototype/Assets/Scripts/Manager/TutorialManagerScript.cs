@@ -6,10 +6,12 @@ public class TutorialManagerScript : SingletonMonoBehaviour<TutorialManagerScrip
 {
     private int Phase;
     private bool PhaseChange;
+    private bool TimeChecker;
     private void Start()
     {
         Phase = 0;
         PhaseChange = false;
+        TimeChecker = false;
     }
 
     public int GetPhaseNumber()
@@ -30,5 +32,15 @@ public class TutorialManagerScript : SingletonMonoBehaviour<TutorialManagerScrip
     public void SetPhaseCheck(bool phasechack)
     {
         PhaseChange = phasechack;
+    }
+
+    public bool GetTimeCheckFlag()
+    {
+        return TimeChecker;
+    }
+
+    public void SetTimeCheckFlag(bool TimeFlag)
+    {
+        TimeChecker = TimeFlag;
     }
 }

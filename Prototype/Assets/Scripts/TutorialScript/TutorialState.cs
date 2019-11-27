@@ -24,7 +24,7 @@ public class TutorialState : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P)) //テスト入力
         {
-            TutorialManagerScript.Instance.SetPhaseCheck(true);
+            TutorialManagerScript.Instance.SetTimeCheckFlag(true);
         }
         if (nowPhase == TutorialManagerScript.Instance.GetPhaseNumber() && TutorialManagerScript.Instance.GetPhaseCheck() == true)
         {
