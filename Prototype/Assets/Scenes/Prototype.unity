@@ -945,6 +945,7 @@ GameObject:
   - component: {fileID: 198890180}
   - component: {fileID: 198890179}
   - component: {fileID: 198890178}
+  - component: {fileID: 198890181}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1025,6 +1026,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198890176}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &198890181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198890176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!1 &218433408 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 6f9af6df7ad6f094898523b649ac8251,
@@ -1442,6 +1462,7 @@ GameObject:
   - component: {fileID: 308348383}
   - component: {fileID: 308348382}
   - component: {fileID: 308348381}
+  - component: {fileID: 308348384}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1522,6 +1543,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308348379}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &308348384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308348379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.8117647, g: 0.40784314, b: 0.95686275, a: 0}
+  normalcolor: {r: 2, g: 2, b: 2, a: 0}
+  goodcolor: {r: 1.7019608, g: 1.6392157, b: 0.44705883, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!1 &334103244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5286186446841257929, guid: 9317618272a8497439f4ba87d995cdf4,
@@ -2071,6 +2111,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 814132064}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &783376983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783376982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4678874, g: 0.5172556, b: 0.1048491, a: 0}
+  normalcolor: {r: 0, g: 2, b: 0.1882353, a: 0}
+  goodcolor: {r: 0, g: 1.4901961, b: 2, a: 0}
+  OriginalMatCheckFlag: 1
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!114 &783376988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7666,6 +7725,7 @@ GameObject:
   - component: {fileID: 1152788384}
   - component: {fileID: 1152788383}
   - component: {fileID: 1152788382}
+  - component: {fileID: 1152788385}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -7746,6 +7806,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152788380}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1152788385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152788380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!1001 &1179197124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8607,6 +8686,7 @@ GameObject:
   - component: {fileID: 1595078467}
   - component: {fileID: 1595078466}
   - component: {fileID: 1595078465}
+  - component: {fileID: 1595078468}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -8687,6 +8767,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595078463}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1595078468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595078463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!1 &1608656828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2010625769479149007, guid: 9317618272a8497439f4ba87d995cdf4,
@@ -9409,6 +9508,7 @@ GameObject:
   - component: {fileID: 1722409455}
   - component: {fileID: 1722409454}
   - component: {fileID: 1722409453}
+  - component: {fileID: 1722409456}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -9489,6 +9589,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722409451}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1722409456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722409451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!1 &1754483584 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5474391752121120960, guid: 23eed3f722a582f41afa196ac4c739b2,
@@ -10136,6 +10255,7 @@ GameObject:
   - component: {fileID: 1970402217}
   - component: {fileID: 1970402216}
   - component: {fileID: 1970402215}
+  - component: {fileID: 1970402218}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -10216,6 +10336,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970402213}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1970402218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970402213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!4 &1982675649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2905649864847108708, guid: 2f68eaa01d7239e4fbeb358ca752dedb,
@@ -10234,6 +10373,7 @@ GameObject:
   - component: {fileID: 1986098710}
   - component: {fileID: 1986098709}
   - component: {fileID: 1986098708}
+  - component: {fileID: 1986098711}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -10314,6 +10454,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986098706}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1986098711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986098706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!1001 &1988762725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10486,6 +10645,7 @@ GameObject:
   - component: {fileID: 2091623164}
   - component: {fileID: 2091623163}
   - component: {fileID: 2091623162}
+  - component: {fileID: 2091623165}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -10566,6 +10726,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091623160}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2091623165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091623160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  badcolor: {r: 1.4980392, g: 0.3372549, b: 0.7921569, a: 0}
+  normalcolor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+  goodcolor: {r: 1.4980392, g: 1.4431373, b: 0.42352942, a: 0}
+  OriginalMatCheckFlag: 0
+  badparticle: {fileID: 0}
+  normalparticle: {fileID: 0}
+  goodparticle: {fileID: 0}
 --- !u!4 &2111699475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2905649864847108708, guid: 2f68eaa01d7239e4fbeb358ca752dedb,
