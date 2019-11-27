@@ -7,21 +7,26 @@ public class TutorialState : MonoBehaviour
 {
     [SerializeField]
     private int nowPhase;
-
-    float alfa;
+    [SerializeField]
+    private Image TutorialImage;
+    float walfa = 0.0f;
     float speed = 0.01f;
     float red, green, blue;
 
     void Start()
     {
-        red = GetComponent<Image>().color.r;
-        green = GetComponent<Image>().color.g;
-        blue = GetComponent<Image>().color.b;
+        red = TutorialImage.color.r;
+        green = TutorialImage.color.g;
+        blue = TutorialImage.color.b;
     }
 
     void Update()
     {
-        if(nowPhase == TutorialManagerScript.Instance.GetPhase())
+        if(Input.GetKeyDown(KeyCode.P)) //テスト入力
+        {
+            TutorialManagerScript.Instance.SetPhaseCheck(true);
+        }
+        if (nowPhase == TutorialManagerScript.Instance.GetPhaseNumber() && TutorialManagerScript.Instance.GetPhaseCheck() == true)
         {
             FadeIn();
         }
@@ -33,16 +38,19 @@ public class TutorialState : MonoBehaviour
 
     void FadeIn()
     {
-        GetComponent<Image>().color = new Color(red, green, blue, alfa);
-        alfa += speed;
+        TutorialImage.color = new Color(red, green, blue, walfa);
+        if(walfa <= 1f)
+        {
+            walfa += speed;
+        }
     }
 
     void FadeOut()
     {
-        GetComponent<Image>().color = new Color(red, green, blue, alfa);
-        if(alfa >= 0.0f)
+        TutorialImage.color = new Color(red, green, blue, walfa);
+        if(walfa >= 0f)
         {
-            alfa -= speed;
+            walfa -= speed;
         }
     }
 }
