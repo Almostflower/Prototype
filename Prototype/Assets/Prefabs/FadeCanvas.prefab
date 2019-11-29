@@ -110,6 +110,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6049903395135354647, guid: 374bf32acf3fd5c4e8644d2812d4d544,
         type: 3}
       propertyPath: fade
@@ -239,16 +249,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1280
-      objectReference: {fileID: 0}
-    - target: {fileID: 6049903395135354644, guid: 374bf32acf3fd5c4e8644d2812d4d544,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6049903397074394491, guid: 374bf32acf3fd5c4e8644d2812d4d544,
         type: 3}
