@@ -10,6 +10,8 @@ public class CSVReader : BaseMonoBehaviour
     /// </summary>
     private TextAsset csvFile;
 
+    [SerializeField]
+    private string filename;
     /// <summary>
     /// CSVの中身を入れるリスト
     /// </summary>
@@ -51,7 +53,7 @@ public class CSVReader : BaseMonoBehaviour
     /// </summary>
     private void Start()
     {
-        csvFile = Resources.Load("test") as TextAsset; // Resouces下のCSV読み込み
+        csvFile = Resources.Load(filename) as TextAsset; // Resouces下のCSV読み込み
         StringReader reader = new StringReader(csvFile.text);
 
         int width = 0;

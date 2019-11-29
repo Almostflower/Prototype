@@ -2301,6 +2301,9 @@ MonoBehaviour:
   image_:
   - {fileID: 1864485349}
   - {fileID: 1864485348}
+  staminamax: 0
+  staminarecoveryspeed: 0
+  staminaspeed: 0
 --- !u!114 &643294103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4878,6 +4881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stageWidth
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5474391752121120961, guid: 23eed3f722a582f41afa196ac4c739b2,
+        type: 3}
+      propertyPath: filename
+      value: chutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23eed3f722a582f41afa196ac4c739b2, type: 3}
@@ -10707,6 +10715,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114072041, guid: c14daf28a867b06478c090aa0d54c73e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1417584422, guid: c14daf28a867b06478c090aa0d54c73e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14daf28a867b06478c090aa0d54c73e, type: 3}
