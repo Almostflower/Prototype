@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class Timer : BaseMonoBehaviour
 {
 	/// <summary>
+	/// 無限の時間
+	/// </summary>
+	[SerializeField]
+	private bool time_infinity_ = false;
+
+	/// <summary>
 	/// 制限時間のフラグ
 	/// </summary>
 	private bool limit_time_ = false;
@@ -38,6 +44,11 @@ public class Timer : BaseMonoBehaviour
 
 	public override void UpdateNormal()
 	{
+		if(time_infinity_)
+		{
+			seconds_ = 100;
+		}
+
 		// 制限時間が0秒以下なら何もしない
 		if (limit_time_)
 		{
