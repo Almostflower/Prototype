@@ -26,6 +26,11 @@ public class TutorialState : MonoBehaviour
         {
             TutorialManagerScript.Instance.SetTimeCheckFlag(true);
         }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    TutorialManagerScript.Instance.SetTimeCheckFlag(false); //Update内の時間を止める
+        //    TutorialManagerScript.Instance.SetPhaseCheck(false);
+        //}
         if (nowPhase == TutorialManagerScript.Instance.GetPhaseNumber() && TutorialManagerScript.Instance.GetPhaseCheck() == true)
         {
             FadeIn();

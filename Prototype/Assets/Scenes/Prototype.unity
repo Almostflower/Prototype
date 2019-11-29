@@ -8029,6 +8029,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5474391752121120961, guid: 23eed3f722a582f41afa196ac4c739b2,
+        type: 3}
+      propertyPath: filename
+      value: test
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23eed3f722a582f41afa196ac4c739b2, type: 3}
 --- !u!1 &1532741678 stripped
@@ -10967,26 +10972,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2788619006591308613}
     m_Modifications:
-    - target: {fileID: 7904326674136381655, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
-        type: 3}
-      propertyPath: m_Name
-      value: GiftCount
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904326674630764000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904326674630764000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904326674630764000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 350
-      objectReference: {fileID: 0}
     - target: {fileID: 7904326674325007967, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -11107,6 +11092,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7904326674630764000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904326674630764000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904326674630764000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904326674136381655, guid: 2ba8f2cfd99f1304cbbc78332545f4bc,
+        type: 3}
+      propertyPath: m_Name
+      value: GiftCount
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba8f2cfd99f1304cbbc78332545f4bc, type: 3}
 --- !u!1001 &6577352549362121175
@@ -11185,11 +11190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2788619006591308613}
     m_Modifications:
-    - target: {fileID: 8436915602864760264, guid: 000e704a17d6fbe4c9183bf91bfc4f73,
-        type: 3}
-      propertyPath: m_Name
-      value: WorldClock
-      objectReference: {fileID: 0}
     - target: {fileID: 8436915602864760271, guid: 000e704a17d6fbe4c9183bf91bfc4f73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11294,6 +11294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436915602864760264, guid: 000e704a17d6fbe4c9183bf91bfc4f73,
+        type: 3}
+      propertyPath: m_Name
+      value: WorldClock
       objectReference: {fileID: 0}
     - target: {fileID: 6708075931933933090, guid: 000e704a17d6fbe4c9183bf91bfc4f73,
         type: 3}
@@ -11430,11 +11435,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2788619006591308613}
     m_Modifications:
-    - target: {fileID: 8732285144744589714, guid: ca3a17f2a6c7c974f91b93099ff58e0d,
-        type: 3}
-      propertyPath: m_Name
-      value: Score
-      objectReference: {fileID: 0}
     - target: {fileID: 8732285144744589712, guid: ca3a17f2a6c7c974f91b93099ff58e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11489,6 +11489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8732285144744589714, guid: ca3a17f2a6c7c974f91b93099ff58e0d,
+        type: 3}
+      propertyPath: m_Name
+      value: Score
       objectReference: {fileID: 0}
     - target: {fileID: 6882138939320807795, guid: ca3a17f2a6c7c974f91b93099ff58e0d,
         type: 3}

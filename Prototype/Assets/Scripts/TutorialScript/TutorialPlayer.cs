@@ -40,6 +40,8 @@ public class TutorialPlayer : BaseMonoBehaviour
     [SerializeField, Tooltip("足元座標")]
     private Transform footpos;
 
+    [SerializeField]
+    Score ChutorialScore;
     /// <summary>
     /// ウサギを持ち続ける
     /// </summary>
@@ -89,6 +91,7 @@ public class TutorialPlayer : BaseMonoBehaviour
         SparkParticle.SetActive(false);
 
         gripFlag = false;
+
 
         abarerukun[0].SetActive(false);
         abarerukun[1].SetActive(false);
@@ -261,11 +264,32 @@ public class TutorialPlayer : BaseMonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Rabbit")
+        if(other.gameObject.tag == "ChutorialGoodGift")
         {
-            other.gameObject.GetComponent<RabbitScript>().HitPlayer = false;
+            TutorialManagerScript.Instance.SetPhaseNumber(1);
+            //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftgood);
+            Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.tag == "ChutorialBadGift")
+        {
+            TutorialManagerScript.Instance.SetPhaseNumber(3);
+            //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftbad);
+            Destroy(other.gameObject);
+        }
+
+        if(other.gameObject.tag == "ChutorialGoodRabbit")
+        {
+            TutorialManagerScript.Instance.SetPhaseNumber(2);
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "ChutorialBadRabbit")
+        {
+            TutorialManagerScript.Instance.SetPhaseNumber(4);
+            Destroy(other.gameObject);
         }
     }
 }
