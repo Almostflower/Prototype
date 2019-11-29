@@ -37,6 +37,10 @@ public abstract class SpriteNo<T> : MonoBehaviour where T : Component
 	[SerializeField]
 	private float _textSpan = 1f;
 
+	//文字の横の調整
+	[SerializeField]
+	private float _posX = 0;
+
 	//文字の高さ調整
 	[SerializeField]
 	private float _posY = 0;
@@ -147,15 +151,15 @@ public abstract class SpriteNo<T> : MonoBehaviour where T : Component
 
 			if (_layoutType == LayoutType.Center)
 			{
-				position.x = ((float)i - (textNum - 1) / 2f) * _textSpan;
+				position.x = ((float)i - (textNum - 1) / 2f) * _textSpan + _posX;
 			}
 			else if (_layoutType == LayoutType.Left)
 			{
-				position.x = i * _textSpan;
+				position.x = i * _textSpan + _posX;
 			}
 			else if (_layoutType == LayoutType.Right)
 			{
-				position.x = -(textNum - 1 - i) * _textSpan;
+				position.x = -(textNum - 1 - i) * _textSpan + _posX;
 			}
 
 			position.y = _posY;

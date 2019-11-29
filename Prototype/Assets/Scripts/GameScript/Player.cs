@@ -330,11 +330,13 @@ public sealed class Player : BaseMonoBehaviour
             {
                 if (giftType[i])
                 {
-                    score.SetScore((int)giftTime[i]);
+                    score.SetScore((int)giftTime[i], (int)Score.GIFTSTATUS.giftgood);
                     giftTime[i] = 0;
                 }
             }
 
+			// スコアに良いウサギの情報を渡す
+			score.SetRabbitGood();
             // ウサギを消す
             goodGiftNum = 0;
 
@@ -348,13 +350,15 @@ public sealed class Player : BaseMonoBehaviour
             {
                 if (!giftType[i])
                 {
-                    score.SetScore((int)giftTime[i]);
+                    score.SetScore((int)giftTime[i], (int)Score.GIFTSTATUS.giftbad);
                     giftTime[i] = 0;
                 }
             }
 
-            // ウサギを消す
-            badGiftNum = 0;
+			// スコアに悪いウサギの情報を渡す
+			score.SetRabbitBad();
+			// ウサギを消す
+			badGiftNum = 0;
         }
         else
         {
