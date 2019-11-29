@@ -41,9 +41,15 @@ public class GiftManager : BaseMonoBehaviour
     /// </summary>
     private List<Vector3> giftArea;
 
+	/// <summary>
+	/// 最大値のスコア
+	/// </summary>
 	[SerializeField]
 	private int badminscore_ = 0;
 
+	/// <summary>
+	/// 最低値のスコア
+	/// </summary>
 	[SerializeField]
 	private int badmaxscore_ = 0;
 

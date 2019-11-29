@@ -31,10 +31,11 @@ public class Score : BaseMonoBehaviour
 	/// <summary>
 	/// スコア合計
 	/// </summary>
-	private int total_score_ = 0;
-	public int TotalScore
+	[System.NonSerialized]
+	public static int total_score_ = 0;
+	public static int TotalScore()
 	{
-		get { return total_score_; }
+		return total_score_;
 	}
 
 	/// <summary>
@@ -48,6 +49,54 @@ public class Score : BaseMonoBehaviour
 	}
 
 	/// <summary>
+	/// 良いギフトの管理
+	/// </summary>
+	[System.NonSerialized]
+	public static int gift_good_ = 0;
+	public static int GetGiftGood()
+	{
+		return gift_good_;
+	}
+
+	/// <summary>
+	/// 悪いギフトの管理
+	/// </summary>
+	[System.NonSerialized]
+	public static int gift_bad_ = 0;
+	public static int GetGiftBad()
+	{
+		return gift_bad_;
+	}
+
+	/// <summary>
+	/// 良いウサギの寝床
+	/// </summary>
+	[System.NonSerialized]
+	public static int rabbit_good_ = 0;
+	public static int GetRabbitGood()
+	{
+		 return rabbit_good_; 
+	}
+
+	/// <summary>
+	/// 悪いウサギの寝床
+	/// </summary>
+	[System.NonSerialized]
+	public static int rabbit_bad_ = 0;
+	public static int GetRabbitBad()
+	{
+		return rabbit_bad_;
+	}
+
+	public enum GIFTSTATUS
+	{
+		nongift,
+		giftgood,
+		giftbad,
+		max
+	};
+
+	/// <summary>
 	/// BaseMonoBehaviourの初期化
 	/// </summary>
 	protected override void Awake()
@@ -59,7 +108,11 @@ public class Score : BaseMonoBehaviour
     {
 		once_ = false;
 		total_score_ = maxscore_ / 2;
-    }
+		gift_good_ = 0;
+		gift_bad_ = 0;
+		rabbit_good_ = 0;
+		rabbit_bad_ = 0;
+	}
 
 	public override void UpdateNormal()
 	{
@@ -115,8 +168,36 @@ public class Score : BaseMonoBehaviour
 	/// スコアの値をもらう
 	/// </summary>
 	/// <param name="score"></param>
-	public void SetScore(int score)
+	public void SetScore(int score, int giftstatus = (int)GIFTSTATUS.nongift)
 	{
 		total_score_ += score;
+
+		switch (giftstatus)
+		{
+			case (int)GIFTSTATUS.giftgood:
+				gift_good_++;
+				break;
+			case (int)GIFTSTATUS.giftbad:
+				gift_bad_++;
+				break;
+			default:
+				break;
+		}
+	}
+
+	/// <summary>
+	/// 良いウサギのセット関数
+	/// </summary>
+	public void SetRabbitGood()
+	{
+		rabbit_good_++;
+	}
+
+	/// <summary>
+	/// 悪いウサギのセット関数
+	/// </summary>
+	public void SetRabbitBad()
+	{
+		rabbit_bad_++;
 	}
 }

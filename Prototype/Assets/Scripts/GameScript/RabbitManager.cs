@@ -142,6 +142,7 @@ public class RabbitManager : BaseMonoBehaviour
         int index = UnityEngine.Random.Range(0, rabbitArea.Count);
         Vector3 target = rabbitArea[index];
         rabbitArea.RemoveAt(index);
+        target.y = 0.5f;
 
         return target;
     }

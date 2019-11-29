@@ -122,7 +122,20 @@ public sealed class Player : BaseMonoBehaviour
     [SerializeField]
 	private Score score;
 
-    private void awake()
+	/// <summary>
+	/// UIのギフト表示
+	/// </summary>
+	[SerializeField]
+	private List<ImageNo> image_ = new List<ImageNo>();
+
+	enum UIGfit
+	{
+		GiftGood,
+		GiftBad,
+		Max
+	}
+
+	private void awake()
     {
         base.Awake();
     }
@@ -181,9 +194,9 @@ public sealed class Player : BaseMonoBehaviour
 
         PlayerMove();
 
-        // ギフト所持数の更新
-        this.transform.GetChild(6).GetChild(0).gameObject.GetComponent<Text>().text = "良いGiftの数：" + goodGiftNum.ToString();
-        this.transform.GetChild(6).GetChild(1).gameObject.GetComponent<Text>().text = "悪いGiftの数：" + badGiftNum.ToString();
+		// ギフト所持数の更新
+		image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
+		image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
     }
 
     /// <summary>
@@ -330,11 +343,13 @@ public sealed class Player : BaseMonoBehaviour
             {
                 if (giftType[i])
                 {
-                    score.SetScore((int)giftTime[i]);
+                    score.SetScore((int)giftTime[i], (int)Score.GIFTSTATUS.giftgood);
                     giftTime[i] = 0;
                 }
             }
 
+			// スコアに良いウサギの情報を渡す
+			score.SetRabbitGood();
             // ウサギを消す
             goodGiftNum = 0;
 
@@ -348,13 +363,15 @@ public sealed class Player : BaseMonoBehaviour
             {
                 if (!giftType[i])
                 {
-                    score.SetScore((int)giftTime[i]);
+                    score.SetScore((int)giftTime[i], (int)Score.GIFTSTATUS.giftbad);
                     giftTime[i] = 0;
                 }
             }
 
-            // ウサギを消す
-            badGiftNum = 0;
+			// スコアに悪いウサギの情報を渡す
+			score.SetRabbitBad();
+			// ウサギを消す
+			badGiftNum = 0;
         }
         else
         {

@@ -71,7 +71,7 @@ public class SoundManager : MonoBehaviour
 	/// <summary>
 	/// デバッグモード
 	/// </summary>
-	public bool DebugMode = true;
+	public bool DebugMode = false;
 	/// <summary>
 	/// BGM再生音量
 	/// 次回フェードインから適用されます。

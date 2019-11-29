@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class Loading : MonoBehaviour
 {
@@ -15,7 +17,32 @@ public class Loading : MonoBehaviour
     [SerializeField]
     private Slider slider;
 
-    public void NextScene()
+	/// <summary>
+	/// ローディングバーのイメージ
+	/// </summary>
+	[SerializeField]
+	private List<Image> lodingbar_ = new List<Image>();
+
+	/// <summary>
+	/// 入れ替えの長さ
+	/// </summary>
+	[SerializeField]
+	private float timing_time_ = 0;
+
+	/// <summary>
+	/// カウント
+	/// </summary>
+	private float count = 0;
+
+	void Start()
+	{
+		foreach (var i in lodingbar_.Select((value, index) => new { value, index }))
+		{
+			lodingbar_[i.index].enabled = false;
+		}
+	}
+
+	public void NextScene()
     {
         //　ロード画面UIをアクティブにする
         loadUI.SetActive(true);
@@ -32,7 +59,33 @@ public class Loading : MonoBehaviour
         //　読み込みが終わるまで進捗状況をスライダーの値に反映させる
         while (!async.isDone)
         {
-            var progressVal = Mathf.Clamp01(async.progress / 0.9f);
+			count += Time.deltaTime;
+
+			if (count > timing_time_)
+			{
+				count = 0;
+
+				if (lodingbar_[lodingbar_.Count() - 1].enabled)
+				{
+					foreach (var i in lodingbar_.Select((value, index) => new { value, index }))
+					{
+						lodingbar_[i.index].enabled = false;
+					}
+				}
+				else
+				{
+					foreach (var i in lodingbar_.Select((value, index) => new { value, index }))
+					{
+						if (!lodingbar_[i.index].enabled)
+						{
+							lodingbar_[i.index].enabled = true;
+							break;
+						}
+					}
+				}
+			}
+
+			var progressVal = Mathf.Clamp01(async.progress / 0.9f);
             slider.value = progressVal;
             yield return null;
         }
