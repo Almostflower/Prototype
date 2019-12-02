@@ -22,7 +22,7 @@ public class Circle : BaseMonoBehaviour
     void Start()
     {
         hitPlayerFrag = false;
-        this.GetComponent<SpriteRenderer>().color = Color.white;
+        this.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class Circle : BaseMonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             hitPlayerFrag = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+            this.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
 }
