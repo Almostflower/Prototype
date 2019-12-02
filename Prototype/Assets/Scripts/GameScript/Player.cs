@@ -38,13 +38,14 @@ public sealed class Player : BaseMonoBehaviour
     //コントローラーの縦方向の傾きを取得する変数
     [SerializeField]
     private GameObject SparkParticle;
+    [SerializeField]
     Vector3 Direction;
     /// <summary>
     /// 所有ギフトの情報
     /// </summary>
     private float[] giftTime;
     private bool[] giftType;
-
+    
     ///<summary>
     ///プレイヤーの足元座標
     ///</summary>
@@ -215,6 +216,9 @@ public sealed class Player : BaseMonoBehaviour
             transform.rotation = Quaternion.LookRotation(newForward, transform.up);
         }
     }
+
+    Vector3 warppos = new Vector3(0.0f, 0.0f, 0.0f);
+
     private void PlayerMove()
     {
         //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
@@ -233,14 +237,13 @@ public sealed class Player : BaseMonoBehaviour
             }
         }
 
-
         if (PlayerController.isGrounded)
         {
             transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
 
             if (Input.GetAxis("Vertical") >= 0.0f)
             {
-                Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
+                Direction = ((/*warppos +*/ transform.forward) * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
 
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
@@ -289,12 +292,16 @@ public sealed class Player : BaseMonoBehaviour
             Direction.y += Physics.gravity.y * Time.deltaTime;
         }
 
-
         velocity.y += Physics.gravity.y * Time.deltaTime;
 
         PlayerController.Move(Direction);
     }
 
+    private void LateUpdate()
+    {
+        //Direction = new Vector3(0.0f, 0.0f, 0.0f);
+        //warppos = new Vector3(0.0f, 0.0f, 0.0f);
+    }
     /// <summary>
     /// ウサギを持ち上げられるか確認
     /// </summary>
@@ -476,5 +483,10 @@ public sealed class Player : BaseMonoBehaviour
         {
             other.gameObject.GetComponent<RabbitScript>().HitPlayer = false;
         }
+    }
+
+    public void SetDirection(Vector3 pos)
+    {
+        PlayerController.Move(pos);
     }
 }
