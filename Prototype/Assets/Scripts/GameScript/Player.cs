@@ -84,10 +84,10 @@ public sealed class Player : BaseMonoBehaviour
     /// ウサギを持ち続ける
     /// </summary>
     [SerializeField] private bool holdingRabbitFlag;
-	public bool HoldingRabbitFlag
-	{
-		get { return holdingRabbitFlag; }
-	}
+    public bool HoldingRabbitFlag
+    {
+        get { return holdingRabbitFlag; }
+    }
 
     /// <summary>
     /// ウサギを持つ
@@ -102,76 +102,76 @@ public sealed class Player : BaseMonoBehaviour
     /// 握力時間
     /// </summary>
     [SerializeField] private float holdingTime;
-	public float HoldingTime
-	{
-		get { return holdingTime; }
-	}
+    public float HoldingTime
+    {
+        get { return holdingTime; }
+    }
 
     /// <summary>
     /// 握力経過時間
     /// </summary>
     private float holdingTimeCounter;
-	public float HoldingTimeCounter
-	{
-		get { return holdingTimeCounter; }
-	}
+    public float HoldingTimeCounter
+    {
+        get { return holdingTimeCounter; }
+    }
 
     /// <summary>
     /// スコアのスクリプト
     /// </summary>
     [SerializeField]
-	private Score score;
+    private Score score;
 
-	/// <summary>
-	/// UIのギフト表示
-	/// </summary>
-	[SerializeField]
-	private List<ImageNo> image_ = new List<ImageNo>();
+    /// <summary>
+    /// UIのギフト表示
+    /// </summary>
+    [SerializeField]
+    private List<ImageNo> image_ = new List<ImageNo>();
 
-	/// <summary>
-	///	スタミナの最大値
-	/// </summary>
-	[SerializeField]
-	private float staminamax = 0;
-	public float StaminaMax
-	{
-		get { return staminamax; }
-	}
+    /// <summary>
+    ///	スタミナの最大値
+    /// </summary>
+    [SerializeField]
+    private float staminamax = 0;
+    public float StaminaMax
+    {
+        get { return staminamax; }
+    }
 
-	/// <summary>
-	/// スタミナ現在量
-	/// </summary>
-	private float stamina = 0;
-	public float Stamina
-	{
-		get { return stamina; }
-	}
+    /// <summary>
+    /// スタミナ現在量
+    /// </summary>
+    private float stamina = 0;
+    public float Stamina
+    {
+        get { return stamina; }
+    }
 
-	/// <summary>
-	/// スタミナを回復する速度
-	/// </summary>
-	[SerializeField]
-	private float staminarecoveryspeed = 0;
+    /// <summary>
+    /// スタミナを回復する速度
+    /// </summary>
+    [SerializeField]
+    private float staminarecoveryspeed = 0;
 
-	/// <summary>
-	/// スタミナ減少する速度
-	/// </summary>
-	[SerializeField]
-	private float staminaspeed = 0;
+    /// <summary>
+    /// スタミナ減少する速度
+    /// </summary>
+    [SerializeField]
+    private float staminaspeed = 0;
 
-	/// <summary>
-	/// 走っているかのフラグ
-	/// </summary>
-	private bool dashflag = false;
+    /// <summary>
+    /// 走っているかのフラグ
+    /// </summary>
+    private bool dashflag = false;
 
-	enum UIGfit
-	{
-		GiftGood,
-		GiftBad,
-		Max
-	}
+    enum UIGfit
+    {
+        GiftGood,
+        GiftBad,
+        Max
+    }
 
-	private void awake()
+    private void awake()
     {
         base.Awake();
     }
@@ -186,11 +186,11 @@ public sealed class Player : BaseMonoBehaviour
         holdingRabbitFlag = false;
         holdingTimeCounter = 0;
         holdingRabbitNumber = -1;
-		stamina = 0;
-		dashflag = false;
+        stamina = 0;
+        dashflag = false;
 
 
-		SparkParticle.SetActive(false);
+        SparkParticle.SetActive(false);
 
         gripFlag = false;
 
@@ -210,7 +210,7 @@ public sealed class Player : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
-		this.foottime += Time.deltaTime;
+        this.foottime += Time.deltaTime;
         if (this.foottime > 0.35f)
         {
             this.foottime = 0;
@@ -233,9 +233,9 @@ public sealed class Player : BaseMonoBehaviour
 
         PlayerMove();
 
-		// ギフト所持数の更新
-		image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
-		image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
+        // ギフト所持数の更新
+        image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
+        image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
     }
 
     /// <summary>
@@ -270,36 +270,36 @@ public sealed class Player : BaseMonoBehaviour
     private void PlayerMove()
     {
         //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        if(speedflag)
+        if (speedflag)
         {
-			//スタミナ減少
-			stamina -= staminaspeed;
+            //スタミナ減少
+            stamina -= staminaspeed;
 
-			//スタミナが0以下じゃないなら
-			if (stamina > 0)
-			{
-				//走るアニメーション速度変更
-				PlayerAnimator.SetFloat("Speed", 1.5f);
-				SparkParticle.SetActive(true);
-			}
-			else
-			{
-				//走るアニメーション速度変更
-				PlayerAnimator.SetFloat("Speed", 0.8f);
-				SparkParticle.SetActive(false);
-				speedflag = false;//通常時
-				dashflag = false;//通常時
-				stamina = 0;
-			}
+            //スタミナが0以下じゃないなら
+            if (stamina > 0)
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 1.5f);
+                SparkParticle.SetActive(true);
+            }
+            else
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 0.8f);
+                SparkParticle.SetActive(false);
+                speedflag = false;//通常時
+                dashflag = false;//通常時
+                stamina = 0;
+            }
 
-			if (Speed < RunSpeed)
+            if (Speed < RunSpeed)
             {
                 Speed += 0.1f;
             }
         }
         else
         {
-            if(Speed > DefaultSpeed)
+            if (Speed > DefaultSpeed)
             {
                 Speed -= 0.1f;
             }
@@ -310,33 +310,33 @@ public sealed class Player : BaseMonoBehaviour
         {
             transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
 
-			if (Input.GetKey(KeyCode.LeftShift))
-			{
-				//走るアニメーション速度変更
-				PlayerAnimator.SetFloat("Speed", 0.8f);
-				SparkParticle.SetActive(false);
-				speedflag = false;//通常時
-				dashflag = false;//通常時
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 0.8f);
+                SparkParticle.SetActive(false);
+                speedflag = false;//通常時
+                dashflag = false;//通常時
 
-				//スタミナを回復
-				stamina += staminaspeed;
+                //スタミナを回復
+                stamina += staminaspeed;
 
-				//スタミナが最大なら
-				if (stamina >= staminamax)
-				{
-					stamina = staminamax;
-				}
-			}
+                //スタミナが最大なら
+                if (stamina >= staminamax)
+                {
+                    stamina = staminamax;
+                }
+            }
 
-			if (Input.GetAxis("Vertical") >= 0.0f)
+            if (Input.GetAxis("Vertical") >= 0.0f)
             {
                 Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
-              
+
                 if (Input.GetKeyUp(KeyCode.LeftShift))
                 {
-					speedflag = true;//加速時
-					dashflag = true;//加速時
-				}
+                    speedflag = true;//加速時
+                    dashflag = true;//加速時
+                }
 
                 if (Input.GetAxis("Vertical") != 0f)
                 {
@@ -350,17 +350,17 @@ public sealed class Player : BaseMonoBehaviour
             }
             else
             {
-				if (!dashflag)
-				{
-					//走るアニメーション速度変更
-					PlayerAnimator.SetFloat("Speed", 0.8f);
-					SparkParticle.SetActive(false);
-					//speedflag = false;//通常時
+                if (!dashflag)
+                {
+                    //走るアニメーション速度変更
+                    PlayerAnimator.SetFloat("Speed", 0.8f);
+                    SparkParticle.SetActive(false);
+                    //speedflag = false;//通常時
 
-					Direction = (transform.forward * Input.GetAxis("Vertical")) * (Speed * 0.6f) * Time.fixedDeltaTime;
-					PlayerAnimator.SetFloat("Move", 0.3f);
-					PlayerAnimator.SetFloat(PlayerActionParameter, 0.6f);
-				}
+                    Direction = (transform.forward * Input.GetAxis("Vertical")) * (Speed * 0.6f) * Time.fixedDeltaTime;
+                    PlayerAnimator.SetFloat("Move", 0.3f);
+                    PlayerAnimator.SetFloat(PlayerActionParameter, 0.6f);
+                }
             }
 
             if (Input.GetAxis("Vertical") == 0f && Input.GetAxis("Horizontal") == 0f)
@@ -419,8 +419,8 @@ public sealed class Player : BaseMonoBehaviour
                 }
             }
 
-			// スコアに良いウサギの情報を渡す
-			score.SetRabbitGood();
+            // スコアに良いウサギの情報を渡す
+            score.SetRabbitGood();
             // ウサギを消す
             goodGiftNum = 0;
 
@@ -439,10 +439,10 @@ public sealed class Player : BaseMonoBehaviour
                 }
             }
 
-			// スコアに悪いウサギの情報を渡す
-			score.SetRabbitBad();
-			// ウサギを消す
-			badGiftNum = 0;
+            // スコアに悪いウサギの情報を渡す
+            score.SetRabbitBad();
+            // ウサギを消す
+            badGiftNum = 0;
         }
         else
         {
@@ -503,18 +503,18 @@ public sealed class Player : BaseMonoBehaviour
         // ギフト（良）の所有数がオーバーしていないかチェック
         if (goodGiftNum + badGiftNum < giftMaxNum)
         {
-			//普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
-			if (other.gameObject.tag == "gift")
+            //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
+            if (other.gameObject.tag == "gift")
             {
-				// ギフト回収SE
-				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+                // ギフト回収SE
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-				//other.gameObject.GetComponent<Gift>().GoodFlag = true;
-				// プレイヤーが吸収
-				//Destroy(other.gameObject);
+                //other.gameObject.GetComponent<Gift>().GoodFlag = true;
+                // プレイヤーが吸収
+                //Destroy(other.gameObject);
 
-				// プレイヤーがギフト吸収したことを知らせる
-				other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+                // プレイヤーがギフト吸収したことを知らせる
+                other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
                 // 取得したギフトの情報を保存
                 giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
                 giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
@@ -525,10 +525,10 @@ public sealed class Player : BaseMonoBehaviour
             //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
             if (other.gameObject.tag == "Bad gift")
             {
-				// ギフト回収SE
-				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+                // ギフト回収SE
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-				Debug.Log("あたってる");
+                Debug.Log("あたってる");
                 GameStatusManager.Instance.SetLiftGift(true);
                 //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
                 Vector3 m = GiftArea.transform.position;
@@ -548,7 +548,7 @@ public sealed class Player : BaseMonoBehaviour
         }
 
         // うさぎと当たっているかチェック
-        if(other.gameObject.tag == "Rabbit")
+        if (other.gameObject.tag == "Rabbit")
         {
             other.gameObject.GetComponent<RabbitScript>().HitPlayer = true;
         }
@@ -556,9 +556,14 @@ public sealed class Player : BaseMonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Rabbit")
+        if (other.gameObject.tag == "Rabbit")
         {
             other.gameObject.GetComponent<RabbitScript>().HitPlayer = false;
         }
+    }
+
+    public void SetDirection(Vector3 pos)
+    {
+        PlayerController.Move(pos);
     }
 }

@@ -11,11 +11,12 @@ public class TutorialManagerScript : SingletonMonoBehaviour<TutorialManagerScrip
     {
         Phase = 0;
         PhaseChange = false;
-        TimeChecker = false;
+        TimeChecker = true;
     }
 
     public int GetPhaseNumber()
     {
+        Debug.Log(Phase);
         return Phase;
     }
 
