@@ -189,7 +189,6 @@ public sealed class Player : BaseMonoBehaviour
         stamina = 0;
         dashflag = false;
 
-
         SparkParticle.SetActive(false);
 
         gripFlag = false;
@@ -267,9 +266,18 @@ public sealed class Player : BaseMonoBehaviour
             transform.rotation = Quaternion.LookRotation(newForward, transform.up);
         }
     }
+    float animflame;
     private void PlayerMove()
     {
-        //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        if (Input.GetAxis("Vertical") == 0.0f)
+        {
+            PlayerAnimator.SetFloat(PlayerActionParameter, 0.0f);
+        }
+        else
+        {
+            animflame = Input.GetAxis("Vertical");
+            PlayerAnimator.SetFloat(PlayerActionParameter, animflame);
+        }
         if (speedflag)
         {
             //スタミナ減少
@@ -336,36 +344,21 @@ public sealed class Player : BaseMonoBehaviour
 
             if (Input.GetAxis("Vertical") >= 0.0f)
             {
+                PlayerAnimator.SetFloat("Speed", 0.8f);
+                PlayerAnimator.SetBool("Back", false);
+                //前進んでいるとき
                 Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;               
-
-                if (Input.GetAxis("Vertical") != 0f)
-                {
-                    PlayerAnimator.SetFloat(PlayerActionParameter, 1f);
-                }
-
-                if (Input.GetAxis("Horizontal") >= 0f)
-                {
-                    PlayerAnimator.SetFloat(PlayerActionParameter, 1f);
-                }
             }
             else
             {
+                //後ろ下がっているとき
                 if (!dashflag)
                 {
-                    //走るアニメーション速度変更
-                    PlayerAnimator.SetFloat("Speed", 0.8f);
+                    PlayerAnimator.SetBool("Back", true);
                     SparkParticle.SetActive(false);
-                    //speedflag = false;//通常時
-
-                    Direction = (transform.forward * Input.GetAxis("Vertical")) * (Speed * 0.6f) * Time.fixedDeltaTime;
-                    PlayerAnimator.SetFloat("Move", 0.3f);
-                    PlayerAnimator.SetFloat(PlayerActionParameter, 0.6f);
+                    PlayerAnimator.SetFloat(PlayerActionParameter, -0.1f);
+                    Direction = (transform.forward * Input.GetAxis("Vertical")) * (Speed * 0.3f) * Time.fixedDeltaTime;
                 }
-            }
-
-            if (Input.GetAxis("Vertical") == 0f && Input.GetAxis("Horizontal") == 0f)
-            {
-                PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
             }
         }
         else
@@ -373,8 +366,6 @@ public sealed class Player : BaseMonoBehaviour
             Direction.y += Physics.gravity.y * Time.deltaTime;
         }
 
-
-        velocity.y += Physics.gravity.y * Time.deltaTime;
 
         PlayerController.Move(Direction);
     }
