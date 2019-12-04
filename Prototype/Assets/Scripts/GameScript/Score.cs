@@ -33,7 +33,7 @@ public class Score : BaseMonoBehaviour
 	/// </summary>
 	[System.NonSerialized]
 	public static int total_score_ = 0;
-	public static int TotalScore()
+	public static int GetTotalScore()
 	{
 		return total_score_;
 	}
@@ -43,9 +43,14 @@ public class Score : BaseMonoBehaviour
 	/// </summary>
 	[SerializeField]
 	private int maxscore_ = 100;
+	public static int maxscore = 100;
 	public int MaxScore
 	{
 		get { return maxscore_; }
+	}
+	public static int GetMaxScore()
+	{
+		return maxscore;
 	}
 
 	/// <summary>
@@ -112,6 +117,7 @@ public class Score : BaseMonoBehaviour
 		gift_bad_ = 0;
 		rabbit_good_ = 0;
 		rabbit_bad_ = 0;
+		maxscore = maxscore_;
 	}
 
 	public override void UpdateNormal()

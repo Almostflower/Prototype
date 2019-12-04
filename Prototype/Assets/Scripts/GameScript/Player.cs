@@ -305,38 +305,38 @@ public sealed class Player : BaseMonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            //走るアニメーション速度変更
+            PlayerAnimator.SetFloat("Speed", 0.8f);
+            SparkParticle.SetActive(false);
+            speedflag = false;//通常時
+            dashflag = false;//通常時
+
+            //スタミナを回復
+            stamina += staminaspeed;
+
+            //スタミナが最大なら
+            if (stamina >= staminamax)
+            {
+                stamina = staminamax;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speedflag = true;//加速時
+            dashflag = true;//加速時
+            Debug.LogError("話した");
+        }
+
 
         if (PlayerController.isGrounded)
         {
-            transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                //走るアニメーション速度変更
-                PlayerAnimator.SetFloat("Speed", 0.8f);
-                SparkParticle.SetActive(false);
-                speedflag = false;//通常時
-                dashflag = false;//通常時
-
-                //スタミナを回復
-                stamina += staminaspeed;
-
-                //スタミナが最大なら
-                if (stamina >= staminamax)
-                {
-                    stamina = staminamax;
-                }
-            }
+            transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.fixedDeltaTime, 0);          
 
             if (Input.GetAxis("Vertical") >= 0.0f)
             {
-                Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
-
-                if (Input.GetKeyUp(KeyCode.LeftShift))
-                {
-                    speedflag = true;//加速時
-                    dashflag = true;//加速時
-                }
+                Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;               
 
                 if (Input.GetAxis("Vertical") != 0f)
                 {
