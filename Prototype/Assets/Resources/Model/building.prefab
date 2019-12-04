@@ -98,7 +98,7 @@ MonoBehaviour:
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
     type: 3}
-  normalparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
+  normalparticle: {fileID: 2827021542961467041, guid: 41e939a6aca1ea04c95d7fa3721f0d9d,
     type: 3}
   goodparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
     type: 3}
