@@ -92,15 +92,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 1.3041189, g: 0, b: 0, a: 0}
-  normalcolor: {r: 0.3372549, g: 1.4980392, b: 0.3764706, a: 0}
-  goodcolor: {r: 0, g: 0.45201555, b: 1.9622642, a: 0}
+  badcolor: {r: 1.5137255, g: 0.09411765, b: 0.09411765, a: 0}
+  normalcolor: {r: 1.4980392, g: 0.33725485, b: 1.0927047, a: 0}
+  goodcolor: {r: 0, g: 1.0992789, b: 1.9622642, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
     type: 3}
-  normalparticle: {fileID: 2827021542961467041, guid: 41e939a6aca1ea04c95d7fa3721f0d9d,
+  normalparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
     type: 3}
-  goodparticle: {fileID: 9115957002932060952, guid: a75daec69494e2445a46d5fa05295fec,
+  goodparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
     type: 3}
 --- !u!65 &8317890191040593844
 BoxCollider:
