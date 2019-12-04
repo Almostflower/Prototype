@@ -152,18 +152,18 @@ public class Score : BaseMonoBehaviour
 		}
 
 		// BGM処理
-		if (total_score_ > maxscore_ * 0.7f)
+		if (total_score_ >= maxscore_ * 0.7f)
 		{
 			SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.StageLight_BGM);
             GameStatusManager.Instance.SetGameState(GameStatusManager.GameState.GOOD);
 
         }
-		else if(total_score_ > maxscore_ * 0.3f && total_score_ < maxscore_ * 0.7f - 1)
+		else if(total_score_ >= maxscore_ * 0.3f && total_score_ < maxscore_ * 0.7f)
 		{
 			SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.StageSelect_BGM);
             GameStatusManager.Instance.SetGameState(GameStatusManager.GameState.NORMAL);
         }
-		else if(total_score_ < maxscore_ * 0.3f - 1)
+		else if(total_score_ < maxscore_ * 0.3f)
 		{
 			SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.StageDark_BGM);
             GameStatusManager.Instance.SetGameState(GameStatusManager.GameState.BAD);

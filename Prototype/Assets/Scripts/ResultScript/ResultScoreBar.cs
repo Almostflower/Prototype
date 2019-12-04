@@ -23,17 +23,67 @@ public class ResultScoreBar : MonoBehaviour
 	[SerializeField]
 	private Text timer_text_;
 
+	/// <summary>
+	/// 合計スコア
+	/// </summary>
 	private float total_score_ = 0;
+
+	/// <summary>
+	/// 最大スコア
+	/// </summary>
+	private float max_score_ = 0;
+
+	/// <summary>
+	/// 一回きり
+	/// </summary>
+	private bool once_ = false;
+
+	/// <summary>
+	/// 一番いいスコア
+	/// </summary>
+	[SerializeField]
+	private float amazing_ = 0.7f;
+
+	/// <summary>
+	/// 普通のスコア
+	/// </summary>
+	[SerializeField]
+	private float good_ = 0.5f;
+
+	/// <summary>
+	/// 悪いスコア
+	/// </summary>
+	[SerializeField]
+	private float error_ = 0.3f;
 
 	void Start()
     {
-		gauge_.SetMaxValue(Score.GetMaxScore());
+		max_score_ = Score.GetMaxScore();
 		total_score_ = Score.GetTotalScore();
 		gauge_.GaugeValue = total_score_;
 	}
 
     void Update()
     {
+		if(!once_)
+		{
+			once_ = true;
+			gauge_.SetMaxValue(max_score_);
+		}
+
+		if (total_score_ >= max_score_ * amazing_)
+		{
+			Debug.Log("良い");
+		}
+		else if(total_score_ >= max_score_ * good_ && total_score_ < max_score_ * amazing_)
+		{
+			Debug.Log("普通");
+		}
+		else if(total_score_ < max_score_ * error_)
+		{
+			Debug.Log("悪い");
+		}
+
 		// デバッグモードだったら表示
 		if (debug_mode_)
 		{
