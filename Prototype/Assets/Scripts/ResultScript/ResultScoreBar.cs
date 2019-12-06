@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ResultScoreBar : MonoBehaviour
 {
@@ -56,11 +57,26 @@ public class ResultScoreBar : MonoBehaviour
 	[SerializeField]
 	private float error_ = 0.3f;
 
+	[SerializeField]
+	private List<Image> operation_ = new List<Image>();
+
+	private enum OPERATION
+	{
+		Amazing,
+		Good,
+		Error
+	};
+
 	void Start()
     {
 		max_score_ = Score.GetMaxScore();
 		total_score_ = Score.GetTotalScore();
 		gauge_.GaugeValue = total_score_;
+
+		foreach(var i in operation_.Select((value, index) => new { value, index }))
+		{
+			operation_[i.index].enabled = false;
+		}
 	}
 
     void Update()
@@ -73,15 +89,15 @@ public class ResultScoreBar : MonoBehaviour
 
 		if (total_score_ >= max_score_ * amazing_)
 		{
-			Debug.Log("良い");
+			operation_[(int)OPERATION.Amazing].enabled = true;
 		}
 		else if(total_score_ >= max_score_ * good_ && total_score_ < max_score_ * amazing_)
 		{
-			Debug.Log("普通");
+			operation_[(int)OPERATION.Good].enabled = true;
 		}
 		else if(total_score_ < max_score_ * error_)
 		{
-			Debug.Log("悪い");
+			operation_[(int)OPERATION.Error].enabled = true;
 		}
 
 		// デバッグモードだったら表示
