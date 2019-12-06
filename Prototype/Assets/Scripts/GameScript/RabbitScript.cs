@@ -16,6 +16,9 @@ public class RabbitScript : BaseMonoBehaviour
     private int mask;
 
     [SerializeField]
+    private Animator usagianim;
+
+    [SerializeField]
     private float targetDistance = 5f;
 
     [SerializeField, Range(0.0f, 360.0f)]
@@ -137,6 +140,8 @@ public class RabbitScript : BaseMonoBehaviour
         //coloring.material.color = Color.blue;
         agent.angularSpeed = 120;
 
+        usagianim.SetBool("escape", false);
+
         _disposable = Observable.Timer(System.TimeSpan.FromSeconds(1), System.TimeSpan.FromSeconds(3))
                 .TakeWhile(_ => currentState == RabbitState.ORDINARY)
                 .Where(_ => UnityEngine.Random.Range(1, 100) >= 50)
@@ -168,6 +173,8 @@ public class RabbitScript : BaseMonoBehaviour
 
         agent.SetDestination(GetNextPosition());
 
+        usagianim.SetBool("escape", true);
+
         //目的地に近づいたら次の目的地を検索
         agent.ObserveEveryValueChanged(d => currentState != RabbitState.DEAD ? agent.remainingDistance : 0.0f)
             .Where(d => d < 2.0f)
@@ -186,7 +193,10 @@ public class RabbitScript : BaseMonoBehaviour
             .Subscribe(distance =>
             {
                 escapeTime += Time.deltaTime;
-                if (escapeTime >= 10) Usual();
+                if (escapeTime >= 10)
+                {
+                    Usual();
+                }
             });
     }
 
