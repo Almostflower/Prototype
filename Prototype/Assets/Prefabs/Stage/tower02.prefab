@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 470820735402895937}
   - component: {fileID: 7448877060938395378}
   - component: {fileID: 7326490072679643197}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCylinder3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &117495392735792322
 Transform:
@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -106,13 +106,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2366183286711354848}
-  - component: {fileID: 7326490071439676788}
-  m_Layer: 14
+  - component: {fileID: 1982538254731871394}
+  m_Layer: 0
   m_Name: tower02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2366183286711354848
 Transform:
@@ -131,7 +131,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7326490071439676788
+--- !u!65 &1982538254731871394
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &1644892668819375296
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,12 +153,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8140141699981019708}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: honnbann
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8140141699981019708
 Transform:
@@ -188,12 +188,12 @@ GameObject:
   - component: {fileID: 6143134390221391165}
   - component: {fileID: 2309695208064080725}
   - component: {fileID: 7326490072183615324}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCylinder3 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8737563592974433744
 Transform:
@@ -266,9 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -285,12 +285,12 @@ GameObject:
   - component: {fileID: 7610566033519622124}
   - component: {fileID: 234846460973242959}
   - component: {fileID: 7326490071538261293}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCube1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2221568688645674772
 Transform:
@@ -363,9 +363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &614575750659434220
 Transform:
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -479,12 +479,12 @@ GameObject:
   - component: {fileID: 1322313788329467755}
   - component: {fileID: 8710613483161844736}
   - component: {fileID: 7326490071440033963}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pTorus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8534946505860439360
 Transform:
@@ -557,9 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -576,12 +576,12 @@ GameObject:
   - component: {fileID: 1196732088397494135}
   - component: {fileID: 5577643786565880173}
   - component: {fileID: 7326490071327922153}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCylinder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3272415840067233874
 Transform:
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -670,12 +670,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5502779876163654719}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: honnbann3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5502779876163654719
 Transform:
@@ -702,12 +702,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990983534632242626}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: sityuu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &990983534632242626
 Transform:
@@ -739,12 +739,12 @@ GameObject:
   - component: {fileID: 6362651830972004389}
   - component: {fileID: 6812375495377530178}
   - component: {fileID: 7326490072748384351}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCylinder3 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1981869196112320558
 Transform:
@@ -817,9 +817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -833,12 +833,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8440443588206259862}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: honnbann2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8440443588206259862
 Transform:
@@ -868,12 +868,12 @@ GameObject:
   - component: {fileID: 2212329463319207829}
   - component: {fileID: 7948431669029120817}
   - component: {fileID: 7326490072298306501}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4700388768922332723
 Transform:
@@ -946,9 +946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -965,12 +965,12 @@ GameObject:
   - component: {fileID: 7722277123635854000}
   - component: {fileID: 6680997886028807571}
   - component: {fileID: 7326490072011108777}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCube1 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6259283307902102781
 Transform:
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
   OriginalMatCheckFlag: 0
@@ -1062,12 +1062,12 @@ GameObject:
   - component: {fileID: 9182536389533906267}
   - component: {fileID: 3713919048514714835}
   - component: {fileID: 7326490071487427848}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: pCube1 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &185699190398090124
 Transform:
@@ -1140,9 +1140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 0, g: 0.42352942, b: 1.4980392, a: 0}
+  badcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   normalcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
-  goodcolor: {r: 1.4980392, g: 0.25882354, b: 0.05490196, a: 0}
+  goodcolor: {r: 0, g: 1.4980392, b: 0.14117648, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 0}
   normalparticle: {fileID: 0}
@@ -1156,12 +1156,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3789219367541619761}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: honnbann1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3789219367541619761
 Transform:
