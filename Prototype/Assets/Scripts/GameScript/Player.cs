@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public sealed class Player : BaseMonoBehaviour
 {
-    [SerializeField]
-    private GameObject footPrintPrefab;
-    float foottime = 0;
+    //[SerializeField]
+    //private GameObject footPrintPrefab;
+    //float foottime = 0;
     [SerializeField]
     private Animator PlayerAnimator;
     [SerializeField]
@@ -209,12 +209,12 @@ public sealed class Player : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        this.foottime += Time.deltaTime;
-        if (this.foottime > 0.35f)
-        {
-            this.foottime = 0;
-            Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
-        }
+        //this.foottime += Time.deltaTime;
+        //if (this.foottime > 0.35f)
+        //{
+        //    this.foottime = 0;
+        //    Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
+        //}
 
         // ウサギとの動作
         if (!holdingRabbitFlag && !gripFlag)
