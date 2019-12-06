@@ -81,6 +81,7 @@ public sealed class StageManager : BaseMonoBehaviour
         stageArea = new Area[stageHeight, stageWidth];
         int width = 2;
         Vector3 startPos = new Vector3(-stageWidth * width / 2, 0.0f, stageHeight * width / 2);
+
         for (int i = 0; i < stageHeight; i++)
         {
             for (int j = 0; j < stageWidth; j++)
