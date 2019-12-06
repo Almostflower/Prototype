@@ -23,7 +23,8 @@ public class FloatingCubeManager : MonoBehaviour
             float x = Random.Range(-60, 60);
             float y = Random.Range(-5, 5);
             float z = Random.Range(-60, 60);
-            Instantiate(cube, new Vector3(x,y,z), Quaternion.identity);
+            GameObject floatingCube = Instantiate(cube, new Vector3(x,y,z), Quaternion.identity);
+            floatingCube.transform.parent = this.transform;
         }
     }
 

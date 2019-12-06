@@ -8,11 +8,19 @@ public class FlyCar : BaseMonoBehaviour
     /// 移動開始位置
     /// </summary>
     [SerializeField]private Vector3 startPos;
+    public Vector3 StartPos
+    {
+        set { startPos = value; }
+    }
 
     /// <summary>
     /// 移動終了位置
     /// </summary>
     [SerializeField]private Vector3 endPos;
+    public Vector3 EndPos
+    {
+        set { endPos = value; }
+    }
 
     private float distance;
 
@@ -22,6 +30,12 @@ public class FlyCar : BaseMonoBehaviour
     [SerializeField]private float time;
 
     private float counter = 0;
+
+    private bool isDead;
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
 
 
     /// <summary>
@@ -41,6 +55,8 @@ public class FlyCar : BaseMonoBehaviour
         // 進む方向に向かせる
         Vector3 front = endPos - startPos;
         this.transform.forward = front.normalized;
+
+        isDead = false;
     }
 
     /// <summary>
@@ -48,6 +64,8 @@ public class FlyCar : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
+        if (isDead) { return; }
+
         counter += Time.deltaTime;
         float currentPos = (counter / time) * distance;
 
@@ -57,7 +75,7 @@ public class FlyCar : BaseMonoBehaviour
         // 削除
         if(this.transform.position == endPos)
         {
-            Destroy(this.gameObject);
+            isDead = true;
         }
 
         Debug.Log(counter);
