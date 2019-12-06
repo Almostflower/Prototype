@@ -263,6 +263,28 @@ public class TutorialPlayer : BaseMonoBehaviour
             abarerukun[1].SetActive(false);
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "ChutorialGoodRabbit")
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                TutorialManagerScript.Instance.SetPhaseNumber(2);
+                Destroy(other.gameObject);
+                //other.gameObject.SetActive(false);
+            }
+        }
+
+        if (other.gameObject.tag == "ChutorialBadRabbit")
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                TutorialManagerScript.Instance.SetPhaseNumber(4);
+                Destroy(other.gameObject);
+                //other.gameObject.SetActive(false);
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -277,18 +299,6 @@ public class TutorialPlayer : BaseMonoBehaviour
         {
             TutorialManagerScript.Instance.SetPhaseNumber(3);
             //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftbad);
-            Destroy(other.gameObject);
-        }
-
-        if(other.gameObject.tag == "ChutorialGoodRabbit")
-        {
-            TutorialManagerScript.Instance.SetPhaseNumber(2);
-            Destroy(other.gameObject);
-        }
-
-        if (other.gameObject.tag == "ChutorialBadRabbit")
-        {
-            TutorialManagerScript.Instance.SetPhaseNumber(4);
             Destroy(other.gameObject);
         }
     }

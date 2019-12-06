@@ -16,8 +16,6 @@ public class TitleCameraTimeline : MonoBehaviour
     //[SerializeField]
     //Fade fade = null;
 
-    [SerializeField]
-    private PlayableDirector playableDirector;
     private float AnimTimer;
     private bool AnimStartFlag,FadeFlag;
     // Start is called before the first frame update
@@ -38,8 +36,7 @@ public class TitleCameraTimeline : MonoBehaviour
         {
 			//決定音
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
-
-			PlayTimeline();
+            //PlayTimeline();
             AnimStartFlag = true;
         }
 
@@ -59,7 +56,6 @@ public class TitleCameraTimeline : MonoBehaviour
 
         if (AnimTimer >= 10.0f)
         {
-            StopTimeline();
             AnimStartFlag = false;
         }
 
@@ -67,15 +63,5 @@ public class TitleCameraTimeline : MonoBehaviour
         {
 			SceneManager.LoadSceneAsync(1,LoadSceneMode.Single);
         }
-    }
-
-    void PlayTimeline()
-    {
-        playableDirector.Play();
-    }
-
-    void StopTimeline()
-    {
-        playableDirector.Stop();
     }
 }

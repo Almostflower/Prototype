@@ -27,6 +27,14 @@ public class TutorialTimeState : MonoBehaviour
     private GameObject GoodRabbitObj;
     [SerializeField]
     private GameObject BadRabbitObj;
+
+    private void Awake()
+    {
+        GoodGiftObj = Instantiate(GoodGiftObj, new Vector3(0.0f, 0.5f, 1.0f), Quaternion.identity);
+        BadGiftObj = Instantiate(BadGiftObj, new Vector3(0.0f, 0.5f, 1.0f), Quaternion.identity);
+        GoodRabbitObj = Instantiate(GoodRabbitObj, new Vector3(0.0f, 0.5f, 5.0f), Quaternion.identity);
+        BadRabbitObj = Instantiate(BadRabbitObj, new Vector3(0.0f, 0.5f, 5.0f), Quaternion.identity);
+    }
     // Start is called before the first frame update
     void Start()
     {
