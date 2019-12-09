@@ -29,6 +29,6 @@ public class ParticleCube : BaseMonoBehaviour
     {
         Vector3 force;
         force = this.transform.up * upSpeed;
-        this.GetComponent<Rigidbody>().AddForce(force);
+        //this.GetComponent<Rigidbody>().AddForce(force);
     }
 }
