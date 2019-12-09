@@ -92,9 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ca454d8fbfb47a0b279f770eae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badcolor: {r: 1.0592737, g: 0.06655122, b: 0.06655122, a: 0}
-  normalcolor: {r: 1.0592737, g: 0.23847523, b: 0.776431, a: 0}
-  goodcolor: {r: 0, g: 0.59896106, b: 1.0592737, a: 0}
+  badcolor: {r: 0.89073944, g: 0.055962685, b: 0.055962685, a: 0}
+  normalcolor: {r: 0.89073944, g: 0.20053296, b: 0.652898, a: 0}
+  goodcolor: {r: 0, g: 0.5036642, b: 0.89073944, a: 0}
   OriginalMatCheckFlag: 0
   badparticle: {fileID: 4022365570647760458, guid: 65c5944e4d263aa4a955f58cd8f3243f,
     type: 3}
