@@ -334,7 +334,7 @@ public sealed class Player : BaseMonoBehaviour
         {
             speedflag = true;//加速時
             dashflag = true;//加速時
-            Debug.LogError("話した");
+            //Debug.LogError("話した");
         }
 
 
