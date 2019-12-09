@@ -25,12 +25,10 @@ public class Circle : BaseMonoBehaviour
         this.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateNormal()
     {
-        
-    }
 
+    }
 
     /// <summary>
     /// ウサギを捕まえる範囲に入ったら

@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warp : MonoBehaviour
+public class Warp : BaseMonoBehaviour
 {
     [SerializeField] private GameObject player;
 
+    private void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +17,7 @@ public class Warp : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void UpdateNormal()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
