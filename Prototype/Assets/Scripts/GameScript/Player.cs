@@ -287,13 +287,13 @@ public sealed class Player : BaseMonoBehaviour
             if (stamina > 0)
             {
                 //走るアニメーション速度変更
-                PlayerAnimator.SetFloat("Speed", 1.5f);
+                PlayerAnimator.SetFloat("Speed", 2.5f);
                 SparkParticle.SetActive(true);
             }
             else
             {
                 //走るアニメーション速度変更
-                PlayerAnimator.SetFloat("Speed", 0.8f);
+                PlayerAnimator.SetFloat("Speed", 1.0f);
                 SparkParticle.SetActive(false);
                 speedflag = false;//通常時
                 dashflag = false;//通常時
@@ -316,7 +316,7 @@ public sealed class Player : BaseMonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             //走るアニメーション速度変更
-            PlayerAnimator.SetFloat("Speed", 0.8f);
+            PlayerAnimator.SetFloat("Speed", 1.0f);
             SparkParticle.SetActive(false);
             speedflag = false;//通常時
             dashflag = false;//通常時
@@ -344,7 +344,7 @@ public sealed class Player : BaseMonoBehaviour
 
             if (Input.GetAxis("Vertical") >= 0.0f)
             {
-                PlayerAnimator.SetFloat("Speed", 0.8f);
+                PlayerAnimator.SetFloat("Speed", 1.0f);
                 PlayerAnimator.SetBool("Back", false);
                 //前進んでいるとき
                 Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;               
