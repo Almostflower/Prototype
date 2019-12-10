@@ -34,7 +34,7 @@ public sealed class StageManager : BaseMonoBehaviour
 
     [SerializeField] private GameObject CenterTower;
 
-    [SerializeField] private GameObject Bridge;
+    [SerializeField] private List<GameObject> Bridge = new List<GameObject>();
     /// <summary>
     /// 建物
     /// </summary>
@@ -86,9 +86,13 @@ public sealed class StageManager : BaseMonoBehaviour
         Vector3 startPos = new Vector3(-stageWidth * width / 2, 0.0f, stageHeight * width / 2);
 
         CenterTower = Instantiate(CenterTower, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-        Bridge = Instantiate(Bridge, new Vector3(0.0f,0.0f,22.0f), Quaternion.identity);   
 
-        for (int i = 0; i < stageHeight; i++)
+		for (int i = 0; i < Bridge.Count; i++)
+		{
+			Bridge[i] = Instantiate(Bridge[i], Bridge[i].transform.position, Bridge[i].transform.rotation);
+		}
+
+		for (int i = 0; i < stageHeight; i++)
         {
             for (int j = 0; j < stageWidth; j++)
             {
