@@ -17,7 +17,7 @@ public class ResultOperation : MonoBehaviour
     {
         if(Wmargin < 1.0f)
         {
-            Wmargin += 0.01f;
+            Wmargin += 0.005f;
         }
         //if(Hmargin > 0.0f)
         //{
