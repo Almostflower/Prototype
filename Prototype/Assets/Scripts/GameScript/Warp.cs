@@ -5,7 +5,7 @@ using UnityEngine;
 public class Warp : BaseMonoBehaviour
 {
     [SerializeField] private GameObject player;
-
+    [SerializeField] private Transform warp1, warp2;
     private void Awake()
     {
         base.Awake();
@@ -23,7 +23,7 @@ public class Warp : BaseMonoBehaviour
         {
             if (this.transform.GetChild(0).GetComponent<Circle>().HitPlayerFrag)
             {
-                Vector3 direction = this.transform.GetChild(1).transform.position -
+                Vector3 direction = warp2.position -
                                         this.transform.GetChild(0).transform.position;
 
                 player.GetComponent<Player>().SetDirection(direction);
@@ -31,7 +31,7 @@ public class Warp : BaseMonoBehaviour
 
             if (this.transform.GetChild(1).GetComponent<Circle>().HitPlayerFrag)
             {
-                Vector3 direction = this.transform.GetChild(0).transform.position -
+                Vector3 direction = warp1.position -
                                         this.transform.GetChild(1).transform.position;
                 player.GetComponent<Player>().SetDirection(direction);
             }
