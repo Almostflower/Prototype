@@ -80,7 +80,7 @@ public class Gauge : BaseMonoBehaviour
 		{
             //変更
             //z座標は　slider_transform.position.zに指定してしまうと、座標が元の位置からずれてしまうので0.0fに変更しました。
-            slider_.transform.localPosition = new Vector3(80.0f, slider_.transform.position.y, 0.0f);
+            slider_.transform.localPosition = new Vector3(0.0f, slider_.transform.position.y , 0.0f);
 			slider_.transform.Rotate(new Vector3(0, 1, 0), 180);
 		}
 

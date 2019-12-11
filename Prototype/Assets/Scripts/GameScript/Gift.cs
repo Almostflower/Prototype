@@ -189,9 +189,9 @@ public class Gift : BaseMonoBehaviour
             {
                 gameObject.tag = "Bad gift";
                 Debug.Log("ギフトが悪くなった");
-                Gift01.GetComponent<Renderer>().material.color = Color.red;
-                Gift02.GetComponent<Renderer>().material.color = Color.red;
-                Gift03.GetComponent<Renderer>().material.color = Color.red;
+                Gift01.GetComponent<Renderer>().material.color = Color.gray;
+                Gift02.GetComponent<Renderer>().material.color = Color.gray;
+                Gift03.GetComponent<Renderer>().material.color = Color.gray;
                 GoodIcon.SetActive(false);
 				BadIcon.SetActive(true);
                 if (!debug_one_time_)

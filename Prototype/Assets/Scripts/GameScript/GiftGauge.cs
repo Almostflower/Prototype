@@ -63,7 +63,7 @@ public class GiftGauge : BaseMonoBehaviour
 	void Start()
     {
 		badflag = false;
-		this.transform.localPosition = new Vector3(80.0f, this.transform.position.y, 0.0f);
+		this.transform.localPosition = new Vector3(0.0f, this.transform.position.y, 0.0f);
 		this.transform.Rotate(new Vector3(0, 1, 0), 180);
 	}
 
