@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug_one_time_: 0
-  giftData: {fileID: 6263008121561603150, guid: c17d76dd3d9f6ff4ea7002429bd4daf2,
-    type: 3}
+  giftData: {fileID: 341064223507837331, guid: 3f4bc4eeb0a8d8b4ab28e4f89179e37d, type: 3}
   stageManager: {fileID: 0}
   giftMax: 10
   badminscore_: 1

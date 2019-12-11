@@ -32,13 +32,12 @@ public class Gift : BaseMonoBehaviour
 	/// <summary>
 	/// 悪いスコア
 	/// </summary>
-	[SerializeField]
 	private int badscore_ = 0;
 
     /// <summary>
     /// 不良品になるまでのリミットタイム
     /// </summary>
-    [SerializeField] private float badLimitTime = 10.0f;
+    private float badLimitTime = 10.0f;
     public float GetBadLimitTime
     {
         get { return badLimitTime; }
@@ -47,7 +46,7 @@ public class Gift : BaseMonoBehaviour
     /// <summary>
     /// 消えるまでのリミットタイム
     /// </summary>
-    [SerializeField] private float dustLimitTime = 10.0f;
+    private float dustLimitTime = 10.0f;
     public float GetDustLimitTime
     {
         get { return dustLimitTime; }
@@ -92,7 +91,7 @@ public class Gift : BaseMonoBehaviour
     /// ゲージスクリプト
     /// </summary>
     [SerializeField]
-    private Gauge gauge_;
+    private GiftGauge gauge_;
 
 	/// <summary>
 	/// スコアスクリプト
@@ -149,7 +148,14 @@ public class Gift : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
-        if (!DustFlag && badLimitTime > 0.0f)
+		if (!once_)
+		{
+			//gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_, true);
+			gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_);
+			once_ = true;
+		}
+
+		if (!DustFlag && badLimitTime > 0.0f)
         {
             // ギフトの良い状態の更新
             badLimitTime -= Time.deltaTime;
@@ -158,16 +164,10 @@ public class Gift : BaseMonoBehaviour
         {
             // ギフトの悪い状態の更新
             dustLimitTime -= Time.deltaTime;
-        }
+        }	
 
-        if (!once_)
-        {
-            gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_, true);
-            once_ = true;
-        }
-
-        // ギフトの時間の更新
-        mastertime -= Time.deltaTime;
+		// ギフトの時間の更新
+		mastertime -= Time.deltaTime;
         // ギフトの時間をゲージに渡す
         gauge_.GaugeValue = mastertime;
 
@@ -197,7 +197,7 @@ public class Gift : BaseMonoBehaviour
                 if (!debug_one_time_)
                 {
                     mastertime = dustLimitTime;
-                    gauge_.SetGiftValue(mastertime);
+                    gauge_.SetMaxValue(mastertime);
                 }
             }
 
