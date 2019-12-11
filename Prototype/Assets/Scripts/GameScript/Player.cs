@@ -441,14 +441,14 @@ public sealed class Player : BaseMonoBehaviour
             gripFlag = true;
 
             // 暴れる君を生成
-            if (rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
-            {
-                abarerukun[0].SetActive(true);
-            }
-            else
-            {
-                abarerukun[1].SetActive(true);
-            }
+            //if (rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
+            //{
+            //    abarerukun[0].SetActive(true);
+            //}
+            //else
+            //{
+            //    abarerukun[1].SetActive(true);
+            //}
 
         }
 
@@ -471,8 +471,8 @@ public sealed class Player : BaseMonoBehaviour
                 gripFlag = false;
 
                 // あばれる君を削除
-                abarerukun[0].SetActive(false);
-                abarerukun[1].SetActive(false);
+                //abarerukun[0].SetActive(false);
+                //abarerukun[1].SetActive(false);
             }
         }
         else
@@ -480,8 +480,8 @@ public sealed class Player : BaseMonoBehaviour
             gripFlag = false;
 
             // あばれる君を削除
-            abarerukun[0].SetActive(false);
-            abarerukun[1].SetActive(false);
+            //abarerukun[0].SetActive(false);
+            //abarerukun[1].SetActive(false);
         }
     }
 

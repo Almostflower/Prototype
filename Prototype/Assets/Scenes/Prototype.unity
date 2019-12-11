@@ -1218,9 +1218,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerAnimator: {fileID: 218433409}
   PlayerController: {fileID: 218433413}
-  Speed: 20
+  Speed: 10
   DefaultSpeed: 5
-  RunSpeed: 8
+  RunSpeed: 20
   GiftArea: {fileID: 1624060560}
   rotateSpeed: 120
   giftMaxNum: 10
