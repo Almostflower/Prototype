@@ -68,6 +68,7 @@ public class TestEffect : BaseMonoBehaviour
                     objs[i].existenceFlag = true;
                     objs[i].destroyTime = destroyTime;
                     objNum++;
+                    objs[i].obj.transform.parent = this.transform;
                 }
             }
             sponeCopyTime = sponeTime;

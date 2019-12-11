@@ -11,6 +11,7 @@ public class FlyCarManager : BaseMonoBehaviour
     {
         public GameObject obj;
         public bool isFlag;
+        public int root;
     };
 
     /// <summary>
@@ -30,6 +31,11 @@ public class FlyCarManager : BaseMonoBehaviour
     [SerializeField] private Vector3[] startPos;
     [SerializeField] private Vector3[] endPos;
 
+    /// <summary>
+    /// 走るルートの管理
+    /// </summary>
+    [SerializeField]private List<int> root;
+
 
     protected override void Awake()
     {
@@ -42,9 +48,18 @@ public class FlyCarManager : BaseMonoBehaviour
     {
         flyCars = new FLY_CAR[maxNum];
 
-        for(int i = 0; i < maxNum; i++)
+        // 車生成可能座標のメモリ確保
+        root = new List<int>();
+
+        for (int i = 0; i < maxNum; i++)
         {
             flyCars[i].isFlag = false;
+        }
+
+        // 車のルートを追加
+        for(int i = 0; i < startPos.Length; i++)
+        {
+            AddListToRoot(i);
         }
     }
 
@@ -57,17 +72,44 @@ public class FlyCarManager : BaseMonoBehaviour
             if (!flyCars[i].isFlag)
             {
                 flyCars[i].obj = Instantiate(flyCar);
-                flyCars[i].obj.GetComponent<FlyCar>().StartPos = startPos[i];
-                flyCars[i].obj.GetComponent<FlyCar>().EndPos = endPos[i];
+                flyCars[i].root = GetRootFromList();
+                flyCars[i].obj.GetComponent<FlyCar>().StartPos = startPos[flyCars[i].root];
+                flyCars[i].obj.GetComponent<FlyCar>().EndPos = endPos[flyCars[i].root];
                 flyCars[i].isFlag = true;
+                flyCars[i].obj.transform.parent = this.transform;
+
             }
 
             // 最終地点に車が到達したかチェック
             if(flyCars[i].obj.GetComponent<FlyCar>().IsDead)
             {
+
+                AddListToRoot(flyCars[i].root);
                 Destroy(flyCars[i].obj);
                 flyCars[i].isFlag = false;
             }
         }
+    }
+
+    /// <summary>
+    /// リストから一つランダムに取得する
+    /// </summary>
+    /// <returns>座標を取得する</returns>
+    public int GetRootFromList()
+    {
+        int index = UnityEngine.Random.Range(0, root.Count);
+        int target = root[index];
+        root.RemoveAt(index);
+
+        return target;
+    }
+
+    /// <summary>
+    /// ギフト生成可能エリアを追加する
+    /// </summary>
+    /// <param name="pos"></param>
+    public void AddListToRoot(int index)
+    {
+        root.Add(index);
     }
 }

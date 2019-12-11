@@ -555,6 +555,8 @@ public sealed class Player : BaseMonoBehaviour
 
     public void SetDirection(Vector3 pos)
     {
+        this.GetComponent<CapsuleCollider>().isTrigger = false;
         PlayerController.Move(pos);
+        this.GetComponent<CapsuleCollider>().isTrigger = true;
     }
 }
