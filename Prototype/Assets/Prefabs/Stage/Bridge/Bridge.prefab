@@ -33,8 +33,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &6802600073782666963
-BoxCollider:
+--- !u!136 &6786942251596523258
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -43,11 +43,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02038793, y: 0.06945903, z: 0.025994139}
-  m_Center: {x: -0.00041251312, y: 0.034729514, z: 0.000000004656613}
---- !u!65 &5330642046634978044
-BoxCollider:
+  m_Radius: 0.010219329
+  m_Height: 0.06945903
+  m_Direction: 1
+  m_Center: {x: 0.00002282647, y: 0.034729514, z: 0.0000000048908277}
+--- !u!136 &1232862278149362597
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -56,9 +57,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02038793, y: 0.06945903, z: 0.025994139}
-  m_Center: {x: -0.00041246842, y: 0.034729514, z: 9.313228e-10}
+  m_Radius: 0.010237719
+  m_Height: 0.07159186
+  m_Direction: 1
+  m_Center: {x: -0.000009124328, y: 0.034355927, z: 9.759902e-10}
 --- !u!1001 &1088664678957333069
 PrefabInstance:
   m_ObjectHideFlags: 0

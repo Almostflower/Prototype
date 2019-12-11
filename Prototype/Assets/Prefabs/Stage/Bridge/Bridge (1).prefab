@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &586387046639404918
-BoxCollider:
+--- !u!136 &2025583546701258994
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,11 +10,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.020387925, y: 0.06945903, z: 0.025994133}
-  m_Center: {x: -0.00041248323, y: 0.034729514, z: -0.000000006519258}
---- !u!65 &8089833077064023966
-BoxCollider:
+  m_Radius: 0.010312056
+  m_Height: 0.06945903
+  m_Direction: 1
+  m_Center: {x: -0.000032475094, y: 0.034729514, z: -0.000000006847159}
+--- !u!136 &128371626982848171
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -23,9 +24,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.020387925, y: 0.06945903, z: 0.025994133}
-  m_Center: {x: -0.00041248323, y: 0.034729514, z: 0.000000008381903}
+  m_Radius: 0.010175127
+  m_Height: 0.06945903
+  m_Direction: 1
+  m_Center: {x: -0.000019702211, y: 0.034729514, z: 0.0000000088034895}
 --- !u!1 &7262509691400487497
 GameObject:
   m_ObjectHideFlags: 0
