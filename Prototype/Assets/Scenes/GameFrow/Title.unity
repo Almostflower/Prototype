@@ -140,10 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   select1: {fileID: 1164382815}
   select2: {fileID: 1184348881}
-  speed: 5
-  radius: 3
-  target_rotate1: 90
-  target_rotate2: -90
+  target_rotate: 0
+  switchbutton: 1
 --- !u!224 &10604440 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6050286555144774664, guid: 065bc3df305aee44f9bfab0b4d69fb3c,
