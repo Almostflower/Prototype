@@ -1,0 +1,54 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TitleSelect : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject select1;
+    [SerializeField]
+    private GameObject select2;
+
+    public float target_rotate = 90;
+    [SerializeField]
+    private bool switchbutton;
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(switchbutton)
+        {
+            select1.SetActive(true);
+            select2.SetActive(false);
+            RotateSelect(select1, 0,-2.5f);
+            RotateSelect(select2, 90, 2.5f);
+        }
+        else
+        {
+            select1.SetActive(false);
+            select2.SetActive(true);
+            RotateSelect(select1, 90, 2.5f);
+            RotateSelect(select2,0,-2.5f);
+        }
+    }
+
+    void RotateSelect(GameObject selectobj, float targetrotate, float rotation)
+    {
+        var target = Quaternion.Euler(new Vector3(0, targetrotate, 0));
+
+        var now_rot = selectobj.transform.rotation;
+        if (Quaternion.Angle(now_rot, target) <= 1)
+        {
+            selectobj.transform.rotation = target;
+        }
+        else
+        {
+            selectobj.transform.Rotate(new Vector3(0, rotation, 0));
+        }
+    }
+}

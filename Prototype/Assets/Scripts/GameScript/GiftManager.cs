@@ -115,32 +115,35 @@ public class GiftManager : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
-        // ギフトの生存チェック
-        for (int i = 0; i < giftMax; i++)
+        if (SceneStatusManager.Instance.PauseButton == 1)
         {
-            if (isExistence[i])
+            // ギフトの生存チェック
+            for (int i = 0; i < giftMax; i++)
             {
-                // 自然消滅
-                if (giftManager[i].GetComponent<Gift>().GetDeathFlag())
+                if (isExistence[i])
                 {
-                    // ステージゲージを下げる
+                    // 自然消滅
+                    if (giftManager[i].GetComponent<Gift>().GetDeathFlag())
+                    {
+                        // ステージゲージを下げる
 
-                    // ギフトの削除と生成
-                    Delete(i);
-                    Birth(i);
+                        // ギフトの削除と生成
+                        Delete(i);
+                        Birth(i);
+
+                    }
+
+                    // プレイヤーが回収
+                    if (giftManager[i].GetComponent<Gift>().PlayerAbsorbFlag)
+                    {
+                        // ステージゲージを上げる
+
+                        // ギフトの削除と生成
+                        Delete(i);
+                        Birth(i);
+                    }
 
                 }
-
-                // プレイヤーが回収
-                if(giftManager[i].GetComponent<Gift>().PlayerAbsorbFlag)
-                {
-                    // ステージゲージを上げる
-                
-                    // ギフトの削除と生成
-                    Delete(i);
-                    Birth(i);
-                }
-
             }
         }
     }
