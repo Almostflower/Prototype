@@ -8,6 +8,15 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
     private bool SceneFadeOut;
     private bool GameFade;
     private bool SceneChange;
+    private int Pausebuttonflag = 1;
+    private bool Pausebuttonselect = false;
+
+    public int PauseButton
+    {
+        get { return Pausebuttonflag; }
+        set { Pausebuttonflag = value; }
+    }
+
     private void Awake()
     {
         SceneFadeIn = false;

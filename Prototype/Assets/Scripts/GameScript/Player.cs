@@ -215,26 +215,37 @@ public sealed class Player : BaseMonoBehaviour
         //    this.foottime = 0;
         //    Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
         //}
-
-        // ウサギとの動作
-        if (!holdingRabbitFlag && !gripFlag)
+        if(Input.GetKeyDown(KeyCode.P))
         {
-            CheckCarryRabbit();
+            SceneStatusManager.Instance.PauseButton *= -1;
         }
-        else if (holdingRabbitFlag && !gripFlag)
+        if(SceneStatusManager.Instance.PauseButton == 1)
         {
-            TransferGift();
+            PlayerAnimator.enabled = true;
+            // ウサギとの動作
+            if (!holdingRabbitFlag && !gripFlag)
+            {
+                CheckCarryRabbit();
+            }
+            else if (holdingRabbitFlag && !gripFlag)
+            {
+                TransferGift();
+            }
+            else if (gripFlag)
+            {
+                CarryRabbit();
+            }
+
+            PlayerMove();
+
+            // ギフト所持数の更新
+            image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
+            image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
         }
-        else if (gripFlag)
+        else
         {
-            CarryRabbit();
+            PlayerAnimator.enabled = false;
         }
-
-        PlayerMove();
-
-        // ギフト所持数の更新
-        image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
-        image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
     }
 
     /// <summary>
@@ -494,54 +505,60 @@ public sealed class Player : BaseMonoBehaviour
         // ギフト（良）の所有数がオーバーしていないかチェック
         if (goodGiftNum + badGiftNum < giftMaxNum)
         {
-            //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
-            if (other.gameObject.tag == "gift")
+            if (SceneStatusManager.Instance.PauseButton == 1)
             {
-                // ギフト回収SE
-                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+                //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
+                if (other.gameObject.tag == "gift")
+                {
+                    // ギフト回収SE
+                    SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-                //other.gameObject.GetComponent<Gift>().GoodFlag = true;
-                // プレイヤーが吸収
-                //Destroy(other.gameObject);
+                    //other.gameObject.GetComponent<Gift>().GoodFlag = true;
+                    // プレイヤーが吸収
+                    //Destroy(other.gameObject);
 
-                // プレイヤーがギフト吸収したことを知らせる
-                other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
-                // 取得したギフトの情報を保存
-                giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
-                giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
+                    // プレイヤーがギフト吸収したことを知らせる
+                    other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+                    // 取得したギフトの情報を保存
+                    giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
+                    giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
 
-                // ギフト数追加
-                goodGiftNum++;
-            }
-            //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
-            if (other.gameObject.tag == "Bad gift")
-            {
-                // ギフト回収SE
-                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+                    // ギフト数追加
+                    goodGiftNum++;
+                }
+                //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
+                if (other.gameObject.tag == "Bad gift")
+                {
+                    // ギフト回収SE
+                    SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-                Debug.Log("あたってる");
-                GameStatusManager.Instance.SetLiftGift(true);
-                //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
-                Vector3 m = GiftArea.transform.position;
-                other.transform.position = m;
-                other.transform.parent = GiftArea.transform;
-                other.transform.rotation = Quaternion.identity;
+                    Debug.Log("あたってる");
+                    GameStatusManager.Instance.SetLiftGift(true);
+                    //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
+                    Vector3 m = GiftArea.transform.position;
+                    other.transform.position = m;
+                    other.transform.parent = GiftArea.transform;
+                    other.transform.rotation = Quaternion.identity;
 
-                // プレイヤーがギフト吸収したことを知らせる
-                other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
-                // 取得したギフトの情報を保存
-                giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustLimitTime;
-                giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
+                    // プレイヤーがギフト吸収したことを知らせる
+                    other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+                    // 取得したギフトの情報を保存
+                    giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustLimitTime;
+                    giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
 
-                // ギフト数追加
-                badGiftNum++;
+                    // ギフト数追加
+                    badGiftNum++;
+                }
             }
         }
 
         // うさぎと当たっているかチェック
         if (other.gameObject.tag == "Rabbit")
         {
-            other.gameObject.GetComponent<RabbitScript>().HitPlayer = true;
+            if (SceneStatusManager.Instance.PauseButton == 1)
+            {
+                other.gameObject.GetComponent<RabbitScript>().HitPlayer = true;
+            }
         }
     }
 
