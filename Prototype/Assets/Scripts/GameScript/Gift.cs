@@ -141,6 +141,11 @@ public class Gift : BaseMonoBehaviour
         {
             mastertime = badLimitTime + dustLimitTime;
         }
+
+        // パーティクル制御
+        this.transform.GetChild(6).gameObject.SetActive(true);
+        this.transform.GetChild(7).gameObject.SetActive(false);
+
     }
 
     /// <summary>
@@ -196,6 +201,9 @@ public class Gift : BaseMonoBehaviour
                     Gift03.GetComponent<Renderer>().material.color = Color.gray;
                     GoodIcon.SetActive(false);
                     BadIcon.SetActive(true);
+                    // パーティクル制御
+                    this.transform.GetChild(6).gameObject.SetActive(false);
+                    this.transform.GetChild(7).gameObject.SetActive(true);
                     if (!debug_one_time_)
                     {
                         mastertime = dustLimitTime;

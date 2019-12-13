@@ -2854,13 +2854,13 @@ PrefabInstance:
         type: 3}
       propertyPath: rabbitData.Array.data[0]
       value: 
-      objectReference: {fileID: 8809017777150170533, guid: 5c2ebf048b75c0e47a20721bb59564be,
+      objectReference: {fileID: 2997910791491892332, guid: 5c2ebf048b75c0e47a20721bb59564be,
         type: 3}
     - target: {fileID: 3809314087853764588, guid: a644562090b97b942b5e51135a3675e7,
         type: 3}
       propertyPath: rabbitData.Array.data[1]
       value: 
-      objectReference: {fileID: 930830448943413972, guid: 32d2437b015d2b74093c9cab229c96c0,
+      objectReference: {fileID: 2962614160115563503, guid: 32d2437b015d2b74093c9cab229c96c0,
         type: 3}
     - target: {fileID: 3809314087853764588, guid: a644562090b97b942b5e51135a3675e7,
         type: 3}
