@@ -43,7 +43,7 @@ public class TutorialState : MonoBehaviour
 
     void FadeIn()
     {
-        TutorialImage.color = new Color(red, green, blue, walfa);
+        //TutorialImage.color = new Color(red, green, blue, walfa);
         if(walfa <= 1f)
         {
             walfa += speed;
@@ -52,7 +52,7 @@ public class TutorialState : MonoBehaviour
 
     void FadeOut()
     {
-        TutorialImage.color = new Color(red, green, blue, walfa);
+        //TutorialImage.color = new Color(red, green, blue, walfa);
         if(walfa >= 0f)
         {
             walfa -= speed;

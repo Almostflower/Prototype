@@ -17,6 +17,7 @@ TagManager:
   - ChutorialGoodRabbit
   - ChutorialBadRabbit
   - FloatingCube
+  - TutorialWarp
   layers:
   - Default
   - TransparentFX

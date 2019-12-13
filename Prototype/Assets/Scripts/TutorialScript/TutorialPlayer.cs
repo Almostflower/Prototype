@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TutorialPlayer : BaseMonoBehaviour
 {
-    [SerializeField]
-    private GameObject footPrintPrefab;
-    float foottime = 0;
+    //[SerializeField]
+    //private GameObject footPrintPrefab;
+    //float foottime = 0;
     [SerializeField]
     private Animator PlayerAnimator;
     [SerializeField]
@@ -25,6 +25,9 @@ public class TutorialPlayer : BaseMonoBehaviour
     [SerializeField]
     private float rotateSpeed = 120f;
 
+    [SerializeField]
+    private int giftMaxNum;
+
     [SerializeField] private GameObject[] abarerukun;
 
     //加速フラグ
@@ -33,15 +36,42 @@ public class TutorialPlayer : BaseMonoBehaviour
     [SerializeField]
     private GameObject SparkParticle;
     Vector3 Direction;
+    /// <summary>
+    /// 所有ギフトの情報
+    /// </summary>
+    private float[] giftTime;
+    private bool[] giftType;
 
     ///<summary>
     ///プレイヤーの足元座標
     ///</summary>
     [SerializeField, Tooltip("足元座標")]
     private Transform footpos;
+    /// <summary>
+    /// 良いギフトの所有数
+    /// </summary>
+    [SerializeField, Tooltip("良いギフトの数")] private int goodGiftNum;
+    public int GoodGiftNum
+    {
+        get { return goodGiftNum; }
+        set { goodGiftNum = value; }
+    }
 
-    [SerializeField]
-    Score ChutorialScore;
+    /// <summary>
+    /// 悪いギフトの所有数
+    /// </summary>
+    [SerializeField, Tooltip("悪いギフトの数")] private int badGiftNum;
+    public int BadGiftNum
+    {
+        get { return badGiftNum; }
+        set { badGiftNum = value; }
+    }
+
+    /// <summary>
+    /// 持っているウサギの番号
+    /// </summary>
+    private int holdingRabbitNumber;
+
     /// <summary>
     /// ウサギを持ち続ける
     /// </summary>
@@ -77,6 +107,56 @@ public class TutorialPlayer : BaseMonoBehaviour
     {
         get { return holdingTimeCounter; }
     }
+
+    /// <summary>
+    /// UIのギフト表示
+    /// </summary>
+    [SerializeField]
+    private List<ImageNo> image_ = new List<ImageNo>();
+
+    /// <summary>
+    ///	スタミナの最大値
+    /// </summary>
+    [SerializeField]
+    private float staminamax = 0;
+    public float StaminaMax
+    {
+        get { return staminamax; }
+    }
+
+    /// <summary>
+    /// スタミナ現在量
+    /// </summary>
+    private float stamina = 0;
+    public float Stamina
+    {
+        get { return stamina; }
+    }
+
+    /// <summary>
+    /// スタミナを回復する速度
+    /// </summary>
+    [SerializeField]
+    private float staminarecoveryspeed = 0;
+
+    /// <summary>
+    /// スタミナ減少する速度
+    /// </summary>
+    [SerializeField]
+    private float staminaspeed = 0;
+
+    /// <summary>
+    /// 走っているかのフラグ
+    /// </summary>
+    private bool dashflag = false;
+
+    enum UIGfit
+    {
+        GiftGood,
+        GiftBad,
+        Max
+    }
+
     private void awake()
     {
         base.Awake();
@@ -85,13 +165,19 @@ public class TutorialPlayer : BaseMonoBehaviour
     // Use this for initialization
     void Start()
     {
+        goodGiftNum = 0;
+        badGiftNum = 0;
+        giftTime = new float[giftMaxNum];
+        giftType = new bool[giftMaxNum];
         holdingRabbitFlag = false;
         holdingTimeCounter = 0;
-        
+        holdingRabbitNumber = -1;
+        stamina = 0;
+        dashflag = false;
+
         SparkParticle.SetActive(false);
 
         gripFlag = false;
-
 
         abarerukun[0].SetActive(false);
         abarerukun[1].SetActive(false);
@@ -109,19 +195,35 @@ public class TutorialPlayer : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        this.foottime += Time.deltaTime;
-        if (this.foottime > 0.35f)
+        //this.foottime += Time.deltaTime;
+        //if (this.foottime > 0.35f)
+        //{
+        //    this.foottime = 0;
+        //    Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
+        //}
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            this.foottime = 0;
-            Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
+            SceneStatusManager.Instance.PauseButton *= -1;
         }
-
-        if (gripFlag)
+        if (SceneStatusManager.Instance.PauseButton == 1)
         {
-            CarryRabbit();
-        }
+            PlayerAnimator.enabled = true;
 
-        PlayerMove();
+            if (gripFlag)
+            {
+                CarryRabbit();
+            }
+
+            PlayerMove();
+
+            // ギフト所持数の更新
+            image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
+            image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
+        }
+        else
+        {
+            PlayerAnimator.enabled = false;
+        }
     }
 
     /// <summary>
@@ -153,11 +255,40 @@ public class TutorialPlayer : BaseMonoBehaviour
             transform.rotation = Quaternion.LookRotation(newForward, transform.up);
         }
     }
+    float animflame;
     private void PlayerMove()
     {
-        //velocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        if (Input.GetAxis("Vertical") == 0.0f)
+        {
+            PlayerAnimator.SetFloat(PlayerActionParameter, 0.0f);
+        }
+        else
+        {
+            animflame = Input.GetAxis("Vertical");
+            PlayerAnimator.SetFloat(PlayerActionParameter, animflame);
+        }
         if (speedflag)
         {
+            //スタミナ減少
+            stamina -= staminaspeed;
+
+            //スタミナが0以下じゃないなら
+            if (stamina > 0)
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 2.5f);
+                SparkParticle.SetActive(true);
+            }
+            else
+            {
+                //走るアニメーション速度変更
+                PlayerAnimator.SetFloat("Speed", 1.0f);
+                SparkParticle.SetActive(false);
+                speedflag = false;//通常時
+                dashflag = false;//通常時
+                stamina = 0;
+            }
+
             if (Speed < RunSpeed)
             {
                 Speed += 0.1f;
@@ -171,6 +302,32 @@ public class TutorialPlayer : BaseMonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            //走るアニメーション速度変更
+            PlayerAnimator.SetFloat("Speed", 1.0f);
+            SparkParticle.SetActive(false);
+            speedflag = false;//通常時
+            dashflag = false;//通常時
+
+            //スタミナを回復
+            stamina += staminaspeed;
+
+
+            //スタミナが最大なら
+            if (stamina >= staminamax)
+            {
+                TutorialManagerScript.Instance.SetPhaseNumber(6);
+                stamina = staminamax;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speedflag = true;//加速時
+            dashflag = true;//加速時
+            //Debug.LogError("話した");
+        }
+
 
         if (PlayerController.isGrounded)
         {
@@ -178,48 +335,21 @@ public class TutorialPlayer : BaseMonoBehaviour
 
             if (Input.GetAxis("Vertical") >= 0.0f)
             {
+                PlayerAnimator.SetFloat("Speed", 1.0f);
+                PlayerAnimator.SetBool("Back", false);
+                //前進んでいるとき
                 Direction = (transform.forward * Input.GetAxis("Vertical")) * Speed * Time.fixedDeltaTime;
-
-                if (Input.GetKeyDown(KeyCode.LeftShift))
-                {
-                    //走るアニメーション速度変更
-                    PlayerAnimator.SetFloat("Speed", 1.5f);
-                    SparkParticle.SetActive(true);
-                    speedflag = true;//加速時
-                }
-                else if (Input.GetKeyUp(KeyCode.LeftShift))
-                {
-                    //走るアニメーション速度変更
-                    PlayerAnimator.SetFloat("Speed", 0.8f);
-                    SparkParticle.SetActive(false);
-                    speedflag = false;//通常時
-                }
-
-                if (Input.GetAxis("Vertical") != 0f)
-                {
-                    PlayerAnimator.SetFloat(PlayerActionParameter, 1f);
-                }
-
-                if (Input.GetAxis("Horizontal") >= 0f)
-                {
-                    PlayerAnimator.SetFloat(PlayerActionParameter, 1f);
-                }
             }
             else
             {
-                //走るアニメーション速度変更
-                PlayerAnimator.SetFloat("Speed", 0.8f);
-                SparkParticle.SetActive(false);
-                speedflag = false;//通常時
-
-                Direction = (transform.forward * Input.GetAxis("Vertical")) * (Speed * 0.6f) * Time.fixedDeltaTime;
-                PlayerAnimator.SetFloat("Move", 0.3f);
-                PlayerAnimator.SetFloat(PlayerActionParameter, 0.6f);
-            }
-
-            if (Input.GetAxis("Vertical") == 0f && Input.GetAxis("Horizontal") == 0f)
-            {
-                PlayerAnimator.SetFloat(PlayerActionParameter, 0f);
+                //後ろ下がっているとき
+                if (!dashflag)
+                {
+                    PlayerAnimator.SetBool("Back", true);
+                    SparkParticle.SetActive(false);
+                    PlayerAnimator.SetFloat(PlayerActionParameter, -0.1f);
+                    Direction = (transform.forward * Input.GetAxis("Vertical")) * (Speed * 0.3f) * Time.fixedDeltaTime;
+                }
             }
         }
         else
@@ -228,13 +358,8 @@ public class TutorialPlayer : BaseMonoBehaviour
         }
 
 
-        velocity.y += Physics.gravity.y * Time.deltaTime;
-
         PlayerController.Move(Direction);
     }
-
-
-
 
     /// <summary>
     /// ウサギを運んでいる
@@ -284,6 +409,14 @@ public class TutorialPlayer : BaseMonoBehaviour
                 //other.gameObject.SetActive(false);
             }
         }
+
+        if(other.gameObject.tag == "TutorialWarp")
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                TutorialManagerScript.Instance.SetPhaseNumber(7);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -301,5 +434,10 @@ public class TutorialPlayer : BaseMonoBehaviour
             //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftbad);
             Destroy(other.gameObject);
         }
+    }
+
+        public void SetDirection(Vector3 pos)
+    {
+        PlayerController.Move(pos);
     }
 }

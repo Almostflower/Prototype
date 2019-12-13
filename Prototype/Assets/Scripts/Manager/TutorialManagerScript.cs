@@ -16,7 +16,7 @@ public class TutorialManagerScript : SingletonMonoBehaviour<TutorialManagerScrip
 
     public int GetPhaseNumber()
     {
-        Debug.Log(Phase);
+        //Debug.Log(Phase);
         return Phase;
     }
 
