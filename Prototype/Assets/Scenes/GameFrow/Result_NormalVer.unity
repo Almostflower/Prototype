@@ -1257,6 +1257,31 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -450
       objectReference: {fileID: 0}
+    - target: {fileID: 3729341434339681850, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: scoreTime.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729341434339681850, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: scoreTime.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729341434339681850, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: scoreTime.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729341434339681850, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: scoreTime.Array.data[2]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729341434339681850, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: scoreTime.Array.data[3]
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901930a11bf84584db0d585f6c85d591, type: 3}
 --- !u!1001 &7996685939197776540
