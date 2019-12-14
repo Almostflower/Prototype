@@ -40,14 +40,14 @@ public class OriginalFade : MonoBehaviour
             GameFade();
         }
 
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            Fadein();
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Fadeout();
-        }
+        //if(Input.GetKeyDown(KeyCode.I))
+        //{
+        //    Fadein();
+        //}
+        //if(Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Fadeout();
+        //}
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class OriginalFade : MonoBehaviour
     public void Fadein()
     {
         group.blocksRaycasts = false;
-        fade.FadeIn(3, () =>
+        fade.FadeIn(3.0f, () =>
         {
             //image.color = (isMainColor) ? color1 : color2;
             //isMainColor = !isMainColor;
@@ -81,7 +81,7 @@ public class OriginalFade : MonoBehaviour
             image.color = new Color(255, 255, 255, 0);
             //image.color = (isMainColor) ? color1 : color2;
             //isMainColor = !isMainColor;
-            fade.FadeOut(3, () => {
+            fade.FadeOut(3.0f, () => {
                 group.blocksRaycasts = true;
             });
         });

@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 public class TutorialScene : MonoBehaviour
 {
     //[SerializeField] UnityEngine.UI.Image image = null;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         SceneStatusManager.Instance.SetFadeOut(true);
         SceneStatusManager.Instance.SetFadeIn(false);
-
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
 		//BGM再生
 		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Tutorial_BGM);
 	}
@@ -25,13 +27,15 @@ public class TutorialScene : MonoBehaviour
 			//決定音
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
 
-			//SceneStatusManager.Instance.SetFadeIn(false);
-            //SceneStatusManager.Instance.SetFadeIn(true);
+			SceneStatusManager.Instance.SetFadeIn(false);
+            SceneStatusManager.Instance.SetFadeIn(true);
+
         }
 
         if(SceneStatusManager.Instance.GetSceneChange())
         {
-			SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+            SceneStatusManager.Instance.SetSceneChange(false);
         }
     }
 }

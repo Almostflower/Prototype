@@ -19,6 +19,7 @@ public class TitleCameraTimeline : MonoBehaviour
     private float AnimTimer;
     private bool AnimStartFlag,FadeFlag;
     // Start is called before the first frame update
+
     void Start()
     {
         FadeFlag = false;
@@ -64,10 +65,12 @@ public class TitleCameraTimeline : MonoBehaviour
             if(SceneStatusManager.Instance.TitleStart == -1)
             {
                 SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+                SceneStatusManager.Instance.SetSceneChange(false);
             }
             else
             {
                 Quit();
+                SceneStatusManager.Instance.SetSceneChange(false);
             }
         }
     }
