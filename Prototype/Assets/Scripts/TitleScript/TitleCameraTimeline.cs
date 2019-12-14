@@ -64,12 +64,10 @@ public class TitleCameraTimeline : MonoBehaviour
             if(SceneStatusManager.Instance.TitleStart == -1)
             {
                 SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
-                SceneStatusManager.Instance.SetSceneChange(false);
             }
             else
             {
                 Quit();
-                SceneStatusManager.Instance.SetSceneChange(false);
             }
         }
     }
