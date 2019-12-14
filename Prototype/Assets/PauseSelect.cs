@@ -26,12 +26,15 @@ public class PauseSelect : MonoBehaviour
     private GameObject ExitOff;
 
     [SerializeField]
+    private GameObject Background;
+
+    [SerializeField]
     private int SelectNum;
 
     private bool SelectFlag;
 
-    private bool TimeCountFlag;
-    private float FadeTime;
+    //private bool TimeCountFlag;
+    //private float FadeTime;
 
     // Start is called before the first frame update
     void Start()
@@ -44,21 +47,23 @@ public class PauseSelect : MonoBehaviour
         ExitOn.SetActive(false);
         ExitOff.SetActive(false);
         SelectNum = 0;
-        TimeCountFlag = false;
-        FadeTime = 0.0f;
+        Background.SetActive(false);
+        //TimeCountFlag = false;
+        //FadeTime = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(TimeCountFlag)
-        {
-            FadeTime += Time.deltaTime;
-        }
-        if(FadeTime >= 1.5f)
-        {
-            SceneChangeFunc();
-        }
+        //if(TimeCountFlag)
+        //{
+        //    FadeTime += Time.deltaTime;
+        //    
+        //}
+        //if(FadeTime >= 1.5f)
+        //{
+        //    //SceneChangeFunc();
+        //}
 
         if(SceneStatusManager.Instance.PauseButton == -1)
         {
@@ -72,21 +77,26 @@ public class PauseSelect : MonoBehaviour
 
         if(SelectFlag)
         {
+            Background.SetActive(true);
             SelectFunc();
+        }
+        else
+        {
+            Background.SetActive(false);
         }
 
     }
 
     private void SceneChangeFunc()
     {
-        if(SelectNum == 0)
-        {
-            SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
-        }
-        if(SelectNum == 1)
-        {
-            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
-        }
+        //if(SelectNum == 0)
+        //{
+        //    SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+        //}
+        //if(SelectNum == 1)
+        //{
+        //    SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        //}
     }
 
     private void SelectFunc()
@@ -140,15 +150,16 @@ public class PauseSelect : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 SceneStatusManager.Instance.SetFadeIn(true);
-                TimeCountFlag = true;
+                //TimeCountFlag = true;
             }
         }
         else if (SelectNum == 1)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                SceneStatusManager.Instance.SetFadeIn(true);
-                TimeCountFlag = true;
+                SceneStatusManager.Instance.PauseButton = 1;
+                //SceneStatusManager.Instance.SetFadeIn(true);
+                //TimeCountFlag = true;
                 //SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
             }
         }
