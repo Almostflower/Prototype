@@ -317,7 +317,10 @@ public class TutorialPlayer : BaseMonoBehaviour
             //スタミナが最大なら
             if (stamina >= staminamax)
             {
-                TutorialManagerScript.Instance.SetPhaseNumber(6);
+                if(SceneStatusManager.Instance.TutorialWarp)
+                {
+                    TutorialManagerScript.Instance.SetPhaseNumber(6);
+                }
                 stamina = staminamax;
             }
         }

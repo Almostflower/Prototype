@@ -19,26 +19,26 @@ public class Warp : BaseMonoBehaviour
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
             if (this.transform.GetChild(0).GetComponent<Circle>().HitPlayerFrag)
             {
-                Vector3 direction = warp2.position -
+            this.transform.GetChild(1).GetComponent<Circle>().HitPlayerFrag = false;
+            Vector3 direction = warp2.position -
                                         this.transform.GetChild(0).transform.position;
-                Debug.Log("NowTele");
 
-                player.GetComponent<TutorialPlayer>().SetDirection(direction);
-//                player.GetComponent<Player>().SetDirection(direction);
+                player.GetComponent<Player>().SetDirection(direction);
             }
 
             if (this.transform.GetChild(1).GetComponent<Circle>().HitPlayerFrag)
             {
+            this.transform.GetChild(1).GetComponent<Circle>().HitPlayerFrag = false;
                 Vector3 direction = warp1.position -
                                         this.transform.GetChild(1).transform.position;
-                player.GetComponent<TutorialPlayer>().SetDirection(direction);
-                //                player.GetComponent<Player>().SetDirection(direction);
+
+                                player.GetComponent<Player>().SetDirection(direction);
             }
-        }
+        //}
         
     }
 }

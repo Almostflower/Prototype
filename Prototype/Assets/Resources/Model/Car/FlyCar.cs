@@ -78,6 +78,6 @@ public class FlyCar : BaseMonoBehaviour
             isDead = true;
         }
 
-        Debug.Log(counter);
+        //Debug.Log(counter);
     }
 }

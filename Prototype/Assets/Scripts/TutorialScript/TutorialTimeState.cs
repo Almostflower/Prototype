@@ -28,15 +28,17 @@ public class TutorialTimeState : MonoBehaviour
     [SerializeField]
     private GameObject BadRabbitObj;
 
+    [SerializeField]
+    private Transform point1, point2, point3, point4;
 
     [SerializeField]
     private GameObject[] tutorialtex;
     private void Awake()
     {
-        GoodGiftObj = Instantiate(GoodGiftObj, new Vector3(0.0f, 0.5f, 10.0f), Quaternion.identity);
-        BadGiftObj = Instantiate(BadGiftObj, new Vector3(0.0f, 0.5f, 10.0f), Quaternion.identity);
-        GoodRabbitObj = Instantiate(GoodRabbitObj, new Vector3(0.0f, 0.5f, 15.0f), Quaternion.identity);
-        BadRabbitObj = Instantiate(BadRabbitObj, new Vector3(0.0f, 0.5f, 15.0f), Quaternion.identity);
+        GoodGiftObj = Instantiate(GoodGiftObj, point1.position, Quaternion.identity);
+        BadGiftObj = Instantiate(BadGiftObj, point2.position, Quaternion.identity);
+        GoodRabbitObj = Instantiate(GoodRabbitObj, point3.position, Quaternion.identity);
+        BadRabbitObj = Instantiate(BadRabbitObj, point4.position, Quaternion.identity);
     }
     // Start is called before the first frame update
     void Start()
@@ -60,12 +62,7 @@ public class TutorialTimeState : MonoBehaviour
     int statecount5 = 11;
     int statecount6 = 12;
     int statecount7 = 13;
-    int statecount8;
-    int statecount9;
-    int statecount10;
-    int statecount11;
-    int statecount12;
-    int statecount13;
+
     void Update()
     {
         if(TutorialManagerScript.Instance.GetTimeCheckFlag() == true)
@@ -100,24 +97,6 @@ public class TutorialTimeState : MonoBehaviour
                         break;
                     case 7:
                         statecount7++;
-                        break;
-                    case 8:
-                        statecount8++;
-                        break;
-                    case 9:
-                        statecount9++;
-                        break;
-                    case 10:
-                        statecount10++;
-                        break;
-                    case 11:
-                        statecount11++;
-                        break;
-                    case 12:
-                        statecount12++;
-                        break;
-                    case 13:
-                        statecount13++;
                         break;
                 }
             }
@@ -190,6 +169,7 @@ public class TutorialTimeState : MonoBehaviour
                             ActiveImage(statecount5);
                         }
 
+                        SceneStatusManager.Instance.TutorialWarp = true;
                         nowTime = 0.0f;
                     }
                     break;

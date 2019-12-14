@@ -11,6 +11,7 @@ public class Circle : BaseMonoBehaviour
     public bool HitPlayerFrag
     {
         get { return hitPlayerFrag; }
+        set { hitPlayerFrag = value; }
     }
 
     protected override void Awake()

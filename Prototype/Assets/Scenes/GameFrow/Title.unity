@@ -141,7 +141,6 @@ MonoBehaviour:
   select1: {fileID: 1164382815}
   select2: {fileID: 1184348881}
   target_rotate: 0
-  switchbutton: 1
 --- !u!224 &10604440 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6050286555144774664, guid: 065bc3df305aee44f9bfab0b4d69fb3c,
@@ -14940,8 +14939,8 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   mGlowSize: 10
-  mGlowColor: {r: 1, g: 1, b: 1, a: 1}
-  mGlowIntensitive: 3
+  mGlowColor: {r: 0.8071759, g: 0.9433962, b: 0.14684942, a: 1}
+  mGlowIntensitive: 4
   mGlowQuality: 5
 --- !u!114 &1164382818
 MonoBehaviour:
@@ -15057,7 +15056,7 @@ GameObject:
   - component: {fileID: 1184348883}
   - component: {fileID: 1184348882}
   m_Layer: 5
-  m_Name: Start (1)
+  m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15076,14 +15075,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9811321, b: 0.36311793, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 421ffbc194c8596438b4e202c9c2bfc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a063d89825acf1b44a0c17aabfc29303, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15093,8 +15092,8 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   mGlowSize: 10
-  mGlowColor: {r: 1, g: 1, b: 1, a: 1}
-  mGlowIntensitive: 3
+  mGlowColor: {r: 1, g: 0.23137254, b: 0.64951223, a: 1}
+  mGlowIntensitive: 4
   mGlowQuality: 5
 --- !u!222 &1184348883
 CanvasRenderer:
@@ -24745,7 +24744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141186, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22424616, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
       propertyPath: m_LocalPosition.x

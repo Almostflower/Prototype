@@ -181,7 +181,7 @@ public class TutorialGift : BaseMonoBehaviour
             {
                 gameObject.tag = "ChutorialBadGift";
                 Debug.Log("ギフトが悪くなった");
-                this.GetComponent<Renderer>().material.color = Color.red;
+                //this.GetComponent<Renderer>().material.color = Color.red;
                 GoodIcon.SetActive(false);
                 BadIcon.SetActive(true);
                 if (!debug_one_time_)

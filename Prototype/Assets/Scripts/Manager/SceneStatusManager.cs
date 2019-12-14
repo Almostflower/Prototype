@@ -10,7 +10,19 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
     private bool SceneChange;
     private int Pausebuttonflag = 1;
     private bool Pausebuttonselect = false;
+    private int TitleStartFlag = -1;
+    private bool TutorialWarpPhase = false;
 
+    public bool TutorialWarp
+    {
+        get { return TutorialWarpPhase; }
+        set { TutorialWarpPhase = value; }
+    }
+    public int TitleStart
+    {
+        get { return TitleStartFlag; }
+        set { TitleStartFlag = value; }
+    }
     public int PauseButton
     {
         get { return Pausebuttonflag; }

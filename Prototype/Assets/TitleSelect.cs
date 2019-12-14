@@ -10,8 +10,7 @@ public class TitleSelect : MonoBehaviour
     private GameObject select2;
 
     public float target_rotate = 90;
-    [SerializeField]
-    private bool switchbutton;
+
     // Use this for initialization
     void Start()
     {
@@ -21,7 +20,13 @@ public class TitleSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(switchbutton)
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+            SceneStatusManager.Instance.TitleStart *= -1;
+        }
+
+        if(SceneStatusManager.Instance.TitleStart == -1)
         {
             select1.SetActive(true);
             select2.SetActive(false);

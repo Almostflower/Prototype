@@ -61,7 +61,23 @@ public class TitleCameraTimeline : MonoBehaviour
 
         if(SceneStatusManager.Instance.GetSceneChange())
         {
-			SceneManager.LoadSceneAsync(1,LoadSceneMode.Single);
+            if(SceneStatusManager.Instance.TitleStart == -1)
+            {
+                SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+            }
+            else
+            {
+                Quit();
+            }
         }
+    }
+
+    void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+    UnityEngine.Application.Quit();
+#endif
     }
 }
