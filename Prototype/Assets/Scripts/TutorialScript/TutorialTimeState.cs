@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class TutorialTimeState : MonoBehaviour
 {
     public enum THUTORIALSTATE
@@ -195,6 +196,7 @@ public class TutorialTimeState : MonoBehaviour
                         if(Input.GetKeyDown(KeyCode.Space))
                         {
                             ResetImage();
+                            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
                         }
                         nowTime = 0.0f;
                     }

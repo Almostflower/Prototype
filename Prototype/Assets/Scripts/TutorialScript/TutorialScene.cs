@@ -25,8 +25,8 @@ public class TutorialScene : MonoBehaviour
 			//決定音
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
 
-			SceneStatusManager.Instance.SetFadeIn(false);
-            SceneStatusManager.Instance.SetFadeIn(true);
+			//SceneStatusManager.Instance.SetFadeIn(false);
+            //SceneStatusManager.Instance.SetFadeIn(true);
         }
 
         if(SceneStatusManager.Instance.GetSceneChange())
