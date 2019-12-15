@@ -14,7 +14,7 @@ public class Count : MonoBehaviour
     /// <summary>
     /// ギフトとウサギの数の表示までの時間
     /// </summary>
-    [SerializeField]private int[] scoreTime;
+    [SerializeField]private int scoreTime;
 
     /// <summary>
     /// 経過時間
@@ -45,7 +45,7 @@ public class Count : MonoBehaviour
         counter += Time.deltaTime;
 
         // 一つ目
-        if (counter >= scoreTime[0])
+        if (counter >= scoreTime)
         {
             image_[(int)Item.GiftGood].SetNo(Score.GetGiftGood());
         }
@@ -55,7 +55,7 @@ public class Count : MonoBehaviour
         }
 
         // 二つ目
-        if (counter >= scoreTime[1])
+        if (counter >= scoreTime + 1)
         {
             image_[(int)Item.GiftBad].SetNo(Score.GetGiftBad());
         }
@@ -65,7 +65,7 @@ public class Count : MonoBehaviour
         }
 
         // 三つ目
-        if (counter >= scoreTime[2])
+        if (counter >= scoreTime + 2)
         {
 
             image_[(int)Item.RabbitGood].SetNo(Score.GetRabbitGood());
@@ -76,7 +76,7 @@ public class Count : MonoBehaviour
         }
 
         // 四つ目
-        if (counter >= scoreTime[3])
+        if (counter >= scoreTime + 3)
         {
             image_[(int)Item.RabbitBad].SetNo(Score.GetRabbitBad());
         }
