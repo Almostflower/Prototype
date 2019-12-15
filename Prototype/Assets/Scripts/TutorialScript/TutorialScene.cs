@@ -22,7 +22,7 @@ public class TutorialScene : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
 			//決定音
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);

@@ -15,11 +15,22 @@ public class Warp : BaseMonoBehaviour
     {
         
     }
-
+    float resettime = 0.0f;
+    bool warpflag = false;
     // Update is called once per frame
     public override void UpdateNormal()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (warpflag)
+        {
+            resettime += Time.deltaTime;
+
+            if (resettime > 2.0f)
+            {
+                warpflag = false;
+                resettime = 0.0f;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && !warpflag || Input.GetKey(KeyCode.Joystick1Button2) && !warpflag)
         {
             if (this.transform.GetChild(0).GetComponent<Circle>().HitPlayerFrag)
             {

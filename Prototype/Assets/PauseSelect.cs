@@ -98,9 +98,52 @@ public class PauseSelect : MonoBehaviour
         //    SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
         //}
     }
-
+    float selectresettime = 0.0f;
+    float resettime = 0.0f;
+    bool acadebuttonflag = false;
+    bool selectflag = false;
     private void SelectFunc()
     {
+        if(selectflag)
+        {
+            selectresettime += Time.deltaTime;
+
+            if(selectresettime > 0.5f)
+            {
+                selectresettime = 0.0f;
+                selectflag = false;
+            }
+        }
+        if(acadebuttonflag)
+        {
+            resettime += Time.deltaTime;
+
+            if(resettime > 0.5f)
+            {
+                resettime = 0.0f;
+                acadebuttonflag = false;
+            }
+        }
+        if (Input.GetAxisRaw("Vertical") <= -1.0f && !acadebuttonflag)
+        {
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+            acadebuttonflag = true;
+
+            if (SelectNum < 3)
+            {
+                SelectNum++;
+            }
+        }
+        if (Input.GetAxisRaw("Vertical") >= 1.0f && !acadebuttonflag)
+        {
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+            acadebuttonflag = true;
+            if (SelectNum > 0)
+            {
+                SelectNum--;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (SelectNum < 3)
@@ -147,26 +190,30 @@ public class PauseSelect : MonoBehaviour
 
         if (SelectNum == 0)
         {
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button3) && !selectflag)
             {
+                selectflag = true;
                 SceneStatusManager.Instance.SetFadeIn(true);
+                SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
                 //TimeCountFlag = true;
             }
         }
         else if (SelectNum == 1)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.Joystick1Button0) && !selectflag)
             {
+                selectflag = true;
                 SceneStatusManager.Instance.PauseButton = 1;
                 //SceneStatusManager.Instance.SetFadeIn(true);
                 //TimeCountFlag = true;
-                //SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+
             }
         }
         else if (SelectNum == 2)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.Joystick1Button0) && !selectflag)
             {
+                selectflag = true;
                 Quit();
             }
         }

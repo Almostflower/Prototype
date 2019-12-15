@@ -206,6 +206,8 @@ public sealed class Player : BaseMonoBehaviour
         }
         Destroy(gameObject);
     }
+    float pauseresettime = 0.0f;
+    bool pauseflag = false;
     // Update is called once per frame
     public override void UpdateNormal()
     {
@@ -215,8 +217,18 @@ public sealed class Player : BaseMonoBehaviour
         //    this.foottime = 0;
         //    Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
         //}
-        if(Input.GetKeyDown(KeyCode.P))
+        if(pauseflag)
         {
+            pauseresettime += Time.deltaTime;
+            if(pauseresettime > 0.5f)
+            {
+                pauseresettime = 0.0f;
+                pauseflag = false;
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Joystick1Button5) && !pauseflag)
+        {
+            pauseflag = true;
             SceneStatusManager.Instance.PauseButton *= -1;
         }
         if(SceneStatusManager.Instance.PauseButton == 1)
@@ -231,10 +243,10 @@ public sealed class Player : BaseMonoBehaviour
             {
                 TransferGift();
             }
-            else if (gripFlag)
-            {
-                CarryRabbit();
-            }
+            //else if (gripFlag)
+            //{
+            //    CarryRabbit();
+            //}
 
             PlayerMove();
 
@@ -324,7 +336,7 @@ public sealed class Player : BaseMonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton1))
         {
             //走るアニメーション速度変更
             PlayerAnimator.SetFloat("Speed", 1.0f);
@@ -341,7 +353,7 @@ public sealed class Player : BaseMonoBehaviour
                 stamina = staminamax;
             }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.JoystickButton1))
         {
             speedflag = true;//加速時
             dashflag = true;//加速時
@@ -471,30 +483,30 @@ public sealed class Player : BaseMonoBehaviour
     /// <summary>
     /// ウサギを運んでいる
     /// </summary>
-    private void CarryRabbit()
-    {
-        // 握力ゲージの処理
-        if (Input.GetKey(KeyCode.Space))
-        {
-            holdingTimeCounter -= Time.deltaTime;
-            if (holdingTimeCounter <= 0)
-            {
-                gripFlag = false;
+    //private void CarryRabbit()
+    //{
+    //    // 握力ゲージの処理
+    //    if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
+    //    {
+    //        holdingTimeCounter -= Time.deltaTime;
+    //        if (holdingTimeCounter <= 0)
+    //        {
+    //            gripFlag = false;
 
-                // あばれる君を削除
-                //abarerukun[0].SetActive(false);
-                //abarerukun[1].SetActive(false);
-            }
-        }
-        else
-        {
-            gripFlag = false;
+    //            // あばれる君を削除
+    //            //abarerukun[0].SetActive(false);
+    //            //abarerukun[1].SetActive(false);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        gripFlag = false;
 
-            // あばれる君を削除
-            //abarerukun[0].SetActive(false);
-            //abarerukun[1].SetActive(false);
-        }
-    }
+    //        // あばれる君を削除
+    //        //abarerukun[0].SetActive(false);
+    //        //abarerukun[1].SetActive(false);
+    //    }
+    //}
 
     /// <summary>
     /// ギフトに触れた時状態によって、取得もしくは持ち上げるようにさせる

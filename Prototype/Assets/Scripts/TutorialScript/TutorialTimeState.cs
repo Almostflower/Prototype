@@ -64,16 +64,29 @@ public class TutorialTimeState : MonoBehaviour
     int statecount6 = 12;
     int statecount7 = 13;
 
+    float resettime = 0.0f;
+    bool setumeiflag = false;
     void Update()
     {
+        if(setumeiflag)
+        {
+            resettime += Time.deltaTime;
+
+            if(resettime > 0.5f)
+            {
+                setumeiflag = false;
+                resettime = 0.0f;
+            }
+        }
         if(TutorialManagerScript.Instance.GetTimeCheckFlag() == true)
         {
             TutorialManagerScript.Instance.SetPhaseCheck(true);
             nowTime += Time.deltaTime;
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) && !setumeiflag)
             {
-                switch(TutorialManagerScript.Instance.GetPhaseNumber())
+                setumeiflag = true;
+                switch (TutorialManagerScript.Instance.GetPhaseNumber())
                 {
                     case 0:
                         statecount0++;

@@ -29,14 +29,16 @@ public class TitleCameraTimeline : MonoBehaviour
 		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Title_BGM);
     }
 
+    bool acadeselect = false;
     // Update is called once per frame
     void Update()
     {
         //キー入力した時にタイムラインでフェード＆演出が開始されていく
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button3) && !acadeselect)
         {
-			//決定音
-			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
+            acadeselect = true;
+            //決定音
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
             //PlayTimeline();
             AnimStartFlag = true;
         }

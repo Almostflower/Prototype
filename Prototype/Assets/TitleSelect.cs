@@ -16,10 +16,22 @@ public class TitleSelect : MonoBehaviour
     {
 
     }
-
+    bool acedeselect = false;
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetAxisRaw("Vertical") >= 1.0f && !acedeselect)
+        {
+            acedeselect = true;
+            SceneStatusManager.Instance.TitleStart = 1;
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+        }
+        if(Input.GetAxisRaw("Vertical") <= -1.0f && acedeselect)
+        {
+            acedeselect = false;
+            SceneStatusManager.Instance.TitleStart = -1;
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+        }
         if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);

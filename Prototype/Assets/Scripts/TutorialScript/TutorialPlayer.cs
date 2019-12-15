@@ -201,18 +201,18 @@ public class TutorialPlayer : BaseMonoBehaviour
         //    this.foottime = 0;
         //    Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
         //}
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneStatusManager.Instance.PauseButton *= -1;
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    SceneStatusManager.Instance.PauseButton *= -1;
+        //}
         if (SceneStatusManager.Instance.PauseButton == 1)
         {
             PlayerAnimator.enabled = true;
 
-            if (gripFlag)
-            {
-                CarryRabbit();
-            }
+            //if (gripFlag)
+            //{
+            //    CarryRabbit();
+            //}
 
             PlayerMove();
 
@@ -302,7 +302,7 @@ public class TutorialPlayer : BaseMonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton1))
         {
             //走るアニメーション速度変更
             PlayerAnimator.SetFloat("Speed", 1.0f);
@@ -324,7 +324,7 @@ public class TutorialPlayer : BaseMonoBehaviour
                 stamina = staminamax;
             }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.JoystickButton1))
         {
             speedflag = true;//加速時
             dashflag = true;//加速時
@@ -367,35 +367,35 @@ public class TutorialPlayer : BaseMonoBehaviour
     /// <summary>
     /// ウサギを運んでいる
     /// </summary>
-    private void CarryRabbit()
-    {
-        // 握力ゲージの処理
-        if (Input.GetKey(KeyCode.Space))
-        {
-            holdingTimeCounter -= Time.deltaTime;
-            if (holdingTimeCounter <= 0)
-            {
-                gripFlag = false;
+    //private void CarryRabbit()
+    //{
+    //    // 握力ゲージの処理
+    //    if (Input.GetKey(KeyCode.Space))
+    //    {
+    //        holdingTimeCounter -= Time.deltaTime;
+    //        if (holdingTimeCounter <= 0)
+    //        {
+    //            gripFlag = false;
 
-                // あばれる君を削除
-                abarerukun[0].SetActive(false);
-                abarerukun[1].SetActive(false);
-            }
-        }
-        else
-        {
-            gripFlag = false;
+    //            // あばれる君を削除
+    //            abarerukun[0].SetActive(false);
+    //            abarerukun[1].SetActive(false);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        gripFlag = false;
 
-            // あばれる君を削除
-            abarerukun[0].SetActive(false);
-            abarerukun[1].SetActive(false);
-        }
-    }
+    //        // あばれる君を削除
+    //        abarerukun[0].SetActive(false);
+    //        abarerukun[1].SetActive(false);
+    //    }
+    //}
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "ChutorialGoodRabbit")
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
             {
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
                 TutorialManagerScript.Instance.SetPhaseNumber(2);
@@ -406,7 +406,7 @@ public class TutorialPlayer : BaseMonoBehaviour
 
         if (other.gameObject.tag == "ChutorialBadRabbit")
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
             {
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
                 TutorialManagerScript.Instance.SetPhaseNumber(4);
@@ -417,7 +417,7 @@ public class TutorialPlayer : BaseMonoBehaviour
 
         if(other.gameObject.tag == "TutorialWarp")
         {
-            if(Input.GetKeyDown(KeyCode.Q))
+            if(Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.Joystick1Button2))
             {
                 TutorialManagerScript.Instance.SetPhaseNumber(7);
             }
