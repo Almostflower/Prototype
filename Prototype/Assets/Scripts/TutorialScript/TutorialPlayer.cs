@@ -397,6 +397,7 @@ public class TutorialPlayer : BaseMonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
                 TutorialManagerScript.Instance.SetPhaseNumber(2);
                 Destroy(other.gameObject);
                 //other.gameObject.SetActive(false);
@@ -407,6 +408,7 @@ public class TutorialPlayer : BaseMonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
                 TutorialManagerScript.Instance.SetPhaseNumber(4);
                 Destroy(other.gameObject);
                 //other.gameObject.SetActive(false);
@@ -426,6 +428,7 @@ public class TutorialPlayer : BaseMonoBehaviour
     {
         if(other.gameObject.tag == "ChutorialGoodGift")
         {
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
             TutorialManagerScript.Instance.SetPhaseNumber(1);
             //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftgood);
             Destroy(other.gameObject);
@@ -433,13 +436,14 @@ public class TutorialPlayer : BaseMonoBehaviour
 
         if(other.gameObject.tag == "ChutorialBadGift")
         {
+            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
             TutorialManagerScript.Instance.SetPhaseNumber(3);
             //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftbad);
             Destroy(other.gameObject);
         }
     }
 
-        public void SetDirection(Vector3 pos)
+    public void SetDirection(Vector3 pos)
     {
         PlayerController.Move(pos);
     }
