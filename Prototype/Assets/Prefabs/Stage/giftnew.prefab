@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420ae8b823dc8ae4d89c47c11593bbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gift01: {fileID: 7468193908706302473}
-  Gift02: {fileID: 6292283614811742180}
-  Gift03: {fileID: 4855907797411717120}
+  Gift01: {fileID: 8968974279551364433}
+  Gift02: {fileID: 6766366320935057188}
+  Gift03: {fileID: 7100500957128685204}
   debug_mode_: 0
   timer_text_: {fileID: 333137656918807828}
   gauge_: {fileID: 4161137037212437175}
