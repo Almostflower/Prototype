@@ -193,10 +193,8 @@ public class GiftManager : BaseMonoBehaviour
 		int badscore = Random.Range(badminscore_, badmaxscore_);
 		float badlimittime = Random.Range(badminlimittime_, badmaxlimittime_);
 		float dustlimittime = Random.Range(dustminlimittime_, dustmaxlimittime_);
-
         giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
         giftManager[index].transform.parent = this.transform;
-
         giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
 		giftManager[index].GetComponent<Gift>().DebugOneTime = debug_one_time_;
         isExistence[index] = true;
@@ -212,9 +210,10 @@ public class GiftManager : BaseMonoBehaviour
         float badlimittime = Random.Range(badminlimittime_, badmaxlimittime_);
         float dustlimittime = Random.Range(dustminlimittime_, dustmaxlimittime_);
         giftManager[index].SetActive(true);
-        giftManager[index].transform.position = GetPositionFromList();
         //giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
         giftManager[index].transform.parent = this.transform;
+        giftManager[index].transform.position = GetPositionFromList();
+        Debug.Log(GetPositionFromList());
         giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
         giftManager[index].GetComponent<Gift>().DebugOneTime = debug_one_time_;
         isExistence[index] = true;
