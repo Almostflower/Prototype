@@ -331,7 +331,7 @@ public sealed class Player : BaseMonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton1))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton1))
         {
             //走るアニメーション速度変更
             PlayerAnimator.SetFloat("Speed", 1.0f);
@@ -399,7 +399,6 @@ public sealed class Player : BaseMonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer 
                 || Input.GetKey(KeyCode.Joystick1Button0) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
             {
-                Debug.Log("きてます");
                 // ウサギキャッチSE
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
 
@@ -506,7 +505,7 @@ public sealed class Player : BaseMonoBehaviour
                     // 取得したギフトの情報を保存
                     giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
                     giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
-
+                    
                     // ギフト数追加
                     goodGiftNum++;
                 }

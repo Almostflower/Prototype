@@ -196,16 +196,16 @@ public class RabbitManager : BaseMonoBehaviour
     /// <param name="index"></param>
     private void playBirth(int index)
     {
+        rabbitManager[index].SetActive(true);
+
         if (index < goodRabbitMax)
         {
-            rabbitManager[index].SetActive(true);
             rabbitManager[index].transform.position = GetPositionFromList();
             //rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Good], GetPositionFromList(), Quaternion.identity);
             rabbitType[index] = RabbitType.Good;
         }
         else
         {
-            rabbitManager[index].SetActive(true);
             rabbitManager[index].transform.position = GetPositionFromList();
             //rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Bad], GetPositionFromList(), Quaternion.identity);
             rabbitType[index] = RabbitType.Bad;
