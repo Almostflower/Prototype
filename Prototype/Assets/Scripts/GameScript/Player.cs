@@ -31,8 +31,6 @@ public sealed class Player : BaseMonoBehaviour
     [SerializeField]
     private int giftMaxNum;
 
-    [SerializeField] private GameObject[] abarerukun;
-
     //加速フラグ
     bool speedflag = false;
     //コントローラーの縦方向の傾きを取得する変数
@@ -192,9 +190,6 @@ public sealed class Player : BaseMonoBehaviour
         SparkParticle.SetActive(false);
 
         gripFlag = false;
-
-        abarerukun[0].SetActive(false);
-        abarerukun[1].SetActive(false);
     }
     IEnumerator Disappearing()
     {
@@ -467,16 +462,6 @@ public sealed class Player : BaseMonoBehaviour
             // ウサギを運ぶ状態へ変更
             gripFlag = true;
 
-            // 暴れる君を生成
-            //if (rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
-            //{
-            //    abarerukun[0].SetActive(true);
-            //}
-            //else
-            //{
-            //    abarerukun[1].SetActive(true);
-            //}
-
         }
 
         rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
@@ -493,27 +478,6 @@ public sealed class Player : BaseMonoBehaviour
         {
             gripFlag = false;
         }
-        // 握力ゲージの処理
-        //if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
-        //{
-        //    holdingTimeCounter -= Time.deltaTime;
-        //    if (holdingTimeCounter <= 0)
-        //    {
-        //        gripFlag = false;
-        //
-        //        // あばれる君を削除
-        //        //abarerukun[0].SetActive(false);
-        //        //abarerukun[1].SetActive(false);
-        //    }
-        //}
-        //else
-        //{
-        //    gripFlag = false;
-        //
-        //    // あばれる君を削除
-        //    //abarerukun[0].SetActive(false);
-        //    //abarerukun[1].SetActive(false);
-        //}
     }
 
     /// <summary>
