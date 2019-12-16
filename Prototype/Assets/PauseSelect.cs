@@ -39,6 +39,10 @@ public class PauseSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //メモリー枯渇にならないように
+        System.GC.Collect();
+        Resources.UnloadUnusedAssets();
+
         SelectFlag = false;
         TitleOn.SetActive(false);
         TitleOff.SetActive(false);
@@ -220,6 +224,9 @@ public class PauseSelect : MonoBehaviour
     }
     void Quit()
     {
+        //メモリー枯渇にならないように
+        System.GC.Collect();
+        Resources.UnloadUnusedAssets();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_STANDALONE
