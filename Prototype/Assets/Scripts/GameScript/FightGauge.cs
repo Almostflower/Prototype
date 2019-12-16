@@ -32,34 +32,34 @@ public class FightGauge : BaseMonoBehaviour
 
 	void Start()
     {
-		background_.enabled = false;
-		count_ = 0;
+		//background_.enabled = false;
+		//count_ = 0;
 	}
 
 	public override void UpdateNormal()
 	{
 		// うさぎを持ったら
-		if (player_.GripFlag)
-		{
-			background_.enabled = true;
-			count_ = 0;
-			background_.fillAmount = player_.HoldingTimeCounter / player_.HoldingTime;
-		}
-		else
-		{
-			if (background_.fillAmount < 1)
-			{
-				background_.fillAmount += 0.1f;
-			}
-			else
-			{
-				count_ += Time.deltaTime;
-			}
-
-			if (count_ > hydetime_)
-			{
-				background_.enabled = false;
-			}
-		}
+		//if (player_.GripFlag)
+		//{
+		//	background_.enabled = true;
+		//	count_ = 0;
+		//	background_.fillAmount = player_.HoldingTimeCounter / player_.HoldingTime;
+		//}
+		//else
+		//{
+		//	if (background_.fillAmount < 1)
+		//	{
+		//		background_.fillAmount += 0.1f;
+		//	}
+		//	else
+		//	{
+		//		count_ += Time.deltaTime;
+		//	}
+        //
+		//	if (count_ > hydetime_)
+		//	{
+		//		background_.enabled = false;
+		//	}
+		//}
 	}
 }

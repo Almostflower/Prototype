@@ -74,47 +74,6 @@ public sealed class Player : BaseMonoBehaviour
     [SerializeField] private GameObject rabbitManager;
 
     /// <summary>
-    /// 持っているウサギの番号
-    /// </summary>
-    private int holdingRabbitNumber;
-
-    /// <summary>
-    /// ウサギを持ち続ける
-    /// </summary>
-    [SerializeField] private bool holdingRabbitFlag;
-    public bool HoldingRabbitFlag
-    {
-        get { return holdingRabbitFlag; }
-    }
-
-    /// <summary>
-    /// ウサギを持つ
-    /// </summary>
-    [SerializeField] private bool gripFlag;
-    public bool GripFlag
-    {
-        get { return gripFlag; }
-    }
-
-    /// <summary>
-    /// 握力時間
-    /// </summary>
-    [SerializeField] private float holdingTime;
-    public float HoldingTime
-    {
-        get { return holdingTime; }
-    }
-
-    /// <summary>
-    /// 握力経過時間
-    /// </summary>
-    private float holdingTimeCounter;
-    public float HoldingTimeCounter
-    {
-        get { return holdingTimeCounter; }
-    }
-
-    /// <summary>
     /// スコアのスクリプト
     /// </summary>
     [SerializeField]
@@ -181,15 +140,11 @@ public sealed class Player : BaseMonoBehaviour
         badGiftNum = 0;
         giftTime = new float[giftMaxNum];
         giftType = new bool[giftMaxNum];
-        holdingRabbitFlag = false;
-        holdingTimeCounter = 0;
-        holdingRabbitNumber = -1;
         stamina = 0;
         dashflag = false;
 
         SparkParticle.SetActive(false);
 
-        gripFlag = false;
     }
     IEnumerator Disappearing()
     {
@@ -203,7 +158,11 @@ public sealed class Player : BaseMonoBehaviour
     }
     float pauseresettime = 0.0f;
     bool pauseflag = false;
-    // Update is called once per frame
+    // Update is called once per 
+
+    /// <summary>
+    /// プレイヤーの更新
+    /// </summary>
     public override void UpdateNormal()
     {
         //this.foottime += Time.deltaTime;
@@ -212,6 +171,8 @@ public sealed class Player : BaseMonoBehaviour
         //    this.foottime = 0;
         //    Instantiate(footPrintPrefab, footpos.position, transform.rotation);//
         //}
+
+        // ポーズ
         if(pauseflag)
         {
             pauseresettime += Time.deltaTime;
@@ -221,27 +182,21 @@ public sealed class Player : BaseMonoBehaviour
                 pauseflag = false;
             }
         }
+
+        // 
         if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Joystick1Button5) && !pauseflag)
         {
             pauseflag = true;
             SceneStatusManager.Instance.PauseButton *= -1;
         }
+
+        // ウサギとのやり取り
         if(SceneStatusManager.Instance.PauseButton == 1)
         {
             PlayerAnimator.enabled = true;
-            // ウサギとの動作
-            if (!holdingRabbitFlag && !gripFlag)
-            {
-                CheckCarryRabbit();
-            }
-            else if (holdingRabbitFlag && !gripFlag)
-            {
-                TransferGift();
-            }
-            else if (gripFlag)
-            {
-                CarryRabbit();
-            }
+
+            // ウサギをつかんでいない状態
+            CheckCarryRabbit();
 
             PlayerMove();
 
@@ -397,14 +352,13 @@ public sealed class Player : BaseMonoBehaviour
         {
             // ボタン入力
             if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer 
-                || Input.GetKey(KeyCode.Joystick1Button0) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
+                || Input.GetKeyDown(KeyCode.Joystick1Button0) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
             {
                 // ウサギキャッチSE
-                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);      
 
-                holdingRabbitFlag = true;
-                holdingTimeCounter = holdingTime;
-                holdingRabbitNumber = i;
+                // ギフトをウサギに送る
+                TransferGift(i);
                 break;
             }
         }
@@ -414,12 +368,10 @@ public sealed class Player : BaseMonoBehaviour
     /// <summary>
     /// ギフトをウサギに送る
     /// </summary>
-    private void TransferGift()
+    private void TransferGift(int rabbitNum)
     {
-        holdingRabbitFlag = false;
-
         // 良いギフトがあり良いうさぎなら
-        if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
+        if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[rabbitNum] == RabbitManager.RabbitType.Good)
         {
             // スコアを反映
             for (int i = 0; i < badGiftNum + goodGiftNum; i++)
@@ -433,11 +385,12 @@ public sealed class Player : BaseMonoBehaviour
 
             // スコアに良いウサギの情報を渡す
             score.SetRabbitGood();
+
             // ウサギを消す
             goodGiftNum = 0;
 
         }
-        else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Bad)
+        else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[rabbitNum] == RabbitManager.RabbitType.Bad)
         {
             // 悪いギフトがあり悪いうさぎなら
 
@@ -456,28 +409,11 @@ public sealed class Player : BaseMonoBehaviour
             // ウサギを消す
             badGiftNum = 0;
         }
-        else
-        {
-            // ウサギを運ぶ状態へ変更
-            gripFlag = true;
 
-        }
-
-        rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
-
+        // ウサギをDEADに変更
+        rabbitManager.GetComponent<RabbitManager>().rabbitManager[rabbitNum].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
     }
 
-    /// <summary>
-    /// ウサギを運んでいる
-    /// </summary>
-    private void CarryRabbit()
-    {
-        holdingTimeCounter -= Time.deltaTime;
-        if (holdingTimeCounter <= 0)
-        {
-            gripFlag = false;
-        }
-    }
 
     /// <summary>
     /// ギフトに触れた時状態によって、取得もしくは持ち上げるようにさせる

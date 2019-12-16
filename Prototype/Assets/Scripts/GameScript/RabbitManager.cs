@@ -11,6 +11,10 @@ public class RabbitManager : BaseMonoBehaviour
         Bad = 1,
     };
 
+    /// <summary>
+    /// プレイヤーprefab
+    /// </summary>
+    [SerializeField] private GameObject player;
 
     /// <summary>
     /// ウサギのprefab
@@ -55,19 +59,12 @@ public class RabbitManager : BaseMonoBehaviour
     private List<Vector3> rabbitArea;
 
     /// <summary>
-    /// プレイヤー
-    /// </summary>
-    [SerializeField] private GameObject player;
-
-    /// <summary>
     /// 
     /// </summary>
     protected override void Awake()
     {
         base.Awake();
     }
-
-
 
     /// <summary>
     /// ウサギマネージャーの初期化
@@ -104,20 +101,19 @@ public class RabbitManager : BaseMonoBehaviour
             Birth(i);
         }
 
-
     }
 
     /// <summary>
     /// ウサギマネージャー更新
     /// </summary>
-    public override void UpdateFixed()
+    public override void UpdateNormal()
     {
         // ウサギの生存チェック
         for (int i = 0; i < rabbitMaxNum; i++)
         {
             if (isExistence[i])
             {
-                // 
+                // ウサギのステートがDEADかチェック
                 if (rabbitManager[i].GetComponent<RabbitScript>().sCurrentState == RabbitScript.RabbitState.DEAD)
                 {
                     // ウサギの削除と生成
@@ -126,7 +122,7 @@ public class RabbitManager : BaseMonoBehaviour
 
             }
 
-            if(!player.GetComponent<Player>().GripFlag && !isExistence[i])
+            if(!isExistence[i])
             {
                 playBirth(i);
             }
@@ -170,7 +166,7 @@ public class RabbitManager : BaseMonoBehaviour
     }
 
     /// <summary>
-    /// ウサギの生成
+    /// ウサギの生成(Startのみ)
     /// </summary>
     /// <param name="index"></param>
     private void Birth(int index)
@@ -196,7 +192,10 @@ public class RabbitManager : BaseMonoBehaviour
     /// <param name="index"></param>
     private void playBirth(int index)
     {
+
+        // ウサギを初期化
         rabbitManager[index].SetActive(true);
+        rabbitManager[index].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.ORDINARY;
 
         if (index < goodRabbitMax)
         {
@@ -211,6 +210,7 @@ public class RabbitManager : BaseMonoBehaviour
             rabbitType[index] = RabbitType.Bad;
         }
 
+        
         rabbitManager[index].transform.parent = this.transform;
         isExistence[index] = true;
     }
