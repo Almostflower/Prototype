@@ -35,11 +35,15 @@ public class GiftGauge : BaseMonoBehaviour
 	/// <summary>
 	/// 減算する値
 	/// </summary>
-	private float gauge_value_;
+	private float gauge_value_,gause_value2;
 	public float GaugeValue
 	{
 		set { gauge_value_ = value; }
 	}
+    public float GaugeValue2
+    {
+        set { gause_value2 = value; }
+    }
 
 	/// <summary>
 	/// 最大値
@@ -67,40 +71,59 @@ public class GiftGauge : BaseMonoBehaviour
 		this.transform.Rotate(new Vector3(0, 1, 0), 180);
 	}
 
+    public void ResetGiftGauge()
+    {
+        this.transform.localPosition = new Vector3(0.0f, this.transform.position.y, 0.0f);
+        this.transform.Rotate(new Vector3(0, 1, 0), 180);
+        bad_time_.fillAmount = 1.0f;
+        dust_time_.fillAmount = 1.0f;
+    }
+
     // Update is called once per frame
     private void Update()
     {
 		///////////////////////////////////////////////////////////////////
 		/// プロトを見て変える
 		/// <summary>
-		if (debug_one_time_)
+		//if (debug_one_time_)
+		//{
+		//	dust_time_.fillAmount = gauge_value_ / gauge_max_value_;
+        //
+		//	if(gauge_value_ < dustlimittime_)
+		//	{
+		//		bad_time_.enabled = false;
+		//	}
+		//	else
+		//	{
+		//		bad_time_.fillAmount = gauge_value_ / gauge_max_value_;
+		//	}
+		//}
+		//else
 		{
-			dust_time_.fillAmount = gauge_value_ / gauge_max_value_;
 
-			if(gauge_value_ < dustlimittime_)
-			{
-				bad_time_.enabled = false;
-			}
-			else
-			{
-				bad_time_.fillAmount = gauge_value_ / gauge_max_value_;
-			}
-		}
-		else
-		{
-			if (bad_time_.fillAmount <= 0 && gauge_value_ > 0)
-			{
-				// ごみになる状態になるまでの処理
-				dust_time_.fillAmount = gauge_value_ / gauge_max_value_;
-				badflag = true;
-			}
+            //if (!badflag)
+            //{
+            //	// 悪い状態になるまでの処理
+            //	bad_time_.fillAmount = gauge_value_ / gauge_max_value_;
+            //}
+            //         else if (bad_time_.fillAmount <= 0 && gauge_value_ > 0)
+            //         {
+            //             // ごみになる状態になるまでの処理
+            //             dust_time_.fillAmount = gauge_value_ / gauge_max_value_;
+            //             badflag = true;
+            //         }
 
-			if (!badflag)
-			{
-				// 悪い状態になるまでの処理
-				bad_time_.fillAmount = gauge_value_ / gauge_max_value_;
-			}
-		}
+            if (bad_time_.fillAmount > 0)
+            {
+                // 悪い状態になるまでの処理
+                bad_time_.fillAmount = gauge_value_ / gauge_max_value_;
+            }
+            else if(bad_time_.fillAmount <= 0)
+            {
+                // ごみになる状態になるまでの処理
+                dust_time_.fillAmount = gause_value2 / gauge_max_value_;
+            }
+        }
 
 		Vector3 p = Camera.main.transform.position;
 		p.y = transform.position.y;

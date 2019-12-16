@@ -41,7 +41,6 @@ public class Gift : BaseMonoBehaviour
     public float GetBadLimitTime
     {
         get { return badLimitTime; }
-        set { badLimitTime = value; }
     }
 
     /// <summary>
@@ -160,10 +159,13 @@ public class Gift : BaseMonoBehaviour
 
     }
 
-    private void ResetGift()
+    public void ResetGift()
     {
-        badLimitTime = 10.0f;
-        dustLimitTime = 10.0f;
+        if(badLimitTime < 10.0f)
+        {
+            badLimitTime = 10.0f;
+            dustLimitTime = 10.0f;
+        }
         DustFlag = false;
         playerAbsorbFlag = false;
         once_ = false;
@@ -176,7 +178,10 @@ public class Gift : BaseMonoBehaviour
         {
             mastertime = badLimitTime + dustLimitTime;
         }
+
+        gauge_.ResetGiftGauge();
         gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_);
+        //gauge_.GaugeValue = mastertime;
 
         // パーティクル制御
         this.transform.GetChild(6).gameObject.SetActive(true);
@@ -190,12 +195,6 @@ public class Gift : BaseMonoBehaviour
     {
         if (SceneStatusManager.Instance.PauseButton == 1)
         {
-            if (DeathFlag)
-            {
-                ResetGift();
-            }
-            else if (!DeathFlag)
-            {
                 //Debug.Log("nowTime bad" + badLimitTime);
                 //Debug.Log("nowTime dust" + dustLimitTime);
                 if (!once_)
@@ -209,18 +208,19 @@ public class Gift : BaseMonoBehaviour
                 {
                     // ギフトの良い状態の更新
                     badLimitTime -= Time.deltaTime;
+                    // ギフトの時間をゲージに渡す
+                    gauge_.GaugeValue = badLimitTime;
                 }
                 else if (DustFlag && !playerAbsorbFlag)
                 {
                     // ギフトの悪い状態の更新
                     dustLimitTime -= Time.deltaTime;
+
+                    gauge_.GaugeValue2 = dustLimitTime;
                 }
 
                 // ギフトの時間の更新
                 mastertime -= Time.deltaTime;
-                // ギフトの時間をゲージに渡す
-                gauge_.GaugeValue = mastertime;
-
                 if (debug_mode_)
                 {
                     timer_text_.enabled = true;
@@ -247,10 +247,14 @@ public class Gift : BaseMonoBehaviour
                         // パーティクル制御
                         this.transform.GetChild(6).gameObject.SetActive(false);
                         this.transform.GetChild(7).gameObject.SetActive(true);
+
+                        //mastertime = dustLimitTime;
+                        //gauge_.SetMaxValue(mastertime);
+
                         if (!debug_one_time_)
                         {
                             mastertime = dustLimitTime;
-                            gauge_.SetMaxValue(mastertime);
+                            gauge_.SetMaxValue(dustLimitTime);
                         }
                     }
 
@@ -265,7 +269,6 @@ public class Gift : BaseMonoBehaviour
                     Debug.Log("ギフト消滅");
                 }
             }
-        }
     }
 
     /// <summary>

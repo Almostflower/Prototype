@@ -217,5 +217,6 @@ public class GiftManager : BaseMonoBehaviour
         giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
         giftManager[index].GetComponent<Gift>().DebugOneTime = debug_one_time_;
         isExistence[index] = true;
+        giftManager[index].GetComponent<Gift>().ResetGift();
     }
 }
