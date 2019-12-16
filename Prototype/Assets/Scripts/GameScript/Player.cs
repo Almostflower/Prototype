@@ -243,10 +243,10 @@ public sealed class Player : BaseMonoBehaviour
             {
                 TransferGift();
             }
-            //else if (gripFlag)
-            //{
-            //    CarryRabbit();
-            //}
+            else if (gripFlag)
+            {
+                CarryRabbit();
+            }
 
             PlayerMove();
 
@@ -404,6 +404,7 @@ public sealed class Player : BaseMonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer 
                 || Input.GetKey(KeyCode.Joystick1Button0) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
             {
+                Debug.Log("きてます");
                 // ウサギキャッチSE
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
 
@@ -421,6 +422,8 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private void TransferGift()
     {
+        holdingRabbitFlag = false;
+
         // 良いギフトがあり良いうさぎなら
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[holdingRabbitNumber] == RabbitManager.RabbitType.Good)
         {
@@ -476,7 +479,6 @@ public sealed class Player : BaseMonoBehaviour
 
         }
 
-        holdingRabbitFlag = false;
         rabbitManager.GetComponent<RabbitManager>().rabbitManager[holdingRabbitNumber].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.DEAD;
 
     }
@@ -484,30 +486,35 @@ public sealed class Player : BaseMonoBehaviour
     /// <summary>
     /// ウサギを運んでいる
     /// </summary>
-    //private void CarryRabbit()
-    //{
-    //    // 握力ゲージの処理
-    //    if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
-    //    {
-    //        holdingTimeCounter -= Time.deltaTime;
-    //        if (holdingTimeCounter <= 0)
-    //        {
-    //            gripFlag = false;
-
-    //            // あばれる君を削除
-    //            //abarerukun[0].SetActive(false);
-    //            //abarerukun[1].SetActive(false);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        gripFlag = false;
-
-    //        // あばれる君を削除
-    //        //abarerukun[0].SetActive(false);
-    //        //abarerukun[1].SetActive(false);
-    //    }
-    //}
+    private void CarryRabbit()
+    {
+        holdingTimeCounter -= Time.deltaTime;
+        if (holdingTimeCounter <= 0)
+        {
+            gripFlag = false;
+        }
+        // 握力ゲージの処理
+        //if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
+        //{
+        //    holdingTimeCounter -= Time.deltaTime;
+        //    if (holdingTimeCounter <= 0)
+        //    {
+        //        gripFlag = false;
+        //
+        //        // あばれる君を削除
+        //        //abarerukun[0].SetActive(false);
+        //        //abarerukun[1].SetActive(false);
+        //    }
+        //}
+        //else
+        //{
+        //    gripFlag = false;
+        //
+        //    // あばれる君を削除
+        //    //abarerukun[0].SetActive(false);
+        //    //abarerukun[1].SetActive(false);
+        //}
+    }
 
     /// <summary>
     /// ギフトに触れた時状態によって、取得もしくは持ち上げるようにさせる

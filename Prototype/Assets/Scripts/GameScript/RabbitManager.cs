@@ -110,7 +110,7 @@ public class RabbitManager : BaseMonoBehaviour
     /// <summary>
     /// ウサギマネージャー更新
     /// </summary>
-    public override void UpdateNormal()
+    public override void UpdateFixed()
     {
         // ウサギの生存チェック
         for (int i = 0; i < rabbitMaxNum; i++)

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910790702873267}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: R_mimi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910790719378737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Kubi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910790935087170}
   - component: {fileID: 2997910790935087181}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pSphere3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910791022852360}
   - component: {fileID: 2997910791022852361}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: USAGI03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791301852308}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: L_asi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910791384900557}
   - component: {fileID: 2997910791384900556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pSphere10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910791386472291}
   - component: {fileID: 2997910791386472290}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pSphere8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910791426920104}
   - component: {fileID: 2997910791426920107}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -583,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791586506066}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: R_mimitukene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910791790360905}
   - component: {fileID: 2997910791790360904}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 2997910791805851736}
   - component: {fileID: 2997910791805851737}
   - component: {fileID: 2997910791805851742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5617,7 +5617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791866921774}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5649,7 +5649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791869143972}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: L_mimi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5679,7 +5679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791918092980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: group3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5716,7 +5716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791994646992}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hara
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5747,7 +5747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910791999180807}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5780,7 +5780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910792045934170}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: R_asi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5811,7 +5811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910792177965014}
   - component: {fileID: 2997910792177965009}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pSphere7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5896,7 +5896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910792230926515}
   - component: {fileID: 2997910792230926514}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RabbitCmimiR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5975,7 +5975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910792485028351}
   - component: {fileID: 2997910792485028350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RabbitCmimiL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6053,7 +6053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2997910792537931786}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: L_mimitukene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6085,7 +6085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2997910792637047802}
   - component: {fileID: 2997910792637047749}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pSphere9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
