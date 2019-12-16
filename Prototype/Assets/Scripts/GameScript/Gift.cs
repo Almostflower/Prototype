@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Gift : BaseMonoBehaviour
 {
     [SerializeField]
-    Renderer Gift01, Gift02, Gift03;
+    GameObject Gift01, Gift02, Gift03;
     /// <summary>
     /// デバッグモード
     /// </summary>
@@ -244,9 +244,9 @@ public class Gift : BaseMonoBehaviour
                     {
                         gameObject.tag = "Bad gift";
                         Debug.Log("ギフトが悪くなった");
-                        Gift01.material.color = Color.gray;
-                        Gift02.material.color = Color.gray;
-                        Gift03.material.color = Color.gray;
+                        Gift01.GetComponent<Renderer>().material.color = Color.gray;
+                        Gift02.GetComponent<Renderer>().material.color = Color.gray;
+                        Gift03.GetComponent<Renderer>().material.color = Color.gray;
 
                         //mastertime = dustLimitTime;
                         //gauge_.SetMaxValue(mastertime);
