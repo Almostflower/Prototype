@@ -146,9 +146,9 @@ public class Gift : BaseMonoBehaviour
         mastertime = badLimitTime;
 		badscore_ *= -1;
 		socre_ = GameObject.Find("Score").GetComponent<Score>();
-		BadIcon.SetActive(false);
-
-		if (debug_one_time_)
+        GoodIcon.SetActive(true);
+        BadIcon.SetActive(false);
+        if (debug_one_time_)
         {
             mastertime = badLimitTime + dustLimitTime;
         }
@@ -172,7 +172,6 @@ public class Gift : BaseMonoBehaviour
         mastertime = badLimitTime;
         badscore_ *= -1;
         socre_ = GameObject.Find("Score").GetComponent<Score>();
-        BadIcon.SetActive(false);
         debug_one_time_ = false;
         if (debug_one_time_)
         {
@@ -182,7 +181,8 @@ public class Gift : BaseMonoBehaviour
         gauge_.ResetGiftGauge();
         gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_);
         //gauge_.GaugeValue = mastertime;
-
+        GoodIcon.SetActive(true);
+        BadIcon.SetActive(false);
         // パーティクル制御
         this.transform.GetChild(6).gameObject.SetActive(true);
         this.transform.GetChild(7).gameObject.SetActive(false);
@@ -235,6 +235,8 @@ public class Gift : BaseMonoBehaviour
                 // 良い状態から悪い状態への条件判定
                 if (badLimitTime < 0.0f)
                 {
+                    GoodIcon.SetActive(false);
+                    BadIcon.SetActive(true);
                     if (gameObject.tag != "Bad gift")
                     {
                         gameObject.tag = "Bad gift";
@@ -242,8 +244,6 @@ public class Gift : BaseMonoBehaviour
                         Gift01.GetComponent<Renderer>().material.color = Color.gray;
                         Gift02.GetComponent<Renderer>().material.color = Color.gray;
                         Gift03.GetComponent<Renderer>().material.color = Color.gray;
-                        GoodIcon.SetActive(false);
-                        BadIcon.SetActive(true);
                         // パーティクル制御
                         this.transform.GetChild(6).gameObject.SetActive(false);
                         this.transform.GetChild(7).gameObject.SetActive(true);

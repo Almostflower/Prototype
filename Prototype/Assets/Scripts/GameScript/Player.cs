@@ -146,16 +146,16 @@ public sealed class Player : BaseMonoBehaviour
         SparkParticle.SetActive(false);
 
     }
-    IEnumerator Disappearing()
-    {
-        int step = 90;
-        for (int i = 0; i < step; i++)
-        {
-            GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1 - 1.0f * i / step);
-            yield return null;
-        }
-        Destroy(gameObject);
-    }
+    //IEnumerator Disappearing()
+    //{
+    //    int step = 90;
+    //    for (int i = 0; i < step; i++)
+    //    {
+    //        GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1 - 1.0f * i / step);
+    //        yield return null;
+    //    }
+    //    Destroy(gameObject);
+    //}
     float pauseresettime = 0.0f;
     bool pauseflag = false;
     // Update is called once per 
