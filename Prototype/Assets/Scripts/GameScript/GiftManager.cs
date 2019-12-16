@@ -129,7 +129,7 @@ public class GiftManager : BaseMonoBehaviour
 
                         // ギフトの削除と生成
                         Delete(i);
-                        Birth(i);
+                        playBirth(i);
 
                     }
 
@@ -140,7 +140,7 @@ public class GiftManager : BaseMonoBehaviour
 
                         // ギフトの削除と生成
                         Delete(i);
-                        Birth(i);
+                        playBirth(i);
                     }
 
                 }
@@ -178,7 +178,8 @@ public class GiftManager : BaseMonoBehaviour
     {
         // 削除
         AddListToGiftArea(giftManager[index].transform.position);
-        Destroy(giftManager[index]);
+        giftManager[index].SetActive(true);
+        //Destroy(giftManager[index]);
         isExistence[index] = false;
     }
 
@@ -194,8 +195,30 @@ public class GiftManager : BaseMonoBehaviour
 
         giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
         giftManager[index].transform.parent = this.transform;
-		giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
+
+        giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
 		giftManager[index].GetComponent<Gift>().DebugOneTime = debug_one_time_;
+        isExistence[index] = true;
+    }
+
+    /// <summary>
+    /// ギフトの生成
+    /// </summary>
+    /// <param name="index"></param>
+    private void playBirth(int index)
+    {
+        int badscore = Random.Range(badminscore_, badmaxscore_);
+        float badlimittime = Random.Range(badminlimittime_, badmaxlimittime_);
+        float dustlimittime = Random.Range(dustminlimittime_, dustmaxlimittime_);
+        giftManager[index].GetComponent<Gift>().GetBadLimitTime = 10.0f;
+        giftManager[index].GetComponent<Gift>().GetDustLimitTime = 10.0f;
+        giftManager[index].GetComponent<Gift>().SetGetDeathFlag = false;
+        giftManager[index].SetActive(true);
+        giftManager[index].transform.position = GetPositionFromList();
+        //giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
+        giftManager[index].transform.parent = this.transform;
+        giftManager[index].GetComponent<Gift>().SetGift(badscore, badlimittime, dustlimittime);
+        giftManager[index].GetComponent<Gift>().DebugOneTime = debug_one_time_;
         isExistence[index] = true;
     }
 }

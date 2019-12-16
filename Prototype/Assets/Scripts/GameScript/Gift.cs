@@ -41,6 +41,7 @@ public class Gift : BaseMonoBehaviour
     public float GetBadLimitTime
     {
         get { return badLimitTime; }
+        set { badLimitTime = value; }
     }
 
     /// <summary>
@@ -50,6 +51,7 @@ public class Gift : BaseMonoBehaviour
     public float GetDustLimitTime
     {
         get { return dustLimitTime; }
+        set { dustLimitTime = value; }
     }
 
     /// <summary>
@@ -62,6 +64,11 @@ public class Gift : BaseMonoBehaviour
     /// </summary>
     private bool DeathFlag;
 
+    public bool SetGetDeathFlag
+    {
+        get { return DeathFlag; }
+        set { DeathFlag = value; }
+    }
     /// <summary>
     /// プレイヤーがギフトを運んでいるかのチェック
     /// </summary>
@@ -155,6 +162,8 @@ public class Gift : BaseMonoBehaviour
     {
         if (SceneStatusManager.Instance.PauseButton == 1)
         {
+            Debug.Log("nowTime bad" + badLimitTime);
+            Debug.Log("nowTime dust" + dustLimitTime);
             if (!once_)
             {
                 //gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_, true);
@@ -216,7 +225,7 @@ public class Gift : BaseMonoBehaviour
 
             // 悪い状態から自然消滅への条件判定
             if (/*!GameStatusManager.Instance.GetLiftGift() && */DustFlag && dustLimitTime < 0.0f)
-            {
+            {               
                 DeathFlag = true;
                 socre_.SetScore(badscore_);
                 Debug.Log("ギフト消滅");

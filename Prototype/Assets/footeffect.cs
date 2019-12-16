@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class footeffect : MonoBehaviour
 {
-    [SerializeField]
-    private ParticleSystem ps;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //[SerializeField]
+    //private ParticleSystem ps;
 
-    // Update is called once per frame
-    void Update()
-    {
-        Destroy(ps, 3.0f);
-    }
+    //private float foottime;
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //    this.ps.gameObject.transform.position = transform.position;
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    this.foottime += Time.deltaTime;
+    //    if (this.foottime > 0.35f)
+    //    {
+    //        this.ps.gameObject.transform.position = transform.position;
+    //        this.foottime = 0;
+    //    }
+    //    //Destroy(ps, 3.0f);
+    //}
 }

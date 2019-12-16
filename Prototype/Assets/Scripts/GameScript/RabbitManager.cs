@@ -128,7 +128,7 @@ public class RabbitManager : BaseMonoBehaviour
 
             if(!player.GetComponent<Player>().GripFlag && !isExistence[i])
             {
-                Birth(i);
+                playBirth(i);
             }
         }
     }
@@ -164,7 +164,8 @@ public class RabbitManager : BaseMonoBehaviour
     {
         // 削除
         AddListToRabbitArea(rabbitManager[index].transform.position);
-        Destroy(rabbitManager[index]);
+        //Destroy(rabbitManager[index]);
+        rabbitManager[index].SetActive(false);
         isExistence[index] = false;
     }
 
@@ -182,6 +183,31 @@ public class RabbitManager : BaseMonoBehaviour
         else
         {
             rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Bad], GetPositionFromList(), Quaternion.identity);
+            rabbitType[index] = RabbitType.Bad;
+        }
+
+        rabbitManager[index].transform.parent = this.transform;
+        isExistence[index] = true;
+    }
+
+    /// <summary>
+    /// ウサギの生成
+    /// </summary>
+    /// <param name="index"></param>
+    private void playBirth(int index)
+    {
+        if (index < goodRabbitMax)
+        {
+            rabbitManager[index].SetActive(true);
+            rabbitManager[index].transform.position = GetPositionFromList();
+            //rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Good], GetPositionFromList(), Quaternion.identity);
+            rabbitType[index] = RabbitType.Good;
+        }
+        else
+        {
+            rabbitManager[index].SetActive(true);
+            rabbitManager[index].transform.position = GetPositionFromList();
+            //rabbitManager[index] = Instantiate(rabbitData[(int)RabbitType.Bad], GetPositionFromList(), Quaternion.identity);
             rabbitType[index] = RabbitType.Bad;
         }
 
