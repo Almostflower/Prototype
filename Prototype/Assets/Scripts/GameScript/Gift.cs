@@ -59,6 +59,11 @@ public class Gift : BaseMonoBehaviour
     /// </summary>
     private bool DustFlag;
 
+    public bool SetGetDustFlag
+    {
+        get { return DustFlag; }
+        set { DustFlag = value; }
+    }
     /// <summary>
     /// 自然消滅
     /// </summary>
@@ -155,11 +160,37 @@ public class Gift : BaseMonoBehaviour
 
     }
 
+    private void ResetGift()
+    {
+        badLimitTime = 10.0f;
+        dustLimitTime = 10.0f;
+        DustFlag = false;
+        DeathFlag = false;
+        playerAbsorbFlag = false;
+        once_ = false;
+        mastertime = badLimitTime;
+        badscore_ *= -1;
+        socre_ = GameObject.Find("Score").GetComponent<Score>();
+        BadIcon.SetActive(false);
+
+        if (debug_one_time_)
+        {
+            mastertime = badLimitTime + dustLimitTime;
+        }
+
+        // パーティクル制御
+        this.transform.GetChild(6).gameObject.SetActive(true);
+        this.transform.GetChild(7).gameObject.SetActive(false);
+    }
     /// <summary>
     /// ギフトの更新
     /// </summary>
     public override void UpdateNormal()
     {
+        if(DeathFlag)
+        {
+            ResetGift();
+        }
         if (SceneStatusManager.Instance.PauseButton == 1)
         {
             Debug.Log("nowTime bad" + badLimitTime);

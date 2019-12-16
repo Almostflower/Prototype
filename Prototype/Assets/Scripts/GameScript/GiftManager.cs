@@ -176,6 +176,7 @@ public class GiftManager : BaseMonoBehaviour
     /// <param name="index"></param>
     private void Delete(int index)
     {
+        giftManager[index].GetComponent<Gift>().SetGetDeathFlag = true;
         // 削除
         AddListToGiftArea(giftManager[index].transform.position);
         giftManager[index].SetActive(true);
@@ -210,9 +211,6 @@ public class GiftManager : BaseMonoBehaviour
         int badscore = Random.Range(badminscore_, badmaxscore_);
         float badlimittime = Random.Range(badminlimittime_, badmaxlimittime_);
         float dustlimittime = Random.Range(dustminlimittime_, dustmaxlimittime_);
-        giftManager[index].GetComponent<Gift>().GetBadLimitTime = 10.0f;
-        giftManager[index].GetComponent<Gift>().GetDustLimitTime = 10.0f;
-        giftManager[index].GetComponent<Gift>().SetGetDeathFlag = false;
         giftManager[index].SetActive(true);
         giftManager[index].transform.position = GetPositionFromList();
         //giftManager[index] = Instantiate(giftData, GetPositionFromList(), Quaternion.identity);
