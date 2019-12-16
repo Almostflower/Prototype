@@ -401,7 +401,8 @@ public sealed class Player : BaseMonoBehaviour
         for (int i = 0; i < rabbitManager.GetComponent<RabbitManager>().RabbitMaxNum; i++)
         {
             // ボタン入力
-            if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
+            if (Input.GetKeyDown(KeyCode.Space) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer 
+                || Input.GetKey(KeyCode.Joystick1Button0) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
             {
                 // ウサギキャッチSE
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);

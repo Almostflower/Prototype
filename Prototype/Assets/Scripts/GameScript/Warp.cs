@@ -34,6 +34,7 @@ public class Warp : BaseMonoBehaviour
         {
             if (this.transform.GetChild(0).GetComponent<Circle>().HitPlayerFrag)
             {
+                warpflag = true;
                 Vector3 direction = warp2.position -
                                         this.transform.GetChild(0).transform.position;
 
@@ -43,6 +44,7 @@ public class Warp : BaseMonoBehaviour
 
             if (this.transform.GetChild(1).GetComponent<Circle>().HitPlayerFrag)
             {
+                warpflag = true;
                 Vector3 direction = warp1.position -
                                         this.transform.GetChild(1).transform.position;
                 //player.GetComponent<TutorialPlayer>().SetDirection(direction);

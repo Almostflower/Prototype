@@ -200,7 +200,7 @@ public class PauseSelect : MonoBehaviour
         }
         else if (SelectNum == 1)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.Joystick1Button0) && !selectflag)
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.Joystick1Button3) && !selectflag)
             {
                 selectflag = true;
                 SceneStatusManager.Instance.PauseButton = 1;
@@ -211,7 +211,7 @@ public class PauseSelect : MonoBehaviour
         }
         else if (SelectNum == 2)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.Joystick1Button0) && !selectflag)
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.Joystick1Button3) && !selectflag)
             {
                 selectflag = true;
                 Quit();
