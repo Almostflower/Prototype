@@ -53,6 +53,7 @@ public class FlyCarManager : BaseMonoBehaviour
 
         for (int i = 0; i < maxNum; i++)
         {
+            flyCars[i].obj = Instantiate(flyCar);
             flyCars[i].isFlag = false;
         }
 
@@ -71,7 +72,9 @@ public class FlyCarManager : BaseMonoBehaviour
             // 
             if (!flyCars[i].isFlag)
             {
-                flyCars[i].obj = Instantiate(flyCar);
+                flyCars[i].obj.SetActive(true);
+                flyCars[i].obj.transform.position = startPos[flyCars[i].root];
+                flyCars[i].obj.GetComponent<FlyCar>().ReStart();
                 flyCars[i].root = GetRootFromList();
                 flyCars[i].obj.GetComponent<FlyCar>().StartPos = startPos[flyCars[i].root];
                 flyCars[i].obj.GetComponent<FlyCar>().EndPos = endPos[flyCars[i].root];
@@ -85,7 +88,8 @@ public class FlyCarManager : BaseMonoBehaviour
             {
 
                 AddListToRoot(flyCars[i].root);
-                Destroy(flyCars[i].obj);
+                //                Destroy(flyCars[i].obj);
+                flyCars[i].obj.SetActive(false);
                 flyCars[i].isFlag = false;
             }
         }

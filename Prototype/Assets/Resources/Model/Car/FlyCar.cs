@@ -59,6 +59,18 @@ public class FlyCar : BaseMonoBehaviour
         isDead = false;
     }
 
+    public void ReStart()
+    {
+        // 二点間の距離をとる
+        distance = Vector3.Distance(startPos, endPos);
+
+        // 進む方向に向かせる
+        Vector3 front = endPos - startPos;
+        this.transform.forward = front.normalized;
+
+        counter = 0.0f;
+        isDead = false;
+    }
     /// <summary>
     /// 更新
     /// </summary>
