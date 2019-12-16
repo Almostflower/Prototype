@@ -165,101 +165,105 @@ public class Gift : BaseMonoBehaviour
         badLimitTime = 10.0f;
         dustLimitTime = 10.0f;
         DustFlag = false;
-        DeathFlag = false;
         playerAbsorbFlag = false;
         once_ = false;
         mastertime = badLimitTime;
         badscore_ *= -1;
         socre_ = GameObject.Find("Score").GetComponent<Score>();
         BadIcon.SetActive(false);
-
+        debug_one_time_ = false;
         if (debug_one_time_)
         {
             mastertime = badLimitTime + dustLimitTime;
         }
+        gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_);
 
         // パーティクル制御
         this.transform.GetChild(6).gameObject.SetActive(true);
         this.transform.GetChild(7).gameObject.SetActive(false);
+        DeathFlag = false;
     }
     /// <summary>
     /// ギフトの更新
     /// </summary>
     public override void UpdateNormal()
     {
-        if(DeathFlag)
-        {
-            ResetGift();
-        }
         if (SceneStatusManager.Instance.PauseButton == 1)
         {
-            Debug.Log("nowTime bad" + badLimitTime);
-            Debug.Log("nowTime dust" + dustLimitTime);
-            if (!once_)
+            if (DeathFlag)
             {
-                //gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_, true);
-                gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_);
-                once_ = true;
+                ResetGift();
             }
-
-            if (!DustFlag && badLimitTime > 0.0f)
+            else if (!DeathFlag)
             {
-                // ギフトの良い状態の更新
-                badLimitTime -= Time.deltaTime;
-            }
-            else if (DustFlag && !playerAbsorbFlag)
-            {
-                // ギフトの悪い状態の更新
-                dustLimitTime -= Time.deltaTime;
-            }
-
-            // ギフトの時間の更新
-            mastertime -= Time.deltaTime;
-            // ギフトの時間をゲージに渡す
-            gauge_.GaugeValue = mastertime;
-
-            if (debug_mode_)
-            {
-                timer_text_.enabled = true;
-                // タイマー表示用UIテキストに時間を表示する
-                timer_text_.text = mastertime.ToString("F2");
-            }
-            else
-            {
-                timer_text_.enabled = false;
-            }
-
-            // 良い状態から悪い状態への条件判定
-            if (badLimitTime < 0.0f)
-            {
-                if (gameObject.tag != "Bad gift")
+                //Debug.Log("nowTime bad" + badLimitTime);
+                //Debug.Log("nowTime dust" + dustLimitTime);
+                if (!once_)
                 {
-                    gameObject.tag = "Bad gift";
-                    Debug.Log("ギフトが悪くなった");
-                    Gift01.GetComponent<Renderer>().material.color = Color.gray;
-                    Gift02.GetComponent<Renderer>().material.color = Color.gray;
-                    Gift03.GetComponent<Renderer>().material.color = Color.gray;
-                    GoodIcon.SetActive(false);
-                    BadIcon.SetActive(true);
-                    // パーティクル制御
-                    this.transform.GetChild(6).gameObject.SetActive(false);
-                    this.transform.GetChild(7).gameObject.SetActive(true);
-                    if (!debug_one_time_)
-                    {
-                        mastertime = dustLimitTime;
-                        gauge_.SetMaxValue(mastertime);
-                    }
+                    //gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_, true);
+                    gauge_.SetMaxValue(mastertime, dustLimitTime, debug_one_time_);
+                    once_ = true;
                 }
 
-                DustFlag = true;
-            }
+                if (!DustFlag && badLimitTime > 0.0f)
+                {
+                    // ギフトの良い状態の更新
+                    badLimitTime -= Time.deltaTime;
+                }
+                else if (DustFlag && !playerAbsorbFlag)
+                {
+                    // ギフトの悪い状態の更新
+                    dustLimitTime -= Time.deltaTime;
+                }
 
-            // 悪い状態から自然消滅への条件判定
-            if (/*!GameStatusManager.Instance.GetLiftGift() && */DustFlag && dustLimitTime < 0.0f)
-            {               
-                DeathFlag = true;
-                socre_.SetScore(badscore_);
-                Debug.Log("ギフト消滅");
+                // ギフトの時間の更新
+                mastertime -= Time.deltaTime;
+                // ギフトの時間をゲージに渡す
+                gauge_.GaugeValue = mastertime;
+
+                if (debug_mode_)
+                {
+                    timer_text_.enabled = true;
+                    // タイマー表示用UIテキストに時間を表示する
+                    timer_text_.text = mastertime.ToString("F2");
+                }
+                else
+                {
+                    timer_text_.enabled = false;
+                }
+
+                // 良い状態から悪い状態への条件判定
+                if (badLimitTime < 0.0f)
+                {
+                    if (gameObject.tag != "Bad gift")
+                    {
+                        gameObject.tag = "Bad gift";
+                        Debug.Log("ギフトが悪くなった");
+                        Gift01.GetComponent<Renderer>().material.color = Color.gray;
+                        Gift02.GetComponent<Renderer>().material.color = Color.gray;
+                        Gift03.GetComponent<Renderer>().material.color = Color.gray;
+                        GoodIcon.SetActive(false);
+                        BadIcon.SetActive(true);
+                        // パーティクル制御
+                        this.transform.GetChild(6).gameObject.SetActive(false);
+                        this.transform.GetChild(7).gameObject.SetActive(true);
+                        if (!debug_one_time_)
+                        {
+                            mastertime = dustLimitTime;
+                            gauge_.SetMaxValue(mastertime);
+                        }
+                    }
+
+                    DustFlag = true;
+                }
+
+                // 悪い状態から自然消滅への条件判定
+                if (/*!GameStatusManager.Instance.GetLiftGift() && */DustFlag && dustLimitTime < 0.0f)
+                {
+                    DeathFlag = true;
+                    socre_.SetScore(badscore_);
+                    Debug.Log("ギフト消滅");
+                }
             }
         }
     }
