@@ -331,7 +331,7 @@ public sealed class Player : BaseMonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton1))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton1))
         {
             //走るアニメーション速度変更
             PlayerAnimator.SetFloat("Speed", 1.0f);
