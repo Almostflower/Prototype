@@ -16,7 +16,7 @@ public class ResultScoreBar : MonoBehaviour
 	/// ゲージスクリプト
 	/// </summary>
 	[SerializeField]
-	private Gauge gauge_;
+	private ResultGauge gauge_;
 
 	/// <summary>
 	/// Ui表示
@@ -27,17 +27,12 @@ public class ResultScoreBar : MonoBehaviour
 	/// <summary>
 	/// 合計スコア
 	/// </summary>
-	private float total_score_ = 0;
+	private int total_score_ = 0;
 
 	/// <summary>
 	/// 最大スコア
 	/// </summary>
-	private float max_score_ = 0;
-
-	/// <summary>
-	/// 一回きり
-	/// </summary>
-	private bool once_ = false;
+	private int max_score_ = 0;
 
 	/// <summary>
 	/// 一番いいスコア
@@ -64,14 +59,12 @@ public class ResultScoreBar : MonoBehaviour
 	private List<Image> operation_ = new List<Image>();
 
 	/// <summary>
-	/// スコアのカウントアップ
-	/// </summary>
-	private float count_ = 0;
-
-	/// <summary>
 	/// スコアの上がるスピード
 	/// </summary>
-	private float count_speed_ = 0.5f;
+	[SerializeField]
+	private float count_speed_ = 0.005f;
+
+	private bool once_ = false;
 
 	private enum OPERATION
 	{
@@ -85,7 +78,7 @@ public class ResultScoreBar : MonoBehaviour
 		max_score_ = Score.GetMaxScore();
 		total_score_ = Score.GetTotalScore();
 		gauge_.GaugeValue = 0;
-		count_ = 0;
+		once_ = false;
 
 		foreach (var i in operation_.Select((value, index) => new { value, index }))
 		{
@@ -97,22 +90,20 @@ public class ResultScoreBar : MonoBehaviour
     {
 		if(!once_)
 		{
-			once_ = true;
 			gauge_.SetMaxValue(max_score_);
+			once_ = true;
 		}
 
 		// カウントアップ
-		count_ += count_speed_;
+		gauge_.GaugeValue += count_speed_;
 
-		gauge_.GaugeValue = count_;
-
-		if (count_ > total_score_)
+		// カウントストップ
+		if (gauge_.GaugeValue > 50)
 		{
-			gauge_.GaugeValue = total_score_;
+			gauge_.GaugeValue = 50;
 		}
 
-		
-
+		// 点数に応じて文字を変更
 		if (total_score_ >= max_score_ * amazing_)
 		{
 			operation_[(int)OPERATION.Amazing].enabled = true;
