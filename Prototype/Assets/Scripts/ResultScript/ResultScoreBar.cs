@@ -98,9 +98,9 @@ public class ResultScoreBar : MonoBehaviour
 		gauge_.GaugeValue += count_speed_;
 
 		// カウントストップ
-		if (gauge_.GaugeValue > 50)
+		if (gauge_.GaugeValue > total_score_)
 		{
-			gauge_.GaugeValue = 50;
+			gauge_.GaugeValue = total_score_;
 		}
 
 		// 点数に応じて文字を変更

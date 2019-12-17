@@ -62,7 +62,7 @@ public class Timer : BaseMonoBehaviour
 		number_.SetNum((int)seconds_);
 
         // 制限時間いかになったらコンソールに「制限時間終了」という文字列を表示する
-        if (seconds_ <= 0f)
+        if (seconds_ <= 1f)
 		{
 			// タイムオーバーSE
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.TimeOver_SE);

@@ -70,7 +70,7 @@ public class Number : MonoBehaviour
 			position.x = i * span_ + pos_.x;
 			position.y = pos_.y;
 
-			numObj.transform.position = position;
+			numObj.transform.localPosition = position;
 
 			numObj.transform.localScale = scale_;
 

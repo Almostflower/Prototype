@@ -188,8 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color_: {r: 1, g: 1, b: 1, a: 1}
-  pos_: {x: 360, y: 372, z: 0}
-  span_: -20
+  pos_: {x: -10, y: 440, z: 0}
+  span_: -50
   scale_: {x: 1, y: 1, z: 1}
 --- !u!114 &8436915602864760265
 MonoBehaviour:
@@ -204,5 +204,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time_infinity_: 0
-  seconds_: 60
+  seconds_: 90
   number_: {fileID: 2055586236708755300}

@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color_: {r: 1, g: 1, b: 1, a: 1}
-  pos_: {x: 555, y: 360, z: 0}
+  pos_: {x: 450, y: 0, z: 0}
   span_: 0
   scale_: {x: 4, y: 4, z: 4}
 --- !u!1 &7904326674136381655
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color_: {r: 1, g: 1, b: 1, a: 1}
-  pos_: {x: 685, y: 360, z: 0}
+  pos_: {x: 450, y: 0, z: 0}
   span_: 0
   scale_: {x: 4, y: 4, z: 4}
 --- !u!1 &7904326674325007966
