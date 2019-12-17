@@ -92,7 +92,7 @@ public sealed class Player : BaseMonoBehaviour
     /// UIのギフト表示
     /// </summary>
     [SerializeField]
-    private List<ImageNo> image_ = new List<ImageNo>();
+    private List<Number> number_ = new List<Number>();
 
     /// <summary>
     ///	スタミナの最大値
@@ -236,9 +236,9 @@ public sealed class Player : BaseMonoBehaviour
 
             PlayerMove();
 
-            // ギフト所持数の更新
-            image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
-            image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
+			// ギフト所持数の更新
+			number_[(int)UIGfit.GiftGood].SetNum(goodGiftNum);
+			number_[(int)UIGfit.GiftBad].SetNum(badGiftNum);
         }
         else
         {

@@ -27,7 +27,7 @@ public class Timer : BaseMonoBehaviour
 	/// UIの表示
 	/// </summary>
 	[SerializeField]
-	private ImageNo image_;
+	private Number number_;
 
 	/// <summary>
 	/// BaseMonoBehaviourの初期化
@@ -59,7 +59,7 @@ public class Timer : BaseMonoBehaviour
 		seconds_ -= Time.deltaTime;
 
 		// タイマー表示用UIに時間を表示する
-		image_.SetNo((int)seconds_);
+		number_.SetNum((int)seconds_);
 
         // 制限時間いかになったらコンソールに「制限時間終了」という文字列を表示する
         if (seconds_ <= 0f)
