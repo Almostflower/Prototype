@@ -129,7 +129,7 @@ public class TutorialGift : BaseMonoBehaviour
         badscore_ *= -1;
         socre_ = GameObject.Find("Score").GetComponent<Score>();
         BadIcon.SetActive(false);
-        gameObject.tag = "ChutorialGoodGift";
+        //gameObject.tag = "ChutorialGoodGift";
         if (debug_one_time_)
         {
             mastertime = badLimitTime + dustLimitTime;

@@ -11,18 +11,18 @@ public class ResultOperation : MonoBehaviour
     //private float Hmargin = 1.0f;
     private void Awake()
     {
-        cam.rect = new Rect(0.0f, 0.0f, Wmargin, 1.0f);
+        //cam.rect = new Rect(0.0f, 0.0f, Wmargin, 1.0f);
     }
     private void Update()
     {
-        if(Wmargin < 1.0f)
-        {
-            Wmargin += 0.005f;
-        }
-        //if(Hmargin > 0.0f)
+        //if(Wmargin < 1.0f)
         //{
-        //    Hmargin -= 0.01f;
+        //    Wmargin += 0.005f;
         //}
-        cam.rect = new Rect(0.0f, 0.0f, Wmargin, 1.0f);
+        ////if(Hmargin > 0.0f)
+        ////{
+        ////    Hmargin -= 0.01f;
+        ////}
+        //cam.rect = new Rect(0.0f, 0.0f, Wmargin, 1.0f);
     }
 }
