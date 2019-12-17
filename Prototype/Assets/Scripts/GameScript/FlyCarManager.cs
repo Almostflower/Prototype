@@ -36,7 +36,7 @@ public class FlyCarManager : BaseMonoBehaviour
     /// </summary>
     [SerializeField]private List<int> root;
 
-
+    private float ReStartTime;
     protected override void Awake()
     {
         base.Awake();
@@ -46,6 +46,8 @@ public class FlyCarManager : BaseMonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ReStartTime = 0.0f;
+
         flyCars = new FLY_CAR[maxNum];
 
         // 車生成可能座標のメモリ確保
@@ -66,32 +68,42 @@ public class FlyCarManager : BaseMonoBehaviour
 
     public override void UpdateNormal()
     {
+        ReStartTime += Time.deltaTime;
+
         // 車を生成させる
         for (int i = 0; i < maxNum; i++)
         {
             // 
-            if (!flyCars[i].isFlag)
+            if(ReStartTime > 3.0f)
             {
-                flyCars[i].obj.SetActive(true);
-                flyCars[i].obj.transform.position = startPos[flyCars[i].root];
-                flyCars[i].obj.GetComponent<FlyCar>().ReStart();
-                flyCars[i].root = GetRootFromList();
-                flyCars[i].obj.GetComponent<FlyCar>().StartPos = startPos[flyCars[i].root];
-                flyCars[i].obj.GetComponent<FlyCar>().EndPos = endPos[flyCars[i].root];
-                flyCars[i].isFlag = true;
-                flyCars[i].obj.transform.parent = this.transform;
+                if (!flyCars[i].isFlag)
+                {
+                    flyCars[i].obj.SetActive(true);
+                    flyCars[i].obj.transform.position = startPos[flyCars[i].root];
+                    flyCars[i].obj.GetComponent<FlyCar>().ReStart();
+                    flyCars[i].root = GetRootFromList();
+                    flyCars[i].obj.GetComponent<FlyCar>().StartPos = startPos[flyCars[i].root];
+                    flyCars[i].obj.GetComponent<FlyCar>().EndPos = endPos[flyCars[i].root];
+                    flyCars[i].isFlag = true;
+                    flyCars[i].obj.transform.parent = this.transform;
 
+                }
+
+                // 最終地点に車が到達したかチェック
+                if (flyCars[i].obj.GetComponent<FlyCar>().IsDead)
+                {
+
+                    AddListToRoot(flyCars[i].root);
+                    //                Destroy(flyCars[i].obj);
+                    flyCars[i].obj.SetActive(false);
+                    flyCars[i].isFlag = false;
+                }
             }
+        }
 
-            // 最終地点に車が到達したかチェック
-            if(flyCars[i].obj.GetComponent<FlyCar>().IsDead)
-            {
-
-                AddListToRoot(flyCars[i].root);
-                //                Destroy(flyCars[i].obj);
-                flyCars[i].obj.SetActive(false);
-                flyCars[i].isFlag = false;
-            }
+        if(ReStartTime > 4.0f)
+        {
+            ReStartTime = 0.0f;
         }
     }
 
