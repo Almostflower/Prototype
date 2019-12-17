@@ -215,6 +215,7 @@ public class PauseSelect : MonoBehaviour
             {
                 selectflag = true;
                 Quit();
+                return;
             }
         }
     }
@@ -225,6 +226,7 @@ public class PauseSelect : MonoBehaviour
 #elif UNITY_STANDALONE
     UnityEngine.Application.Quit();
 #endif
+        return;
     }
     private void SelectOffFunc()
     {
