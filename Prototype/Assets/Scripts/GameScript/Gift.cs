@@ -187,6 +187,7 @@ public class Gift : BaseMonoBehaviour
         this.transform.GetChild(6).gameObject.SetActive(true);
         this.transform.GetChild(7).gameObject.SetActive(false);
         DeathFlag = false;
+        gameObject.tag = "gift";
     }
     /// <summary>
     /// ギフトの更新
