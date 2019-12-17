@@ -1788,13 +1788,23 @@ PrefabInstance:
     - target: {fileID: 6704595254408958412, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: giftMax
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6704595254408958412, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: stageManager
       value: 
       objectReference: {fileID: 783376982}
+    - target: {fileID: 6704595254408958412, guid: 0fb1aba183a97f845b2c27a08c2af550,
+        type: 3}
+      propertyPath: badmaxlimittime_
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704595254408958412, guid: 0fb1aba183a97f845b2c27a08c2af550,
+        type: 3}
+      propertyPath: dustmaxlimittime_
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6704595254408958413, guid: 0fb1aba183a97f845b2c27a08c2af550,
         type: 3}
       propertyPath: m_LocalPosition.x

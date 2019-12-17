@@ -184,7 +184,7 @@ public sealed class Player : BaseMonoBehaviour
         }
 
         // 
-        if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Joystick1Button5) && !pauseflag)
+        if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Joystick1Button12) && !pauseflag)
         {
             pauseflag = true;
             SceneStatusManager.Instance.PauseButton *= -1;
@@ -286,7 +286,17 @@ public sealed class Player : BaseMonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton1))
+        if (Input.GetAxis("Vertical") <= 0.002924493f)
+        {
+            //走るアニメーション速度変更
+            PlayerAnimator.SetFloat("Speed", 1.0f);
+            SparkParticle.SetActive(false);
+            speedflag = false;//通常時
+            dashflag = false;//通常時
+            stamina = 0.0f;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetAxis("Vertical") > 0.002924493f || Input.GetKey(KeyCode.JoystickButton1) && Input.GetAxis("Vertical") > 0.002924493f)
         {
             //走るアニメーション速度変更
             PlayerAnimator.SetFloat("Speed", 1.0f);

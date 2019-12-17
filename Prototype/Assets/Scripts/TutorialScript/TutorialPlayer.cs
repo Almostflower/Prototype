@@ -302,7 +302,18 @@ public class TutorialPlayer : BaseMonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton1))
+        if (Input.GetAxis("Vertical") <= 0.002924493f)
+        {
+            //走るアニメーション速度変更
+            PlayerAnimator.SetFloat("Speed", 1.0f);
+            SparkParticle.SetActive(false);
+            speedflag = false;//通常時
+            dashflag = false;//通常時
+            stamina = 0.0f;
+        }
+
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetAxis("Vertical") > 0.002924493f || Input.GetKey(KeyCode.JoystickButton1) && Input.GetAxis("Vertical") > 0.002924493f)
         {
             //走るアニメーション速度変更
             PlayerAnimator.SetFloat("Speed", 1.0f);
@@ -317,19 +328,20 @@ public class TutorialPlayer : BaseMonoBehaviour
             //スタミナが最大なら
             if (stamina >= staminamax)
             {
-                if(SceneStatusManager.Instance.TutorialWarp)
+                if (SceneStatusManager.Instance.TutorialWarp)
                 {
                     TutorialManagerScript.Instance.SetPhaseNumber(6);
                 }
                 stamina = staminamax;
             }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.JoystickButton1))
+        else if (Input.GetKeyUp(KeyCode.LeftShift)  || Input.GetKeyUp(KeyCode.JoystickButton1))
         {
-            speedflag = true;//加速時
-            dashflag = true;//加速時
-            //Debug.LogError("話した");
+                speedflag = true;//加速時
+                dashflag = true;//加速時
+                //Debug.LogError("話した");
         }
+
 
 
         if (PlayerController.isGrounded)

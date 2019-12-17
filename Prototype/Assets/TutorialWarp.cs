@@ -30,7 +30,7 @@ public class TutorialWarp : BaseMonoBehaviour
                 resettime = 0.0f;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !warpflag || Input.GetKey(KeyCode.Joystick1Button2) && !warpflag)
+        if (Input.GetKeyDown(KeyCode.Q) && !warpflag || Input.GetKey(KeyCode.Joystick1Button5) && !warpflag)
         {
             warpflag = true;
             if (this.transform.GetChild(0).GetComponent<Circle>().HitPlayerFrag)
