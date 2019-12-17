@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public sealed class Player : BaseMonoBehaviour
 {
+    [SerializeField]
+    private ParticleSystem GoodParticle;
+    [SerializeField]
+    private ParticleSystem BadParticle;
+
+    private bool GoodParticleFlag;
+    private bool BadParticleFlag;
+
+    private float particletime;
     //[SerializeField]
     //private GameObject footPrintPrefab;
     //float foottime = 0;
@@ -136,6 +145,9 @@ public sealed class Player : BaseMonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GoodParticleFlag = false;
+        BadParticleFlag = false;
+        particletime = 0.0f;
         goodGiftNum = 0;
         badGiftNum = 0;
         giftTime = new float[giftMaxNum];
@@ -144,6 +156,8 @@ public sealed class Player : BaseMonoBehaviour
         dashflag = false;
 
         SparkParticle.SetActive(false);
+        BadParticle.Stop();
+        GoodParticle.Stop();
 
     }
     //IEnumerator Disappearing()
@@ -165,6 +179,28 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
+        if(GoodParticleFlag || BadParticleFlag)
+        {
+            if(GoodParticleFlag)
+            {
+                particletime += Time.deltaTime;
+            }
+            if(BadParticleFlag)
+            {
+                particletime += Time.deltaTime;
+            }
+
+            if(particletime > 2.0f)
+            {
+                GoodParticleFlag = false;
+                BadParticleFlag = false;
+                particletime = 0.0f;
+                GoodParticle.gameObject.SetActive(false);
+                BadParticle.gameObject.SetActive(false);
+            }
+
+        }
+
         //this.foottime += Time.deltaTime;
         //if (this.foottime > 0.35f)
         //{
@@ -173,7 +209,7 @@ public sealed class Player : BaseMonoBehaviour
         //}
 
         // ポーズ
-        if(pauseflag)
+        if (pauseflag)
         {
             pauseresettime += Time.deltaTime;
             if(pauseresettime > 0.5f)
@@ -365,7 +401,7 @@ public sealed class Player : BaseMonoBehaviour
                 || Input.GetKeyDown(KeyCode.Joystick1Button0) && rabbitManager.GetComponent<RabbitManager>().rabbitManager[i].GetComponent<RabbitScript>().HitPlayer)
             {
                 // ウサギキャッチSE
-                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);      
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
 
                 // ギフトをウサギに送る
                 TransferGift(i);
@@ -383,6 +419,7 @@ public sealed class Player : BaseMonoBehaviour
         // 良いギフトがあり良いうさぎなら
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[rabbitNum] == RabbitManager.RabbitType.Good)
         {
+            GoodParticleStart();
             // スコアを反映
             for (int i = 0; i < badGiftNum + goodGiftNum; i++)
             {
@@ -403,7 +440,7 @@ public sealed class Player : BaseMonoBehaviour
         else if (badGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[rabbitNum] == RabbitManager.RabbitType.Bad)
         {
             // 悪いギフトがあり悪いうさぎなら
-
+            BadParticleStart();
             // スコアを反映
             for (int i = 0; i < badGiftNum + goodGiftNum; i++)
             {
@@ -439,6 +476,7 @@ public sealed class Player : BaseMonoBehaviour
                 //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
                 if (other.gameObject.tag == "gift")
                 {
+                    GoodParticleStart();
                     // ギフト回収SE
                     SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
@@ -458,6 +496,7 @@ public sealed class Player : BaseMonoBehaviour
                 //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
                 if (other.gameObject.tag == "Bad gift")
                 {
+                    BadParticleStart();
                     // ギフト回収SE
                     SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
@@ -502,5 +541,33 @@ public sealed class Player : BaseMonoBehaviour
     public void SetDirection(Vector3 pos)
     {
         PlayerController.Move(pos);
+    }
+    //public void GoodParticleStart()
+    //{
+    //    ParticleSystem Goodparticles = Instantiate(GoodParticle, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f), Quaternion.identity);
+    //    Destroy(Goodparticles, 2.0f);
+    //    return;
+    //}
+    //
+    //public void BadParticleStart()
+    //{
+    //    ParticleSystem Badparticles = Instantiate(BadParticle, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f), Quaternion.identity);
+    //    Destroy(Badparticles, 2.0f);
+    //    return;
+    //}
+    public void GoodParticleStart()
+    {
+        GoodParticle.gameObject.SetActive(true);
+        GoodParticle.gameObject.transform.position =  new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f);
+        GoodParticle.Play();
+        return;
+    }
+
+    public void BadParticleStart()
+    {
+        BadParticle.gameObject.SetActive(true);
+        BadParticle.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f);
+        BadParticle.Play();
+        return;
     }
 }
