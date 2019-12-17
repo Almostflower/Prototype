@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 589395603742236836}
   - component: {fileID: 3481792056893877392}
   - component: {fileID: 5405632081414721272}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1840067930020511932}
   - component: {fileID: 1840067930020511930}
   - component: {fileID: 1840067930020511931}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840067930749186272}
   - component: {fileID: 1840067930749186287}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MiniMapIconGiftGood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840067930953678370}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 1840067931721951502}
   - component: {fileID: 1840067931721951503}
   - component: {fileID: 1840067931721951488}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840067931822004693}
   - component: {fileID: 1840067931822004692}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MiniMapIconGiftBad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1840067931904847703}
   - component: {fileID: 1840067931904847701}
   - component: {fileID: 1840067931904847702}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 1840067931940345475}
   - component: {fileID: 1840067931940345473}
   - component: {fileID: 1840067931940345474}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 1840067932106850512}
   - component: {fileID: 1840067932106850526}
   - component: {fileID: 1840067932106850527}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5541,7 +5541,7 @@ GameObject:
   - component: {fileID: 6829468821149034843}
   - component: {fileID: 4969858023413729818}
   - component: {fileID: 1350556058669104105}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: pPlane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5618,7 +5618,7 @@ GameObject:
   - component: {fileID: 7302442732949530057}
   - component: {fileID: 8825061053226497931}
   - component: {fileID: 1215191318705257839}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: pPlane1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

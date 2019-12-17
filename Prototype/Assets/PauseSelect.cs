@@ -219,21 +219,19 @@ public class PauseSelect : MonoBehaviour
             {
                 selectflag = true;
                 Quit();
-                return;
             }
         }
     }
     void Quit()
     {
         //メモリー枯渇にならないように
-        System.GC.Collect();
-        Resources.UnloadUnusedAssets();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_STANDALONE
+//        System.GC.Collect();
+//        Resources.UnloadUnusedAssets();
+//#if UNITY_EDITOR
+//        UnityEditor.EditorApplication.isPlaying = false;
+//#elif UNITY_STANDALONE
     UnityEngine.Application.Quit();
-#endif
-        return;
+//#endif
     }
     private void SelectOffFunc()
     {
