@@ -539,6 +539,7 @@ MonoBehaviour:
   targetDistance: 3
   m_searchAngle: 40
   _searchRadius: 35
+  rabbitCircle: {fileID: 2997910791663941018}
 --- !u!195 &2997910791491892334
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -549,7 +550,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

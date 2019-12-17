@@ -64,9 +64,19 @@ public class RabbitScript : BaseMonoBehaviour
         set { currentState = value; }
     }
 
+    /// <summary>
+    /// ウサギのサークル
+    /// </summary>
+    [SerializeField] private Circle rabbitCircle;
+
     private List<Collider> foundList = new List<Collider>();
     private Subject<Unit> touchWithPlayer = new Subject<Unit>();
 
+
+    public Circle rabbitCircleReset()
+    {
+        return rabbitCircle;
+    }
 
     public IObservable<Unit> OnTouchWithPlayer
     {

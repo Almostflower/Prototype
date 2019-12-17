@@ -26,6 +26,12 @@ public class Circle : BaseMonoBehaviour
         this.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
+    public void ResetCircle()
+    {
+        hitPlayerFrag = false;
+        this.GetComponent<SpriteRenderer>().color = Color.green;
+    }
+
     public override void UpdateNormal()
     {
 

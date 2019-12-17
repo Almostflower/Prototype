@@ -161,7 +161,6 @@ public class RabbitManager : BaseMonoBehaviour
         // 削除
         AddListToRabbitArea(rabbitManager[index].transform.position);
         //Destroy(rabbitManager[index]);
-        rabbitManager[index].GetComponent<RabbitScript>().HitPlayer = false;
         rabbitManager[index].SetActive(false);
         isExistence[index] = false;
     }
@@ -211,7 +210,8 @@ public class RabbitManager : BaseMonoBehaviour
             rabbitType[index] = RabbitType.Bad;
         }
 
-        
+        rabbitManager[index].GetComponent<RabbitScript>().HitPlayer = false;
+        rabbitManager[index].GetComponent<RabbitScript>().rabbitCircleReset().ResetCircle();
         rabbitManager[index].transform.parent = this.transform;
         isExistence[index] = true;
     }
