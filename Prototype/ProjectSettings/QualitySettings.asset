@@ -9,8 +9,8 @@ QualitySettings:
   - serializedVersion: 2
     name: Very Low
     pixelLightCount: 0
-    shadows: 0
-    shadowResolution: 0
+    shadows: 1
+    shadowResolution: 1
     shadowProjection: 1
     shadowCascades: 1
     shadowDistance: 15
@@ -40,7 +40,8 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
   - serializedVersion: 2
     name: Low
     pixelLightCount: 0
@@ -111,8 +112,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    excludedTargetPlatforms:
-    - Standalone
+    excludedTargetPlatforms: []
   - serializedVersion: 2
     name: High
     pixelLightCount: 2

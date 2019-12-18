@@ -2,24 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testemission : MonoBehaviour
+public class testemission : BaseMonoBehaviour
 {
+    [SerializeField]
     private Renderer _renderer;
     private float colortime;
     private float changecolor, changecolor1, changecolor2;
     // Use this for initialization
-    void Start()
+    Material originalMaterial;
+    private void Awake()
+    {
+        base.Awake();
+    }
+
+    void start()
     {
         changecolor = 0.0f;
         colortime = 0.0f;
         _renderer = GetComponent<Renderer>();
+
+        originalMaterial = new Material(_renderer.material);
     }
     int type = 0;
-    // Update is called once per frame
-    void Update()
+
+    public override void UpdateNormal()
     {
         colortime += Time.deltaTime;
-        var originalMaterial = new Material(_renderer.material);
 
         _renderer.material.EnableKeyword("_EMISSION"); //キーワードの有効化を忘れずに
         

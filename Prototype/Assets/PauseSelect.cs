@@ -128,7 +128,7 @@ public class PauseSelect : MonoBehaviour
                 acadebuttonflag = false;
             }
         }
-        if (Input.GetAxisRaw("Vertical") <= -1.0f && !acadebuttonflag)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !acadebuttonflag || Input.GetAxisRaw("Vertical") <= -1.0f && !acadebuttonflag)
         {
             SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
             acadebuttonflag = true;
@@ -138,7 +138,7 @@ public class PauseSelect : MonoBehaviour
                 SelectNum++;
             }
         }
-        if (Input.GetAxisRaw("Vertical") >= 1.0f && !acadebuttonflag)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !acadebuttonflag || Input.GetAxisRaw("Vertical") >= 1.0f && !acadebuttonflag)
         {
             SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
             acadebuttonflag = true;
@@ -224,14 +224,12 @@ public class PauseSelect : MonoBehaviour
     }
     void Quit()
     {
-        //メモリー枯渇にならないように
-//        System.GC.Collect();
-//        Resources.UnloadUnusedAssets();
 //#if UNITY_EDITOR
 //        UnityEditor.EditorApplication.isPlaying = false;
 //#elif UNITY_STANDALONE
-    UnityEngine.Application.Quit();
+//        UnityEngine.Application.Quit();
 //#endif
+        Application.Quit();
     }
     private void SelectOffFunc()
     {

@@ -196,13 +196,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1840067930749186272}
   - component: {fileID: 1840067930749186287}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiniMapIconGiftGood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1840067930749186272
 Transform:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 1840067930749186273}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.39999998, y: 0.4000002, z: 0.3000001}
+  m_LocalScale: {x: 3, y: 3, z: 0.3000001}
   m_Children: []
   m_Father: {fileID: 1840067930984117792}
   m_RootOrder: 1
@@ -482,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840067931822004693}
   - component: {fileID: 1840067931822004692}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiniMapIconGiftBad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 1840067931822004694}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.39999998, y: 0.4000002, z: 0.3000001}
+  m_LocalScale: {x: 3, y: 3, z: 0.3000001}
   m_Children: []
   m_Father: {fileID: 1840067930984117792}
   m_RootOrder: 2

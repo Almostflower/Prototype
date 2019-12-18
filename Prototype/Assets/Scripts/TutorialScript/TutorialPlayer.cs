@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TutorialPlayer : BaseMonoBehaviour
 {
+    [SerializeField]
+    private ParticleSystem GoodParticle;
+    [SerializeField]
+    private ParticleSystem BadParticle;
+
     //[SerializeField]
     //private GameObject footPrintPrefab;
     //float foottime = 0;
@@ -165,6 +170,9 @@ public class TutorialPlayer : BaseMonoBehaviour
     // Use this for initialization
     void Start()
     {
+        BadParticle.Stop();
+        GoodParticle.Stop();
+
         goodGiftNum = 0;
         badGiftNum = 0;
         giftTime = new float[giftMaxNum];
@@ -409,6 +417,7 @@ public class TutorialPlayer : BaseMonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
             {
+                GoodParticleStart();
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
                 TutorialManagerScript.Instance.SetPhaseNumber(2);
                 Destroy(other.gameObject);
@@ -420,6 +429,7 @@ public class TutorialPlayer : BaseMonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0))
             {
+                BadParticleStart();
                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
                 TutorialManagerScript.Instance.SetPhaseNumber(4);
                 Destroy(other.gameObject);
@@ -440,6 +450,7 @@ public class TutorialPlayer : BaseMonoBehaviour
     {
         if(other.gameObject.tag == "ChutorialGoodGift")
         {
+            GoodParticleStart();
             SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
             TutorialManagerScript.Instance.SetPhaseNumber(1);
             //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftgood);
@@ -448,6 +459,7 @@ public class TutorialPlayer : BaseMonoBehaviour
 
         if(other.gameObject.tag == "ChutorialBadGift")
         {
+            BadParticleStart();
             SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
             TutorialManagerScript.Instance.SetPhaseNumber(3);
             //ChutorialScore.SetScore(1, (int)Score.GIFTSTATUS.giftbad);
@@ -458,5 +470,21 @@ public class TutorialPlayer : BaseMonoBehaviour
     public void SetDirection(Vector3 pos)
     {
         PlayerController.Move(pos);
+    }
+
+    public void GoodParticleStart()
+    {
+        ParticleSystem ps = Instantiate(GoodParticle, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f),Quaternion.identity);
+        ps.gameObject.SetActive(true);
+        Destroy(ps, 2.0f);
+        return;
+    }
+
+    public void BadParticleStart()
+    {
+        ParticleSystem ps = Instantiate(BadParticle, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f), Quaternion.identity);
+        ps.gameObject.SetActive(true);
+        Destroy(ps, 2.0f);
+        return;
     }
 }
