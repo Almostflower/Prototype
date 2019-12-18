@@ -20,9 +20,13 @@ public class UpdateManager : MonoBehaviour
     public UpdateManager()
     {
         instance = this;
-        debugfps.updateinterval = 0.5f;
+        //debugfps.updateinterval = 0.5f;
     }
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60; //60FPSに設定
+    }
     private void Update()
     {
         //for(int i = 0; i < ColliderDebuger.Instance.GetMaxColliderDraw(); i++)
@@ -119,8 +123,8 @@ public class UpdateManager : MonoBehaviour
         instance.behaviourcount_ = instance.behaviours.Length;
     }
 
-    private void OnGUI()
-    {
-        GUILayout.Label("FPS :" + debugfps.m_fps.ToString("f2"));
-    }
+    //private void OnGUI()
+    //{
+    //    GUILayout.Label("FPS :" + debugfps.m_fps.ToString("f2"));
+    //}
 }
