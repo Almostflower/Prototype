@@ -9,7 +9,7 @@ public class testemission : BaseMonoBehaviour
     private float colortime;
     private float changecolor, changecolor1, changecolor2;
     // Use this for initialization
-    Material originalMaterial;
+    //Material originalMaterial;
     private void Awake()
     {
         base.Awake();
@@ -21,7 +21,8 @@ public class testemission : BaseMonoBehaviour
         colortime = 0.0f;
         _renderer = GetComponent<Renderer>();
 
-        originalMaterial = new Material(_renderer.material);
+        //使われてないのでコメントアウトした。
+        //originalMaterial = new Material(_renderer.material);
     }
     int type = 0;
 

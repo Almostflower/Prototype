@@ -42,10 +42,11 @@ public class TestEffect : BaseMonoBehaviour
         objs = new objData[limitObjNum];
         for(int i =0;i < limitObjNum; i++)
         {
-            objs[i].obj = null;
+            objs[i].obj = Instantiate(cube, new Vector3(Random.Range(rangeWidth.x, rangeWidth.y), Random.Range(rangeHeight.x, rangeHeight.y), Random.Range(rangeDepth.x, rangeDepth.y)), Quaternion.identity);
             objs[i].existenceFlag = false;
             objs[i].destroyTime = 0;
             objNum = 0;
+            objs[i].obj.transform.parent = this.transform;
         }
     }
 
@@ -64,11 +65,9 @@ public class TestEffect : BaseMonoBehaviour
                 if ((objNum - copyObjNum) >= sponeNum) { break; }
                 if (!objs[i].existenceFlag)
                 {
-                    objs[i].obj = Instantiate(cube, new Vector3(Random.Range(rangeWidth.x, rangeWidth.y), Random.Range(rangeHeight.x, rangeHeight.y), Random.Range(rangeDepth.x, rangeDepth.y)), Quaternion.identity);
                     objs[i].existenceFlag = true;
                     objs[i].destroyTime = destroyTime;
                     objNum++;
-                    objs[i].obj.transform.parent = this.transform;
                 }
             }
             sponeCopyTime = sponeTime;
@@ -86,8 +85,8 @@ public class TestEffect : BaseMonoBehaviour
                 {
                     objs[i].existenceFlag = false;
                     objs[i].destroyTime = 0.0f;
-                    Destroy(objs[i].obj);
-                    objs[i].obj = null;
+                    objs[i].obj.transform.position = new Vector3(Random.Range(rangeWidth.x, rangeWidth.y), Random.Range(rangeHeight.x, rangeHeight.y), Random.Range(rangeDepth.x, rangeDepth.y));
+                    //objs[i].obj = null;
                     objNum--;
                 }
                 
