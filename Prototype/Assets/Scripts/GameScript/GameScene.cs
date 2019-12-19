@@ -13,7 +13,7 @@ public class GameScene : MonoBehaviour
         SceneStatusManager.Instance.SetFadeIn(false);
 
 		//BGM再生
-		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.StageLight_BGM);
+		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.RStageLight_BGM);
 	}
 
     // Update is called once per frame

@@ -13,7 +13,7 @@ public class ResultScene : MonoBehaviour
         SceneStatusManager.Instance.SetFadeIn(false);
 
 		//BGM再生
-		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Result_BGM);
+		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.RRResult_BGM);
 	}
 
     // Update is called once per frame

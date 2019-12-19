@@ -15,7 +15,7 @@ public class TutorialScene : MonoBehaviour
     void Start()
     {
 		//BGM再生
-		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Tutorial_BGM);
+		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.RTutorial_BGM);
 	}
 
     // Update is called once per frame

@@ -26,7 +26,7 @@ public class TitleCameraTimeline : MonoBehaviour
         SceneStatusManager.Instance.SetFadeOut(true);
 
 		//BGM再生
-		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.Title_BGM);
+		SoundManager.SingletonInstance.PlayBGM(SoundManager.BGMLabel.RTitle_BGM);
     }
 
     bool acadeselect = false;

@@ -17,8 +17,14 @@ public class SoundManager : MonoBehaviour
 		StageSelect_BGM,		//ステージ選択
 		StageDark_BGM,			//ゲーム暗い時
 		StageLight_BGM,			//ゲーム明るい時
-		Result_BGM				//スコアリザルト
-	}
+		Result_BGM,				//スコアリザルト
+        RTutorial_BGM,
+        RStageDark_BGM,
+        RStageLight_BGM,
+        RResult_BGM,
+        RTitle_BGM,
+        RRResult_BGM
+    }
 
 	/// <summary>
 	/// フォルダ名と同じ名前のSEを入力
