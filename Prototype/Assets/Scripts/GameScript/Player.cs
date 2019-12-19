@@ -190,12 +190,13 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
+		start_ready_.SetStart = true;
+
 		if (!readyFlag)
 		{
 			// フェード完了しているか
 			if(SceneStatusManager.Instance.GetGameFade())
 			{
-
 				start_ready_.SetStart = true;
 			}
 
