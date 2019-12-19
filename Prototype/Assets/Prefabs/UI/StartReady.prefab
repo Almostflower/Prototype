@@ -110,6 +110,7 @@ MonoBehaviour:
   animstart_:
   - {fileID: 3407582228303429988}
   - {fileID: 4617648955585031073}
+  start_ready_: {fileID: 8292547265410728844}
 --- !u!1 &8292547265410728844
 GameObject:
   m_ObjectHideFlags: 0

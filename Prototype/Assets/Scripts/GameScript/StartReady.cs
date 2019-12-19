@@ -10,6 +10,9 @@ public class StartReady : BaseMonoBehaviour
 	[SerializeField]
 	private List<Animator> animstart_ = new List<Animator>();
 
+	[SerializeField]
+	private GameObject start_ready_;
+
 	/// <summary>
 	/// レディーフラグ
 	/// </summary>
@@ -63,5 +66,10 @@ public class StartReady : BaseMonoBehaviour
 	{
 		animstart_[(int)START_.Go].SetBool("Goflag", true);
 		go_ = true;
+	}
+
+	public void DestroyAnim()
+	{
+		Destroy(start_ready_);
 	}
 }
