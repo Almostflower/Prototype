@@ -225,8 +225,8 @@ public class TutorialPlayer : BaseMonoBehaviour
             PlayerMove();
 
             // ギフト所持数の更新
-            image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
-            image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
+            //image_[(int)UIGfit.GiftGood].SetNo(goodGiftNum);
+            //image_[(int)UIGfit.GiftBad].SetNo(badGiftNum);
         }
         else
         {

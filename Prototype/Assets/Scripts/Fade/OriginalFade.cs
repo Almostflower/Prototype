@@ -37,6 +37,7 @@ public class OriginalFade : MonoBehaviour
         if(SceneStatusManager.Instance.GetGameFade())
         {
             GameFade();
+            SceneStatusManager.Instance.SetGameFade(false);
         }
 
         //if(Input.GetKeyDown(KeyCode.I))

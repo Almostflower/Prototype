@@ -193,7 +193,7 @@ public sealed class Player : BaseMonoBehaviour
 		if (!readyFlag)
 		{
 			// フェード完了しているか
-			if(SceneStatusManager.Instance.GetGameFade())
+			if(!SceneStatusManager.Instance.GetFadeOut())
 			{
 				start_ready_.SetStart = true;
 			}
