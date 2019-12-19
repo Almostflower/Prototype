@@ -9,6 +9,14 @@ public class ResultPlayer : MonoBehaviour
 
     private bool ActionAnimFlag;
     private int Actionnum;
+    private int JudgeType_;
+    private bool JudgeFlag;
+    public int JudgeType
+    {
+        get { return JudgeType_; }
+        set { JudgeType_ = value; }
+    }
+
     public bool ActionAnim
     {
         get { return ActionAnimFlag; }
@@ -23,6 +31,8 @@ public class ResultPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        JudgeFlag = false;
+        JudgeType = 0;
         Debug.Log(gameObject.transform.rotation.y);
         gameObject.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), 90.0f);
     }
@@ -30,37 +40,61 @@ public class ResultPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //220
-        if(gameObject.transform.position.x > 418.4)
+
+        if (JudgeFlag)
         {
-            anim.SetBool("Walk", true);
-            gameObject.transform.position += new Vector3(-0.1f, 0.0f, 0.0f);
+            anim.SetBool("Wait", false);
+
+            switch (JudgeType_)
+            {
+                case 0:
+                    anim.SetBool("Bad", true);
+                    break;
+                case 1:
+                    anim.SetBool("Normal", true);
+                    break;
+                case 2:
+                    anim.SetBool("Good", true);
+                    break;
+                default:
+                    break;
+            }
         }
         else
         {
-            //正面向く
-            //if (gameObject.transform.rotation.y <= 0.99f)
-            //{
-            //    Debug.Log(gameObject.transform.rotation.y);
-            //    gameObject.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -1.0f);
-            //}
-            //else
-            //{
-            //    anim.SetBool("Walk", false);
-            //    anim.SetBool("Wait", true);
-            //}
-            //カメラのほう向く
-            if(gameObject.transform.rotation.y <= 0.93f)
+            //220
+            if (gameObject.transform.position.x > 418.4f)
             {
-                gameObject.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -1.0f);
+                anim.SetBool("Walk", true);
+                gameObject.transform.position += new Vector3(-0.2f, 0.0f, 0.0f);
             }
             else
             {
-                anim.SetBool("Walk", false);
-                anim.SetBool("Wait", true);
+                //正面向く
+                //if (gameObject.transform.rotation.y <= 0.99f)
+                //{
+                //    Debug.Log(gameObject.transform.rotation.y);
+                //    gameObject.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -1.0f);
+                //}
+                //else
+                //{
+                //    anim.SetBool("Walk", false);
+                //    anim.SetBool("Wait", true);
+                //}
+                //カメラのほう向く
+                if (gameObject.transform.rotation.y <= 0.93f)
+                {
+                    gameObject.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -1.0f);
+                }
+                else
+                {
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("Wait", true);
+                    JudgeFlag = true;
+                }
             }
-        }
 
+        }
         //スコアに対するアクション
         //if(ActionAnim)
         //{

@@ -58,10 +58,12 @@ public class ResultScoreBar : MonoBehaviour
 	[SerializeField]
 	private List<Image> operation_ = new List<Image>();
 
-	/// <summary>
-	/// スコアの上がるスピード
-	/// </summary>
-	[SerializeField]
+    [SerializeField]
+    private ResultPlayer playerinfo;
+    /// <summary>
+    /// スコアの上がるスピード
+    /// </summary>
+    [SerializeField]
 	private float count_speed_ = 0.005f;
 
 	private bool once_ = false;
@@ -107,15 +109,18 @@ public class ResultScoreBar : MonoBehaviour
 		if (total_score_ >= max_score_ * amazing_)
 		{
 			operation_[(int)OPERATION.Amazing].enabled = true;
-		}
+            playerinfo.JudgeType = 2;
+        }
 		else if(total_score_ >= max_score_ * good_ && total_score_ < max_score_ * amazing_)
 		{
 			operation_[(int)OPERATION.Good].enabled = true;
-		}
+            playerinfo.JudgeType = 1;
+        }
 		else if(total_score_ < max_score_ * error_)
 		{
-			operation_[(int)OPERATION.Error].enabled = true;
-		}
+            operation_[(int)OPERATION.Error].enabled = true;
+            playerinfo.JudgeType = 0;
+        }
 
 		// デバッグモードだったら表示
 		if (debug_mode_)
