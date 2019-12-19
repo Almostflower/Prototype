@@ -36,7 +36,6 @@ public class OriginalFade : MonoBehaviour
         }
         if(SceneStatusManager.Instance.GetGameFade())
         {
-            SceneStatusManager.Instance.SetGameFade(false);
             GameFade();
         }
 
@@ -63,11 +62,9 @@ public class OriginalFade : MonoBehaviour
             image.color = new Color(0,0,0, 255);
             fade.FadeOut(0, () => {
                 group.blocksRaycasts = true;
-                SceneStatusManager.Instance.SetSceneChange(true);
             });
-        });
-
-    }
+		});
+	}
     /// <summary>
     /// フェードアウト
     /// </summary>
@@ -84,13 +81,18 @@ public class OriginalFade : MonoBehaviour
             fade.FadeOut(3.0f, () => {
                 group.blocksRaycasts = true;
             });
+			
         });
-    }
+		SceneStatusManager.Instance.SetSceneChange(true);
 
-    /// <summary>
-    /// ゲームプレイ中にフェードかけたいときにフェードイン＆アウトを両方させたいとき
-    /// </summary>
-    public void GameFade()
+		//	SceneStatusManager.Instance.SetGameFade(true);
+
+	}
+
+	/// <summary>
+	/// ゲームプレイ中にフェードかけたいときにフェードイン＆アウトを両方させたいとき
+	/// </summary>
+	public void GameFade()
     {
         group.blocksRaycasts = false;
 
@@ -100,7 +102,7 @@ public class OriginalFade : MonoBehaviour
             isMainColor = !isMainColor;
             fade.FadeOut(1, () => {
                 group.blocksRaycasts = true;
-            });
+			});
         });
-    }
+	}
 }

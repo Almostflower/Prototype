@@ -130,6 +130,14 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     private bool dashflag = false;
 
+	/// <summary>
+	/// スタート準備
+	/// </summary>
+	[SerializeField]
+	private StartReady start_ready_;
+
+	private bool readyFlag;
+
     enum UIGfit
     {
         GiftGood,
@@ -159,7 +167,10 @@ public sealed class Player : BaseMonoBehaviour
         BadParticle.Stop();
         GoodParticle.Stop();
 
-    }
+		readyFlag = false;
+
+
+	}
     //IEnumerator Disappearing()
     //{
     //    int step = 90;
@@ -179,6 +190,23 @@ public sealed class Player : BaseMonoBehaviour
     /// </summary>
     public override void UpdateNormal()
     {
+		if (!readyFlag)
+		{
+			// フェード完了しているか
+			if(SceneStatusManager.Instance.GetGameFade())
+			{
+
+				start_ready_.SetStart = true;
+			}
+
+			if(start_ready_.GetGo)
+			{
+				readyFlag = true;
+			}
+
+			return;
+		}
+
         if(GoodParticleFlag || BadParticleFlag)
         {
             if(GoodParticleFlag)

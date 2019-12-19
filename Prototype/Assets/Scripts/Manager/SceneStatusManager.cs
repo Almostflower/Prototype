@@ -74,7 +74,7 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
 
     public void SetGameFade(bool gamefade)
     {
-        GameFade = gamefade;
+		GameFade = gamefade;
     }
 
     public void SetSceneChange(bool scenechange)
