@@ -131,12 +131,21 @@ public sealed class Player : BaseMonoBehaviour
     private bool dashflag = false;
 
 	/// <summary>
-	/// スタート準備
+	/// スタート準備のスクリプト
 	/// </summary>
 	[SerializeField]
 	private StartReady start_ready_;
 
+	/// <summary>
+	/// スタート準備
+	/// </summary>
 	private bool readyFlag;
+
+	/// <summary>
+	/// タイマースクリプト
+	/// </summary>
+	[SerializeField]
+	private Timer timer_;
 
     enum UIGfit
     {
@@ -196,12 +205,16 @@ public sealed class Player : BaseMonoBehaviour
 			// フェード完了しているか
 			if(SceneStatusManager.Instance.GameReady)
 			{
-				start_ready_.SetStart = true;
+				// スタートさせる
+				start_ready_.StartGame();
 			}
 
+			// スタートしたら
 			if(start_ready_.GetGo)
 			{
 				readyFlag = true;
+				// タイマーを起動
+				timer_.StartTimer();
 			}
 
 			return;

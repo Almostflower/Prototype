@@ -17,10 +17,6 @@ public class StartReady : BaseMonoBehaviour
 	/// レディーフラグ
 	/// </summary>
 	private bool start_ = false;
-	public bool SetStart
-	{
-		set { start_ = value; }
-	}
 
 	/// <summary>
 	/// ゴーフラグ
@@ -68,8 +64,19 @@ public class StartReady : BaseMonoBehaviour
 		go_ = true;
 	}
 
+	/// <summary>
+	/// スタートを消す
+	/// </summary>
 	public void DestroyAnim()
 	{
 		Destroy(start_ready_);
+	}
+
+	/// <summary>
+	/// スタートさせる
+	/// </summary>
+	public void StartGame()
+	{
+		start_ = true;
 	}
 }

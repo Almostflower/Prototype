@@ -24,10 +24,17 @@ public class Timer : BaseMonoBehaviour
 	private float seconds_;
 
 	/// <summary>
+	/// 制限時間の管理
+	/// </summary>
+	private float set_seconds_;
+
+	/// <summary>
 	/// UIの表示
 	/// </summary>
 	[SerializeField]
 	private Number number_;
+
+	private bool start_timer_ = false;
 
 	/// <summary>
 	/// BaseMonoBehaviourの初期化
@@ -40,13 +47,22 @@ public class Timer : BaseMonoBehaviour
 	void Start()
 	{
 		limit_time_ = false;
+		start_timer_ = false;
+		set_seconds_ = seconds_ + 1;
 	}
 
 	public override void UpdateNormal()
 	{
+		// 無限の時間だったら何もしない
 		if(time_infinity_)
 		{
 			seconds_ = 100;
+		}
+
+		// ゲームが始まらなかったら何もしない
+		if(!start_timer_)
+		{
+			seconds_ = set_seconds_;
 		}
 
 		// 制限時間が0秒以下なら何もしない
@@ -78,5 +94,10 @@ public class Timer : BaseMonoBehaviour
 			seconds_ = 0.00f;
 			limit_time_ = true;
 		}
+	}
+
+	public void StartTimer()
+	{
+		start_timer_ = true;
 	}
 }
