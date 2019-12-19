@@ -62,8 +62,7 @@ public class TutorialTimeState : MonoBehaviour
     int statecount4 = 10;
     int statecount5 = 11;
     int statecount6 = 12;
-    int statecount7 = 13;
-
+    int statecount7 = 14;
     float resettime = 0.0f;
     bool setumeiflag = false;
     void Update()
@@ -190,7 +189,7 @@ public class TutorialTimeState : MonoBehaviour
                 case 6:
                     if(nowTime >= settimes[6])
                     {
-                        if (statecount6 < 13)
+                        if (statecount6 < 14)
                         {
                             ActiveImage(statecount6);
                         }
@@ -201,16 +200,19 @@ public class TutorialTimeState : MonoBehaviour
                 case 7:
                     if (nowTime >= settimes[7])
                     {
-                        if (statecount7 < 14)
+                        if (statecount7 < 15)
                         {
                             ActiveImage(statecount7);
                         }
-
-                        if(Input.GetKeyDown(KeyCode.Space))
+                        else
                         {
-                            ResetImage();
-                            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+                            if (Input.GetKeyDown(KeyCode.Space))
+                            {
+                                ResetImage();
+                                SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+                            }
                         }
+
                         nowTime = 0.0f;
                     }
                     break;
@@ -226,7 +228,7 @@ public class TutorialTimeState : MonoBehaviour
 
     private void ActiveImage(int num)
     {
-        for (int i = 0; i < 14; i++)
+        for (int i = 0; i < 15; i++)
         {
             tutorialtex[i].SetActive(false);
         }

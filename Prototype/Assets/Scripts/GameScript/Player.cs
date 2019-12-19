@@ -169,8 +169,9 @@ public sealed class Player : BaseMonoBehaviour
 
 		readyFlag = false;
 
+        SceneStatusManager.Instance.GameReady = true;
 
-	}
+    }
     //IEnumerator Disappearing()
     //{
     //    int step = 90;
@@ -193,7 +194,7 @@ public sealed class Player : BaseMonoBehaviour
 		if (!readyFlag)
 		{
 			// フェード完了しているか
-			if(!SceneStatusManager.Instance.GetFadeOut())
+			if(SceneStatusManager.Instance.GameReady)
 			{
 				start_ready_.SetStart = true;
 			}

@@ -12,7 +12,13 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
     private bool Pausebuttonselect = false;
     private int TitleStartFlag = -1;
     private bool TutorialWarpPhase = false;
+    private bool ReadyGoFlag = false;
 
+    public bool GameReady
+    {
+        get { return ReadyGoFlag; }
+        set { ReadyGoFlag = value; }
+    }
     public bool TutorialWarp
     {
         get { return TutorialWarpPhase; }

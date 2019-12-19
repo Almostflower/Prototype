@@ -63,10 +63,10 @@ public class OriginalFade : MonoBehaviour
             image.color = new Color(0,0,0, 255);
             fade.FadeOut(0, () => {
                 group.blocksRaycasts = true;
-
-			});
+                SceneStatusManager.Instance.SetSceneChange(true);
+            });
 		});
-	}
+    }
     /// <summary>
     /// フェードアウト
     /// </summary>
