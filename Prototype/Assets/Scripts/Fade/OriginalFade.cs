@@ -56,7 +56,7 @@ public class OriginalFade : MonoBehaviour
     public void Fadein()
     {
         group.blocksRaycasts = false;
-        fade.FadeIn(1.5f, () =>
+        fade.FadeIn(1.0f, () =>
         {
             //image.color = (isMainColor) ? color1 : color2;
             //isMainColor = !isMainColor;
@@ -80,7 +80,7 @@ public class OriginalFade : MonoBehaviour
             image.color = new Color(255, 255, 255, 0);
             //image.color = (isMainColor) ? color1 : color2;
             //isMainColor = !isMainColor;
-            fade.FadeOut(1.5f, () => {
+            fade.FadeOut(1.0f, () => {
                 group.blocksRaycasts = true;
             });
 			
