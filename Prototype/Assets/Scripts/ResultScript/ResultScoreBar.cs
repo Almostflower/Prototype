@@ -68,6 +68,12 @@ public class ResultScoreBar : MonoBehaviour
 
 	private bool once_ = false;
 
+	private bool countflag_ = false;
+
+	private bool countstopSE_flag_ = false;
+
+	private bool scoreSE_flag_ = false;
+
 	private enum OPERATION
 	{
 		Amazing,
@@ -81,6 +87,9 @@ public class ResultScoreBar : MonoBehaviour
 		total_score_ = Score.GetTotalScore();
 		gauge_.GaugeValue = 0;
 		once_ = false;
+		countflag_ = false;
+		countstopSE_flag_ = false;
+		scoreSE_flag_ = false;
 
 		foreach (var i in operation_.Select((value, index) => new { value, index }))
 		{
@@ -102,7 +111,26 @@ public class ResultScoreBar : MonoBehaviour
 		// カウントストップ
 		if (gauge_.GaugeValue > total_score_)
 		{
+			if (!countstopSE_flag_)
+			{
+				// カウントストップの音
+				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.CountStop_SE);
+				countstopSE_flag_ = true;
+			}
 			gauge_.GaugeValue = total_score_;
+		}
+
+		// カウントダウン終わるまで下の処理はしない
+		if(!countflag_)
+		{
+			return;
+		}
+
+		if(!scoreSE_flag_)
+		{
+			// リザルトで文字表示させる
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.ScoreDecision_SE);
+			scoreSE_flag_ = true;
 		}
 
 		// 点数に応じて文字を変更

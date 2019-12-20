@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
         RStageLight_BGM,
         RResult_BGM,
         RTitle_BGM,
-        RRResult_BGM
+        RRResult_BGM,
     }
 
 	/// <summary>
@@ -31,12 +31,15 @@ public class SoundManager : MonoBehaviour
 	/// </summary>
 	public enum SELabel
 	{
-		TimeOver_SE,		//タイムオーバー
-		Decision_SE,		//決定
-		Escape_SE,			//うさぎ逃げる
-		Catch_SE,			//うさぎ確保
-		GetGift_SE,			//ギフト回収
-		InRange_SE			//範囲内
+		TimeOver_SE,			//タイムオーバー
+		Decision_SE,			//決定
+		Escape_SE,				//うさぎ逃げる
+		Catch_SE,				//うさぎ確保
+		GetGift_SE,				//ギフト回収
+		InRange_SE,				//範囲内
+		GiftCountDecision_SE,	//リザルトでギフトのドラムロール終わったとき
+		CountStop_SE,			//カウントストップ
+		ScoreDecision_SE,		//リザルトで文字表示させる
 	}
 	////////////////// ここまでに出したい音を入力 ///////////////////////
 	
