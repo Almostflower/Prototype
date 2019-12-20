@@ -35,6 +35,6 @@ public class ControllerCheckerScript : MonoBehaviour
         //);
 
         //Debug.Log(Input.GetAxisRaw("Horizontal2"));
-        Debug.Log(Input.GetAxisRaw("Vertical"));
+        //Debug.Log(Input.GetAxisRaw("Vertical"));
     }
 }

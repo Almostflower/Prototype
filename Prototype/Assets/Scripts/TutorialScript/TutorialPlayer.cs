@@ -439,7 +439,7 @@ public class TutorialPlayer : BaseMonoBehaviour
 
         if(other.gameObject.tag == "TutorialWarp")
         {
-            if(Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.Joystick1Button2))
+            if(Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.Joystick1Button5))
             {
                 TutorialManagerScript.Instance.SetPhaseNumber(7);
             }
