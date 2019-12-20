@@ -461,8 +461,12 @@ public sealed class Player : BaseMonoBehaviour
         if (goodGiftNum > 0 && rabbitManager.GetComponent<RabbitManager>().rabbitType[rabbitNum] == RabbitManager.RabbitType.Good)
         {
             GoodParticleStart();
-            // スコアを反映
-            for (int i = 0; i < badGiftNum + goodGiftNum; i++)
+
+			// ギフトを送るSE
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+
+			// スコアを反映
+			for (int i = 0; i < badGiftNum + goodGiftNum; i++)
             {
                 if (giftType[i])
                 {
@@ -482,8 +486,12 @@ public sealed class Player : BaseMonoBehaviour
         {
             // 悪いギフトがあり悪いうさぎなら
             BadParticleStart();
-            // スコアを反映
-            for (int i = 0; i < badGiftNum + goodGiftNum; i++)
+
+			// ギフトを送るSE
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Catch_SE);
+
+			// スコアを反映
+			for (int i = 0; i < badGiftNum + goodGiftNum; i++)
             {
                 if (!giftType[i])
                 {
