@@ -235,7 +235,7 @@ public class TutorialTimeState : MonoBehaviour
 
     private void ResetImage()
     {
-        for (int i = 0; i < 14; i++)
+        for (int i = 0; i < 15; i++)
         {
             tutorialtex[i].SetActive(false);
         }
