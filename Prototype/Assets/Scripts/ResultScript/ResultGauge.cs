@@ -20,7 +20,7 @@ public class ResultGauge : BaseMonoBehaviour
     /// <summary>
     /// 減算する値
     /// </summary>
-    private float gauge_value_;
+    private float gauge_value_ = 0;
     public float GaugeValue
     {
 		get { return gauge_value_; }

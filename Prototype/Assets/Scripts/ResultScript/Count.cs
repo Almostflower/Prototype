@@ -23,6 +23,13 @@ public class Count : MonoBehaviour
 
 	private bool play_SE_ = false;
 
+	private bool last_se_ = false;
+	public bool LastCountSE
+	{
+		set { last_se_ = value; }
+		get { return last_se_; }
+	}
+
 	enum Item
 	{
 		GiftGood,
@@ -39,6 +46,7 @@ public class Count : MonoBehaviour
 			one_SE_[i] = false;
 		}
 		play_SE_ = false;
+		last_se_ = false;
 	}
 
 	void Update()
@@ -106,13 +114,14 @@ public class Count : MonoBehaviour
 			{
 				one_SE_[(int)Item.RabbitBad] = true;
 				play_SE_ = true;
+				last_se_ = true;
 			}
 		}
 
 		if(play_SE_)
 		{
 			// リザルトでギフトのドラムロール終わった音
-			//SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GiftCountDecision_SE);
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GiftCountDecision_SE);
 			play_SE_ = false;
 		}
 	}

@@ -36,10 +36,10 @@ public class SoundManager : MonoBehaviour
 		Escape_SE,				//うさぎ逃げる
 		Catch_SE,				//うさぎ確保
 		GetGift_SE,				//ギフト回収
-		InRange_SE,				//範囲内
-		//GiftCountDecision_SE,	//リザルトでギフトのドラムロール終わったとき
-		//CountStop_SE,			//カウントストップ
-		//ScoreDecision_SE,		//リザルトで文字表示させる
+		InRange_SE,             //範囲内
+		GiftCountDecision_SE,   //リザルトでギフトのドラムロール終わったとき
+		CountStop_SE,           //カウントストップ
+		ScoreDecision_SE,       //リザルトで文字表示させる
 	}
 	////////////////// ここまでに出したい音を入力 ///////////////////////
 	
