@@ -38,7 +38,8 @@ public class SoundManager : MonoBehaviour
 		GetGift_SE,				//ギフト回収
 		InRange_SE,             //範囲内
 		GiftCountDecision_SE,   //リザルトでギフトのドラムロール終わったとき
-		CountStop_SE,           //カウントストップ
+		Drumroll_SE,			//ドラムロール
+		ScoreCountUp_SE,		//スコアカウントアップしているとき
 		ScoreDecision_SE,       //リザルトで文字表示させる
 	}
 	////////////////// ここまでに出したい音を入力 ///////////////////////
@@ -150,6 +151,11 @@ public class SoundManager : MonoBehaviour
 	private Dictionary<string, AudioClip> seClipDic;
 	private Dictionary<string, AudioClip> bgmClipDic;
 	private static SoundManager singletonInstance = null;
+
+	/// <summary>
+	/// se
+	/// </summary>
+	AudioSource se;
 
 	/// <summary>
 	/// シングルトン
@@ -264,7 +270,7 @@ public class SoundManager : MonoBehaviour
 	private IEnumerator DelayPlaySE(SELabel seLabel, float delay)
 	{
 		yield return new WaitForSeconds(delay);
-		AudioSource se = seSourceList[nextSESourceNum];
+		se = seSourceList[nextSESourceNum];
 		se.PlayOneShot(seClipDic[seLabel.ToString()]);
 		nextSESourceNum = (++nextSESourceNum < SE_SOURCE_NUM) ? nextSESourceNum : 0;
 	}
@@ -351,6 +357,15 @@ public class SoundManager : MonoBehaviour
 	public void AllStopSE()
 	{
 		seSourceList.ForEach(a => { a.Stop(); });
+	}
+
+	/// <summary>
+	/// SEを止める
+	/// </summary>
+	/// <param name="seLabel"></param>
+	public void StopSE()
+	{
+		se.Stop();
 	}
 
 	/// <summary>

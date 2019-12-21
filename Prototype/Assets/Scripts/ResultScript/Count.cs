@@ -6,12 +6,6 @@ using System.Linq;
 
 public class Count : MonoBehaviour
 {
-	/// <summary>
-	/// UIの表示
-	/// </summary>
-	//[SerializeField]
-	//private List<ImageNo> image_ = new List<ImageNo>();
-
 	[SerializeField]
 	private List<Number> number_ = new List<Number>();
 
@@ -22,12 +16,9 @@ public class Count : MonoBehaviour
 	private bool[] one_SE_ = new bool[(int)Item.Max];
 
 	private bool play_SE_ = false;
-
-	private bool last_se_ = false;
 	public bool LastCountSE
 	{
-		set { last_se_ = value; }
-		get { return last_se_; }
+		get { return one_SE_[(int)Item.RabbitBad]; }
 	}
 
 	enum Item
@@ -46,7 +37,6 @@ public class Count : MonoBehaviour
 			one_SE_[i] = false;
 		}
 		play_SE_ = false;
-		last_se_ = false;
 	}
 
 	void Update()
@@ -57,71 +47,84 @@ public class Count : MonoBehaviour
 		if (counter >= scoreTime)
 		{
 			number_[(int)Item.GiftGood].SetNum(Score.GetGiftGood());
+
+			//SE
+			if (!one_SE_[(int)Item.GiftGood])
+			{
+				one_SE_[(int)Item.GiftGood] = true;
+				play_SE_ = true;
+
+				// ドラムロール
+				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Drumroll_SE);
+			}
 		}
 		else
 		{
 			number_[(int)Item.GiftGood].SetNum(Random.Range(10, 100));
-			
-			if(!one_SE_[(int)Item.GiftGood])
-			{
-				one_SE_[(int)Item.GiftGood] = true;
-				play_SE_ = true;
-			}
 		}
 
 		//二つ目
 		if (counter >= scoreTime + 1)
 		{
 			number_[(int)Item.GiftBad].SetNum(Score.GetGiftBad());
-		}
-		else
-		{
-			number_[(int)Item.GiftBad].SetNum(Random.Range(10, 100));
 
+			//SE
 			if (!one_SE_[(int)Item.GiftBad])
 			{
 				one_SE_[(int)Item.GiftBad] = true;
 				play_SE_ = true;
+
+				// ドラムロール
+				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Drumroll_SE);
 			}
+		}
+		else
+		{
+			number_[(int)Item.GiftBad].SetNum(Random.Range(10, 100));		
 		}
 
 		//三つ目
 		if (counter >= scoreTime + 2)
 		{
 			number_[(int)Item.RabbitGood].SetNum(Score.GetRabbitGood());
-		}
-		else
-		{
-			number_[(int)Item.RabbitGood].SetNum(Random.Range(10, 100));
 
+			//SE
 			if (!one_SE_[(int)Item.RabbitGood])
 			{
 				one_SE_[(int)Item.RabbitGood] = true;
 				play_SE_ = true;
+
+				// ドラムロール
+				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Drumroll_SE);
 			}
+		}
+		else
+		{
+			number_[(int)Item.RabbitGood].SetNum(Random.Range(10, 100));
 		}
 
 		//四つ目
 		if (counter >= scoreTime + 3)
 		{
 			number_[(int)Item.RabbitBad].SetNum(Score.GetRabbitBad());
+
+			//SE
+			if (!one_SE_[(int)Item.RabbitBad])
+			{
+				one_SE_[(int)Item.RabbitBad] = true;
+				play_SE_ = true;				
+			}
 		}
 		else
 		{
 			number_[(int)Item.RabbitBad].SetNum(Random.Range(10, 100));
-
-			if (!one_SE_[(int)Item.RabbitBad])
-			{
-				one_SE_[(int)Item.RabbitBad] = true;
-				play_SE_ = true;
-				last_se_ = true;
-			}
 		}
 
 		if(play_SE_)
 		{
 			// リザルトでギフトのドラムロール終わった音
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GiftCountDecision_SE);
+			SoundManager.SingletonInstance.AllStopSE();
 			play_SE_ = false;
 		}
 	}

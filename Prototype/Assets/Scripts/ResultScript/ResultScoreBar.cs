@@ -75,6 +75,8 @@ public class ResultScoreBar : MonoBehaviour
 	[SerializeField]
 	private Count count_script_;
 
+	private bool scorecountupE_flag_ = false;
+
 	private enum OPERATION
 	{
 		Amazing,
@@ -90,6 +92,7 @@ public class ResultScoreBar : MonoBehaviour
 		once_ = false;
 		countstopSE_flag_ = false;
 		scoreSE_flag_ = false;
+		scorecountupE_flag_ = false;
 
 		foreach (var i in operation_.Select((value, index) => new { value, index }))
 		{
@@ -111,6 +114,14 @@ public class ResultScoreBar : MonoBehaviour
 			return;
 		}
 
+		// スコアカウントアップ開始
+		if (!scorecountupE_flag_)
+		{
+			// スコアカウントアップ
+			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.ScoreCountUp_SE);
+			scorecountupE_flag_ = true;
+		}
+
 		// カウントアップ
 		gauge_.GaugeValue += count_speed_;
 
@@ -119,8 +130,6 @@ public class ResultScoreBar : MonoBehaviour
 		{
 			if (!countstopSE_flag_)
 			{
-				// カウントストップの音
-				SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.CountStop_SE);
 				countstopSE_flag_ = true;
 			}
 			gauge_.GaugeValue = total_score_;
@@ -134,6 +143,8 @@ public class ResultScoreBar : MonoBehaviour
 
 		if (!scoreSE_flag_)
 		{
+			// SEストップ
+			SoundManager.SingletonInstance.AllStopSE();
 			// リザルトで文字表示させる
 			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.ScoreDecision_SE);
 			scoreSE_flag_ = true;
