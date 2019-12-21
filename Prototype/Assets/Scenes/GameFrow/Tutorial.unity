@@ -1879,12 +1879,12 @@ PrefabInstance:
     - target: {fileID: 8723624450156159015, guid: 055a6c1d687d7ff499755d8af6bd844f,
         type: 3}
       propertyPath: m_TagString
-      value: TutorialWarp
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8723624450469895100, guid: 055a6c1d687d7ff499755d8af6bd844f,
         type: 3}
       propertyPath: m_TagString
-      value: TutorialWarp
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9167805225640371994, guid: 055a6c1d687d7ff499755d8af6bd844f,
         type: 3}
@@ -1895,6 +1895,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: TutorialWarp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167805225640371992, guid: 055a6c1d687d7ff499755d8af6bd844f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167805225657546096, guid: 055a6c1d687d7ff499755d8af6bd844f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 055a6c1d687d7ff499755d8af6bd844f, type: 3}
@@ -3773,6 +3783,7 @@ MonoBehaviour:
   staminamax: 10
   staminarecoveryspeed: 0.1
   staminaspeed: 0.1
+  TutorialTimeState_: {fileID: 1375361042}
 --- !u!114 &643294103
 MonoBehaviour:
   m_ObjectHideFlags: 0

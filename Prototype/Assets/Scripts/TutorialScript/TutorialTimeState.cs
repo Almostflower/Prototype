@@ -34,6 +34,7 @@ public class TutorialTimeState : MonoBehaviour
 
     [SerializeField]
     private GameObject[] tutorialtex;
+
     private void Awake()
     {
         GoodGiftObj = Instantiate(GoodGiftObj, point1.position, Quaternion.identity);
@@ -63,6 +64,7 @@ public class TutorialTimeState : MonoBehaviour
     int statecount5 = 11;
     int statecount6 = 12;
     int statecount7 = 14;
+
     float resettime = 0.0f;
     bool setumeiflag = false;
     void Update()
@@ -107,9 +109,6 @@ public class TutorialTimeState : MonoBehaviour
                         break;
                     case 6:
                         statecount6++;
-                        break;
-                    case 7:
-                        statecount7++;
                         break;
                 }
             }
@@ -203,9 +202,7 @@ public class TutorialTimeState : MonoBehaviour
                         if (statecount7 < 15)
                         {
                             ActiveImage(statecount7);
-                        }
-                        else
-                        {
+
                             if (Input.GetKeyDown(KeyCode.Space))
                             {
                                 ResetImage();

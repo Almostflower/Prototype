@@ -155,6 +155,8 @@ public class TutorialPlayer : BaseMonoBehaviour
     /// </summary>
     private bool dashflag = false;
 
+    [SerializeField]
+    private TutorialTimeState TutorialTimeState_;
     enum UIGfit
     {
         GiftGood,
