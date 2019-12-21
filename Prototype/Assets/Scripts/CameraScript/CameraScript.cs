@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     //public float RotationSensitivity = 100f;// 感度
     
     public GameObject rotateObject;
-    Vector3 defDis = new Vector3(0, 2, -7.5f);
+    Vector3 defDis = new Vector3(0, 3, -7.5f);
     private Vector3 preWorldlPos;
 
     // Use this for initialization

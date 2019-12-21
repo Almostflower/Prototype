@@ -1159,9 +1159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usagianim: {fileID: 1397796395837475647}
-  targetDistance: 3
+  targetDistance: 6
   m_searchAngle: 40
-  _searchRadius: 35
+  _searchRadius: 60
   rabbitCircle: {fileID: 5051530233659532462}
 --- !u!195 &6273259762863080699
 NavMeshAgent:

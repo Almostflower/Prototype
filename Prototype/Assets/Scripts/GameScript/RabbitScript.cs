@@ -100,6 +100,49 @@ public class RabbitScript : BaseMonoBehaviour
         ApplySearchAngle();
     }
 
+    //うさぎの情報がリセットされてないので関数ごとつくって追加した。
+    public void ResetRabbit()
+    {
+        hitPlayer = false;
+
+        ApplySearchAngle();
+
+        mask = LayerMask.GetMask(LayerMask.LayerToName(layerNumber));
+
+        //変更予定
+        agent = GetComponent<NavMeshAgent>();
+        coloring = GetComponent<Renderer>();
+        player = GameObject.FindWithTag("Player");
+
+        this.OnCollisionEnterAsObservable()
+            .Select(collision => collision.gameObject.tag)
+            .Where(tag => tag == "Player")
+            .ThrottleFirst(System.TimeSpan.FromSeconds(0.2f))
+            .Subscribe(_ => touchWithPlayer.OnNext(Unit.Default));
+
+        ////最初の2回の音と最後の音を分ける
+        //enemyCanvas.OnCountChanged
+        //    .Where(count => 0 < count && count < 2)
+        //    .Subscribe(_ => AudioManager.Instance.PlaySE("SE_TOUCH", 0));
+        //
+        ////3回タッチされたらゲームオブジェクトを消す
+        //enemyCanvas.OnCountChanged
+        //    .Where(count => count == 0)
+        //    .Subscribe(_ =>
+        //    {
+        //        AudioManager.Instance.PlaySE("SE_DISAPPEARANCE", 0);
+        //        gamemanager.enemyNumverDecrement();
+        //        Destroy(gameObject);
+        //    });
+
+        this.OnCollisionEnterAsObservable()
+        .Where(_ => currentState == RabbitState.DEAD)
+        .Where(x => x.gameObject.GetComponent<Player>() != null)
+        .Select(x => x.gameObject.GetComponent<Player>())
+        .Subscribe(x => Destroy(gameObject));
+
+        Usual();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -117,7 +160,7 @@ public class RabbitScript : BaseMonoBehaviour
         this.OnCollisionEnterAsObservable()
             .Select(collision => collision.gameObject.tag)
             .Where(tag => tag == "Player")
-            .ThrottleFirst(System.TimeSpan.FromSeconds(1))
+            .ThrottleFirst(System.TimeSpan.FromSeconds(0.2f))
             .Subscribe(_ => touchWithPlayer.OnNext(Unit.Default));
 
         ////最初の2回の音と最後の音を分ける

@@ -537,9 +537,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usagianim: {fileID: 2997910791022852361}
-  targetDistance: 3
+  targetDistance: 6
   m_searchAngle: 40
-  _searchRadius: 35
+  _searchRadius: 60
   rabbitCircle: {fileID: 2997910791663941018}
 --- !u!195 &2997910791491892334
 NavMeshAgent:
@@ -550,7 +550,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2997910791491892332}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 6
   m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50

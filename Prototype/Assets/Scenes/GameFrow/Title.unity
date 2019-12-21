@@ -14999,7 +14999,7 @@ MonoBehaviour:
   img: {fileID: 1164382817}
   defaultvalue: 5
   LimitValue: 0
-  addvalue: 0.05
+  addvalue: 0.12
 --- !u!1001 &1182884596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15164,7 +15164,7 @@ MonoBehaviour:
   img: {fileID: 1184348882}
   defaultvalue: 5
   LimitValue: 0
-  addvalue: 0.05
+  addvalue: 0.12
 --- !u!1 &1354044670
 GameObject:
   m_ObjectHideFlags: 0

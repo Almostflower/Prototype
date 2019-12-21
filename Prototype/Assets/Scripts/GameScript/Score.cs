@@ -144,7 +144,7 @@ public class Score : BaseMonoBehaviour
 		{
 			timer_text_.enabled = true;
 			// タイマー表示用UIテキストに時間を表示する
-			timer_text_.text = total_score_.ToString("000");
+			//timer_text_.text = total_score_.ToString("000");
 		}
 		else
 		{

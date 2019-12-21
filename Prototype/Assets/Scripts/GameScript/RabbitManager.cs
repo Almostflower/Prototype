@@ -196,7 +196,7 @@ public class RabbitManager : BaseMonoBehaviour
         // ウサギを初期化
         rabbitManager[index].SetActive(true);
         rabbitManager[index].GetComponent<RabbitScript>().sCurrentState = RabbitScript.RabbitState.ORDINARY;
-
+        rabbitManager[index].GetComponent<RabbitScript>().ResetRabbit();//ここ追加した。
         if (index < goodRabbitMax)
         {
             rabbitManager[index].transform.position = GetPositionFromList();
