@@ -112,7 +112,7 @@ public class Count : MonoBehaviour
 		if(play_SE_)
 		{
 			// リザルトでギフトのドラムロール終わった音
-			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GiftCountDecision_SE);
+			//SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GiftCountDecision_SE);
 			play_SE_ = false;
 		}
 	}
