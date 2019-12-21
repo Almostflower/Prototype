@@ -141,6 +141,14 @@ MonoBehaviour:
   select1: {fileID: 1164382815}
   select2: {fileID: 1184348881}
   target_rotate: 0
+--- !u!222 &10604437
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10604434}
+  m_CullTransparentMesh: 0
 --- !u!224 &10604440 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6050286555144774664, guid: 065bc3df305aee44f9bfab0b4d69fb3c,
@@ -5031,7 +5039,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 291930482}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 33
+    m_Bits: 16417
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -14975,6 +14983,23 @@ MonoBehaviour:
   mGlowColor: {r: 1, g: 1, b: 1, a: 1}
   mGlowIntensitive: 3.56
   mGlowQuality: 5
+--- !u!114 &1164382823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164382815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e12f74a43f27ea42ad7b6daf940e14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  img: {fileID: 1164382817}
+  defaultvalue: 5
+  LimitValue: 0
+  addvalue: 0.05
 --- !u!1001 &1182884596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15055,6 +15080,7 @@ GameObject:
   - component: {fileID: 1184348884}
   - component: {fileID: 1184348883}
   - component: {fileID: 1184348882}
+  - component: {fileID: 1184348885}
   m_Layer: 5
   m_Name: End
   m_TagString: Untagged
@@ -15122,6 +15148,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -75}
   m_SizeDelta: {x: 1562, y: 616}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1184348885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184348881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e12f74a43f27ea42ad7b6daf940e14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  img: {fileID: 1184348882}
+  defaultvalue: 5
+  LimitValue: 0
+  addvalue: 0.05
 --- !u!1 &1354044670
 GameObject:
   m_ObjectHideFlags: 0
@@ -24874,6 +24917,22 @@ PrefabInstance:
       propertyPath: submaskTexture
       value: 
       objectReference: {fileID: 2800000, guid: b64d8adf1da3c4142a92470a41c7e38c, type: 3}
+    - target: {fileID: 22333946, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22333946, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 291930481}
+    - target: {fileID: 22333946, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491604, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6049903396530668428, guid: e6ac9154d06f7f74c83b42e9806a2af5,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -24917,22 +24976,6 @@ PrefabInstance:
     - target: {fileID: 6049903396530668428, guid: e6ac9154d06f7f74c83b42e9806a2af5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491604, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22333946, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22333946, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 291930481}
-    - target: {fileID: 22333946, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
-      propertyPath: m_PixelPerfect
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6049903397037948143, guid: e6ac9154d06f7f74c83b42e9806a2af5,

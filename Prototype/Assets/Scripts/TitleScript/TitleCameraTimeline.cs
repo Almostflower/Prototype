@@ -50,7 +50,7 @@ public class TitleCameraTimeline : MonoBehaviour
 
         if(!FadeFlag)
         {
-            if (AnimTimer >= 1.5f)
+            if (AnimTimer >= 0.2f)
             {
                 SceneStatusManager.Instance.SetFadeIn(true);
                 FadeFlag = true;
