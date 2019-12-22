@@ -13,7 +13,13 @@ public class SceneStatusManager : SingletonMonoBehaviour<SceneStatusManager>
     private int TitleStartFlag = -1;
     private bool TutorialWarpPhase = false;
     private bool ReadyGoFlag = false;
+    private int JudgeType_ = 0;
 
+    public int JudgeType
+    {
+        get { return JudgeType_; }
+        set { JudgeType_ = value; }
+    }
     public bool GameReady
     {
         get { return ReadyGoFlag; }

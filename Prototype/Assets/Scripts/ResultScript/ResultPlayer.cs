@@ -9,13 +9,7 @@ public class ResultPlayer : MonoBehaviour
 
     private bool ActionAnimFlag;
     private int Actionnum;
-    private int JudgeType_;
     private bool JudgeFlag;
-    public int JudgeType
-    {
-        get { return JudgeType_; }
-        set { JudgeType_ = value; }
-    }
 
     public bool ActionAnim
     {
@@ -32,7 +26,6 @@ public class ResultPlayer : MonoBehaviour
     void Start()
     {
         JudgeFlag = false;
-        JudgeType = 0;
         Debug.Log(gameObject.transform.rotation.y);
         gameObject.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), 90.0f);
     }
@@ -45,15 +38,17 @@ public class ResultPlayer : MonoBehaviour
         {
             anim.SetBool("Wait", false);
 
-            switch (JudgeType_)
+            switch (SceneStatusManager.Instance.JudgeType)
             {
                 case 0:
-                    anim.SetBool("Bad", true);
                     break;
                 case 1:
-                    anim.SetBool("Normal", true);
+                    anim.SetBool("Bad", true);
                     break;
                 case 2:
+                    anim.SetBool("Normal", true);
+                    break;
+                case 3:
                     anim.SetBool("Good", true);
                     break;
                 default:

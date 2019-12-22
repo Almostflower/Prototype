@@ -45,6 +45,8 @@ public class TutorialTimeState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneStatusManager.Instance.SetFadeOut(true);
+        SceneStatusManager.Instance.SetFadeIn(false);
         GoodGiftObj.SetActive(false);
         BadGiftObj.SetActive(false);
         GoodRabbitObj.SetActive(false);
