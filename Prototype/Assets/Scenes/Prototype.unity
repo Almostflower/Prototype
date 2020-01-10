@@ -1445,20 +1445,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762765bce7ccb24419370c8611d4b695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoodParticle: {fileID: 307479009}
-  BadParticle: {fileID: 1837043348}
   PlayerAnimator: {fileID: 218433409}
   PlayerController: {fileID: 218433413}
   Speed: 10
   DefaultSpeed: 5
   RunSpeed: 20
-  GiftArea: {fileID: 1624060560}
   rotateSpeed: 120
+  GoodParticle: {fileID: 307479009}
+  BadParticle: {fileID: 1837043348}
+  GiftArea: {fileID: 1624060560}
   giftMaxNum: 9
-  SparkParticle: {fileID: 1988762726}
-  footpos: {fileID: 612056004}
   goodGiftNum: 0
   badGiftNum: 0
+  SparkParticle: {fileID: 1988762726}
+  footpos: {fileID: 612056004}
   rabbitManager: {fileID: 866375921}
   score: {fileID: 1100311527}
   number_:
@@ -2887,6 +2887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522731328829105619, guid: a169758c669e94a4185200a58fe4826c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8980392
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a169758c669e94a4185200a58fe4826c, type: 3}
@@ -8143,6 +8148,30 @@ PrefabInstance:
     - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
       propertyPath: cutoutRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
+      propertyPath: maskTexture
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ac9154d06f7f74c83b42e9806a2af5, type: 3}
@@ -22095,6 +22124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923014435584969191, guid: 055a6c1d687d7ff499755d8af6bd844f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 055a6c1d687d7ff499755d8af6bd844f, type: 3}

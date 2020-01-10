@@ -47,6 +47,7 @@ public class Count : MonoBehaviour
 		if (counter >= scoreTime)
 		{
 			number_[(int)Item.GiftGood].SetNum(Score.GetGiftGood());
+			//number_[(int)Item.GiftGood].SetNum(1);
 
 			//SE
 			if (!one_SE_[(int)Item.GiftGood])
@@ -67,6 +68,7 @@ public class Count : MonoBehaviour
 		if (counter >= scoreTime + 1)
 		{
 			number_[(int)Item.GiftBad].SetNum(Score.GetGiftBad());
+			//number_[(int)Item.GiftBad].SetNum(2);
 
 			//SE
 			if (!one_SE_[(int)Item.GiftBad])
@@ -87,6 +89,7 @@ public class Count : MonoBehaviour
 		if (counter >= scoreTime + 2)
 		{
 			number_[(int)Item.RabbitGood].SetNum(Score.GetRabbitGood());
+			//number_[(int)Item.RabbitGood].SetNum(3);
 
 			//SE
 			if (!one_SE_[(int)Item.RabbitGood])
@@ -107,6 +110,7 @@ public class Count : MonoBehaviour
 		if (counter >= scoreTime + 3)
 		{
 			number_[(int)Item.RabbitBad].SetNum(Score.GetRabbitBad());
+			//number_[(int)Item.RabbitBad].SetNum(9);
 
 			//SE
 			if (!one_SE_[(int)Item.RabbitBad])

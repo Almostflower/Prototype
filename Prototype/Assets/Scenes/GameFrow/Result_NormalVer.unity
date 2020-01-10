@@ -1312,6 +1312,46 @@ PrefabInstance:
       propertyPath: m_UseSpriteMesh
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2043902030749465919, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: pos_.x
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043902030749465919, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: span_
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710255990871390160, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: pos_.x
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710255990871390160, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: span_
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843332585174566381, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: pos_.x
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843332585174566381, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: span_
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617635557334350900, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: pos_.x
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617635557334350900, guid: 901930a11bf84584db0d585f6c85d591,
+        type: 3}
+      propertyPath: span_
+      value: -250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901930a11bf84584db0d585f6c85d591, type: 3}
 --- !u!114 &447064008421492610 stripped
