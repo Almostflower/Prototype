@@ -5,14 +5,6 @@ using UnityEngine.UI;
 
 public sealed class Player : BaseMonoBehaviour
 {
-    [SerializeField]
-    private ParticleSystem GoodParticle;
-    [SerializeField]
-    private ParticleSystem BadParticle;
-
-    private bool GoodParticleFlag;
-    private bool BadParticleFlag;
-
     private float particletime;
     //[SerializeField]
     //private GameObject footPrintPrefab;
@@ -31,32 +23,50 @@ public sealed class Player : BaseMonoBehaviour
     private string PlayerActionParameter = "Move";
     private float hit;
     private Vector3 direction;
-    [SerializeField]
-    private GameObject GiftArea;//プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
-
+    
     [SerializeField]
     private float rotateSpeed = 120f;
 
+
+    [SerializeField]
+    private ParticleSystem GoodParticle;
+
+    [SerializeField]
+    private ParticleSystem BadParticle;
+
+    private bool GoodParticleFlag;
+    private bool BadParticleFlag;
+
+    /// <summary>
+    /// プレイヤーの子要素にギフトを持った時の位置指定してアタッチさせるために必要な変数。
+    /// </summary>
+    [SerializeField]
+    private GameObject GiftArea;
+
+    /// <summary>
+    /// プレイヤーが持てるギフトの最大数
+    /// </summary>
     [SerializeField]
     private int giftMaxNum;
+    public int GiftMaxNum
+    {
+        get { return giftMaxNum; }
+    }
 
-    //加速フラグ
-    bool speedflag = false;
-    //コントローラーの縦方向の傾きを取得する変数
-    [SerializeField]
-    private GameObject SparkParticle;
-    Vector3 Direction;
     /// <summary>
     /// 所有ギフトの情報
     /// </summary>
     private float[] giftTime;
+    public float[] GiftTime
+    {
+        get { return giftTime; }
+    }
     private bool[] giftType;
+    public bool[] GiftType
+    {
+        get { return giftType; }
+    }
 
-    ///<summary>
-    ///プレイヤーの足元座標
-    ///</summary>
-    [SerializeField, Tooltip("足元座標")]
-    private Transform footpos;
     /// <summary>
     /// 良いギフトの所有数
     /// </summary>
@@ -76,6 +86,21 @@ public sealed class Player : BaseMonoBehaviour
         get { return badGiftNum; }
         set { badGiftNum = value; }
     }
+
+    //加速フラグ
+    bool speedflag = false;
+    //コントローラーの縦方向の傾きを取得する変数
+    [SerializeField]
+    private GameObject SparkParticle;
+    Vector3 Direction;
+
+    
+
+    ///<summary>
+    ///プレイヤーの足元座標
+    ///</summary>
+    [SerializeField, Tooltip("足元座標")]
+    private Transform footpos;
 
     /// <summary>
     /// ウサギのマネージャー
@@ -517,57 +542,58 @@ public sealed class Player : BaseMonoBehaviour
     /// <param name="other">判定の対象物</param>
     private void OnTriggerEnter(Collider other)
     {
-        // ギフト（良）の所有数がオーバーしていないかチェック
-        if (goodGiftNum + badGiftNum < giftMaxNum)
-        {
-            if (SceneStatusManager.Instance.PauseButton == 1)
-            {
-                //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
-                if (other.gameObject.tag == "gift")
-                {
-                    GoodParticleStart();
-                    // ギフト回収SE
-                    SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+        //// ギフト（良）の所有数がオーバーしていないかチェック
+        //if (goodGiftNum + badGiftNum < giftMaxNum)
+        //{
+        //    if (SceneStatusManager.Instance.PauseButton == 1)
+        //    {
+        //        //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
+        //        if (other.gameObject.tag == "player")
+        //        {
+        //            GoodParticleStart();
+        //            // ギフト回収SE
+        //            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-                    //other.gameObject.GetComponent<Gift>().GoodFlag = true;
-                    // プレイヤーが吸収
-                    //Destroy(other.gameObject);
+        //            //other.gameObject.GetComponent<Gift>().GoodFlag = true;
+        //            // プレイヤーが吸収
+        //            //Destroy(other.gameObject);
 
-                    // プレイヤーがギフト吸収したことを知らせる
-                    other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
-                    // 取得したギフトの情報を保存
-                    giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
-                    giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
-                    
-                    // ギフト数追加
-                    goodGiftNum++;
-                }
-                //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
-                if (other.gameObject.tag == "Bad gift")
-                {
-                    BadParticleStart();
-                    // ギフト回収SE
-                    SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+        //            // プレイヤーがギフト吸収したことを知らせる
+        //            other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+        //            // 取得したギフトの情報を保存
+        //            giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetBadLimitTime;
+        //            giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
 
-                    Debug.Log("あたってる");
-                    GameStatusManager.Instance.SetLiftGift(true);
-                    //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
-                    Vector3 m = GiftArea.transform.position;
-                    other.transform.position = m;
-                    other.transform.parent = GiftArea.transform;
-                    other.transform.rotation = Quaternion.identity;
+        //            // ギフト数追加
+        //            goodGiftNum++;
+        //        }
+        //        //悪いギフトに当たったら、キャラクタが持ち上げるように位置を変更させ移動できるようにする。
+        //        if (other.gameObject.tag == "Bad gift")
+        //        {
+        //            BadParticleStart();
+        //            // ギフト回収SE
+        //            SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
 
-                    // プレイヤーがギフト吸収したことを知らせる
-                    other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
-                    // 取得したギフトの情報を保存
-                    giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustLimitTime;
-                    giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
+        //            Debug.Log("あたってる");
+        //            GameStatusManager.Instance.SetLiftGift(true);
+        //            //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
+        //            Vector3 m = GiftArea.transform.position;
+        //            other.transform.position = m;
+        //            other.transform.parent = GiftArea.transform;
+        //            other.transform.rotation = Quaternion.identity;
 
-                    // ギフト数追加
-                    badGiftNum++;
-                }
-            }
-        }
+        //            // プレイヤーがギフト吸収したことを知らせる
+        //            other.gameObject.GetComponent<Gift>().PlayerAbsorbFlag = true;
+        //            // 取得したギフトの情報を保存
+        //            giftTime[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustLimitTime;
+        //            giftType[goodGiftNum + badGiftNum] = other.gameObject.GetComponent<Gift>().GetDustFlag() ^ true;
+
+        //            // ギフト数追加
+        //            badGiftNum++;
+        //        }
+        //    }
+        //}
+
 
         // うさぎと当たっているかチェック
         if (other.gameObject.tag == "Rabbit")
@@ -607,7 +633,7 @@ public sealed class Player : BaseMonoBehaviour
     public void GoodParticleStart()
     {
         GoodParticle.gameObject.SetActive(true);
-        GoodParticle.gameObject.transform.position =  new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f);
+        GoodParticle.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 1.0f);
         GoodParticle.Play();
         return;
     }

@@ -273,6 +273,59 @@ public class Gift : BaseMonoBehaviour
     }
 
     /// <summary>
+    /// プレイヤーとのあたり判定
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        //普通のギフトの時に当たったら、取得したエフェクト発生させて、ゲージのパラメーターが増加し、ギフト消去させる
+        if (other.gameObject.tag == "Player")
+        {
+            Player player = other.gameObject.GetComponent<Player>();
+            
+            if (player.BadGiftNum + player.GoodGiftNum < player.GiftMaxNum)
+            {
+                // ギフト回収SE
+                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.GetGift_SE);
+                playerAbsorbFlag = true;
+
+                if (!DustFlag)
+                {
+
+                    player.GoodParticleStart();
+
+                    // 取得したギフトの情報を保存
+                    player.GiftTime[player.GoodGiftNum + player.BadGiftNum] = badLimitTime;
+                    player.GiftType[player.GoodGiftNum + player.BadGiftNum] = DustFlag ^ true;
+
+                    // ギフト数追加
+                    player.GoodGiftNum++;
+                    //Debug.LogError("良いギフト回収");
+                }
+                else if (DustFlag)   // 悪いギフト
+                {
+                    player.BadParticleStart();
+
+                    GameStatusManager.Instance.SetLiftGift(true);
+                    //other.gameObject.GetComponent<Gift>().PlayerCarryFlag = true;   // ギフトを運ぶ
+                    //Vector3 m = GiftArea.transform.position;
+                    //other.transform.position = m;
+                    //other.transform.parent = GiftArea.transform;
+                    //other.transform.rotation = Quaternion.identity;
+
+                    // 取得したギフトの情報を保存
+                    player.GiftTime[player.GoodGiftNum + player.BadGiftNum] = dustLimitTime;
+                    player.GiftType[player.GoodGiftNum + player.BadGiftNum] = DustFlag ^ true;
+
+                    // ギフト数追加
+                    player.BadGiftNum++;
+                    //Debug.LogError("悪いギフト回収");
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// ギフトの状態が悪いか判定
     /// </summary>
     public bool GetDustFlag()
