@@ -25,7 +25,8 @@ public class UpdateManager : MonoBehaviour
 
     private void Awake()
     {
-        QualitySettings.vSyncCount = 1;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 61;
         //Application.targetFrameRate = 60; //60FPSに設定
     }
     private void Update()
