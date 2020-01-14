@@ -34,7 +34,7 @@ public class TitleCameraTimeline : MonoBehaviour
     void Update()
     {
         //キー入力した時にタイムラインでフェード＆演出が開始されていく
-        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button3) && !acadeselect)
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button1) && !acadeselect)
         {
             acadeselect = true;
             //決定音
