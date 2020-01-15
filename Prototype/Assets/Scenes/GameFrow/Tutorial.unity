@@ -3715,7 +3715,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.25
   m_Direction: 1
   m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!54 &643294107
@@ -5402,6 +5402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 936074915}
   - component: {fileID: 936074916}
+  - component: {fileID: 936074917}
   m_Layer: 0
   m_Name: player_shadow
   m_TagString: Untagged
@@ -5471,6 +5472,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &936074917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936074914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c10f880ae9720a4f97175448bcde91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowobj: {fileID: 936074914}
+  ypos: 0.4
 --- !u!1 &939942669
 GameObject:
   m_ObjectHideFlags: 0

@@ -1494,7 +1494,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.01
+  m_Height: 1.25
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -2917,6 +2917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 800027533}
   - component: {fileID: 800027534}
+  - component: {fileID: 800027535}
   m_Layer: 0
   m_Name: player_shadow
   m_TagString: Untagged
@@ -2986,6 +2987,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &800027535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800027532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c10f880ae9720a4f97175448bcde91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowobj: {fileID: 800027532}
+  ypos: 0.1
 --- !u!1001 &814132064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3106,7 +3121,7 @@ PrefabInstance:
     - target: {fileID: 3809314087853764591, guid: a644562090b97b942b5e51135a3675e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 3809314087853764591, guid: a644562090b97b942b5e51135a3675e7,
         type: 3}
@@ -14063,7 +14078,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 6f9af6df7ad6f094898523b649ac8251,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6f9af6df7ad6f094898523b649ac8251,
         type: 3}

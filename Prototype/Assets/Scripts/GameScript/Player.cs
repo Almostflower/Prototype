@@ -451,7 +451,6 @@ public sealed class Player : BaseMonoBehaviour
             Direction.y += Physics.gravity.y * Time.deltaTime;
         }
 
-
         PlayerController.Move(Direction);
     }
 
