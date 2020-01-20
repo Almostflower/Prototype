@@ -22,20 +22,20 @@ public class TutorialScene : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button3))
-        {
-			//決定音
-			SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
-
-			SceneStatusManager.Instance.SetFadeIn(false);
-            SceneStatusManager.Instance.SetFadeIn(true);
-
-        }
-
-        if(SceneStatusManager.Instance.GetSceneChange())
-        {
-            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
-            SceneStatusManager.Instance.SetSceneChange(false);
-        }
+        //if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+        //{
+		//	//決定音
+		//	SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
+        //
+		//	SceneStatusManager.Instance.SetFadeIn(false);
+        //    SceneStatusManager.Instance.SetFadeIn(true);
+        //
+        //}
+        //
+        //if(SceneStatusManager.Instance.GetSceneChange())
+        //{
+        //    SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        //    SceneStatusManager.Instance.SetSceneChange(false);
+        //}
     }
 }
