@@ -208,7 +208,11 @@ public class TutorialTimeState : MonoBehaviour
                             if (Input.GetKeyDown(KeyCode.Space))
                             {
                                 ResetImage();
-                                SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+                                SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
+
+                                SceneStatusManager.Instance.SetFadeIn(false);
+                                SceneStatusManager.Instance.SetFadeIn(true);
+                                //SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
                             }
                         }
 
