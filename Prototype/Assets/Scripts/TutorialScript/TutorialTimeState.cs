@@ -205,7 +205,7 @@ public class TutorialTimeState : MonoBehaviour
                         {
                             ActiveImage(statecount7);
 
-                            if (Input.GetKeyDown(KeyCode.Space))
+                            if (Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.Joystick1Button3))
                             {
                                 ResetImage();
                                 SoundManager.SingletonInstance.PlaySE(SoundManager.SELabel.Decision_SE);
